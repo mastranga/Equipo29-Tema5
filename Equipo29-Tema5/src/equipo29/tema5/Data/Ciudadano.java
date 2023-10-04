@@ -3,6 +3,7 @@ package equipo29.tema5.Data;
 
 
 public class Ciudadano {
+    private int id = -1;
     private int dni;
     private String nombreCompleto;
     private String email;
@@ -11,8 +12,19 @@ public class Ciudadano {
     private String ambitoTrabajo;
 
     public Ciudadano() {
+        this.id = -1;
     }
 
+    public Ciudadano(int id, int dni, String nombreCompleto, String email, String celular, String ambitoTrabajo) {
+        this.id = id;
+        this.dni = dni;
+        this.nombreCompleto = nombreCompleto;
+        this.email = email;
+        this.celular = celular;
+        this.patologia = null;
+        this.ambitoTrabajo = ambitoTrabajo;
+    }
+    
     public Ciudadano(int dni, String nombreCompleto, String email, String celular, String ambitoTrabajo) {
         this.dni = dni;
         this.nombreCompleto = nombreCompleto;
@@ -22,6 +34,16 @@ public class Ciudadano {
         this.ambitoTrabajo = ambitoTrabajo;
     }
 
+    public Ciudadano(int id, int dni, String nombreCompleto, String email, String celular, String patologia, String ambitoTrabajo) {
+        this.id = id;
+        this.dni = dni;
+        this.nombreCompleto = nombreCompleto;
+        this.email = email;
+        this.celular = celular;
+        this.patologia = patologia;
+        this.ambitoTrabajo = ambitoTrabajo;
+    }
+    
     public Ciudadano(int dni, String nombreCompleto, String email, String celular, String patologia, String ambitoTrabajo) {
         this.dni = dni;
         this.nombreCompleto = nombreCompleto;
@@ -79,6 +101,15 @@ public class Ciudadano {
         this.ambitoTrabajo = ambitoTrabajo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+   
+    
     @Override
     public String toString() {
         return "Ciudadano{" + "dni=" + dni + ", nombreCompleto=" + nombreCompleto + ", email=" + email + ", celular=" + celular + ", patologia=" + patologia + ", ambitoTrabajo=" + ambitoTrabajo + '}';

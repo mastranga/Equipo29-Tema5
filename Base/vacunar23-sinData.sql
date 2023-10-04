@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2023 a las 01:08:36
+-- Tiempo de generación: 04-10-2023 a las 02:12:06
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -49,7 +49,8 @@ CREATE TABLE `ciudadano` (
   `email` varchar(60) NOT NULL,
   `celular` varchar(60) NOT NULL,
   `patologia` varchar(60) DEFAULT NULL,
-  `ambitoTrabajo` varchar(60) NOT NULL
+  `ambitoTrabajo` varchar(60) NOT NULL,
+  `idCiudadano` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -96,8 +97,9 @@ ALTER TABLE `cita`
 -- Indices de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  ADD PRIMARY KEY (`dni`),
-  ADD UNIQUE KEY `email` (`email`,`celular`);
+  ADD PRIMARY KEY (`idCiudadano`),
+  ADD UNIQUE KEY `email` (`email`,`celular`),
+  ADD UNIQUE KEY `dni` (`dni`);
 
 --
 -- Indices de la tabla `laboratorio`
@@ -123,6 +125,12 @@ ALTER TABLE `vacuna`
 --
 ALTER TABLE `cita`
   MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `ciudadano`
+--
+ALTER TABLE `ciudadano`
+  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `vacuna`
