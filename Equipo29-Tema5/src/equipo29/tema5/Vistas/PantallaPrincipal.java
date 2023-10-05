@@ -5,6 +5,7 @@
  */
 package equipo29.tema5.Vistas;
 
+import equipo29.tema5.Conexion.CitaData;
 import equipo29.tema5.Conexion.CiudadanoData;
 
 /**
@@ -13,6 +14,7 @@ import equipo29.tema5.Conexion.CiudadanoData;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
     private CiudadanoData cd;
+    private CitaData citad;
 
     /**
      * Creates new form PantallaPrincipal
@@ -20,6 +22,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         initComponents();
         cd = new CiudadanoData();
+        citad = new CitaData();
     }
 
     /**
@@ -34,6 +37,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         BotonPC = new javax.swing.JButton();
         BotonAdmin = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,8 +50,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         BotonAdmin.setText("ADMIN");
 
+        salir.setText("SALIR");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+
         escritorio.setLayer(BotonPC, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(BotonAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(salir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -62,6 +74,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addGap(205, 205, 205)
                         .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(275, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(salir)
+                .addGap(55, 55, 55))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,7 +86,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96)
                 .addComponent(BotonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addComponent(salir)
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,13 +107,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void BotonPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPCActionPerformed
         // TODO add your handling code here:
-        escritorio.removeAll();
+        //escritorio.removeAll();
         escritorio.repaint();
-        PortalCiudadano pc = new PortalCiudadano(cd);
+        PortalCiudadano pc = new PortalCiudadano(cd, citad);
         pc.setVisible(true);
         escritorio.add(pc);
         escritorio.moveToFront(pc);
     }//GEN-LAST:event_BotonPCActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_salirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,5 +159,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotonAdmin;
     private javax.swing.JButton BotonPC;
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 }

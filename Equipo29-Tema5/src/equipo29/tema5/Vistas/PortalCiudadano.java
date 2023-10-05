@@ -5,6 +5,7 @@
  */
 package equipo29.tema5.Vistas;
 
+import equipo29.tema5.Conexion.CitaData;
 import equipo29.tema5.Conexion.CiudadanoData;
 
 /**
@@ -13,13 +14,15 @@ import equipo29.tema5.Conexion.CiudadanoData;
  */
 public class PortalCiudadano extends javax.swing.JInternalFrame {
     private CiudadanoData cd;
+    private CitaData citad;
 
     /**
      * Creates new form PortalCiudadano
      */
-    public PortalCiudadano(CiudadanoData cd) {
+    public PortalCiudadano(CiudadanoData cd, CitaData citad) {
         initComponents();
         this.cd = cd;
+        this.citad = citad;
     }
 
     /**
@@ -36,8 +39,6 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
         citas = new javax.swing.JButton();
         volver = new javax.swing.JButton();
 
-        setClosable(true);
-
         registro.setText("Registro");
         registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,8 +47,18 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
         });
 
         citas.setText("Citas");
+        citas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                citasActionPerformed(evt);
+            }
+        });
 
         volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
 
         escritorio.setLayer(registro, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(citas, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -62,20 +73,20 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
                 .addComponent(volver)
                 .addGap(56, 56, 56))
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(216, 216, 216)
+                .addGap(219, 219, 219)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(registro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(citas, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addComponent(registro, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(citas, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(69, 69, 69)
                 .addComponent(volver)
                 .addGap(39, 39, 39))
         );
@@ -97,13 +108,27 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
-        escritorio.removeAll();
+        //escritorio.removeAll();
         escritorio.repaint();
         Registro r = new Registro(cd);
         r.setVisible(true);
         escritorio.add(r);
         escritorio.moveToFront(r);
     }//GEN-LAST:event_registroActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void citasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_citasActionPerformed
+        // TODO add your handling code here:
+        escritorio.repaint();
+        Citas c = new Citas(citad);
+        c.setVisible(true);
+        escritorio.add(c);
+        escritorio.moveToFront(c);
+    }//GEN-LAST:event_citasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

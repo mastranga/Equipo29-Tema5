@@ -4,7 +4,7 @@ package equipo29.tema5.Data;
 import java.time.LocalDate;
 
 
-public class cita {
+public class Cita {
     private int codCita;
     private Ciudadano ciudadano;
     private int codRefuerzo;
@@ -13,11 +13,11 @@ public class cita {
     private LocalDate fechaHoraColoca;
     private Vacuna vacuna;
 
-    public cita() {
+    public Cita() {
         this.codCita = -1;
     }
 
-    public cita(Ciudadano ciudadano, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoca, Vacuna vacuna) {
+    public Cita(Ciudadano ciudadano, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoca, Vacuna vacuna) {
         this.codCita = -1;
         this.ciudadano = ciudadano;
         this.codRefuerzo = codRefuerzo;
@@ -27,7 +27,7 @@ public class cita {
         this.vacuna = vacuna;
     }
 
-    public cita(int codCita, Ciudadano ciudadano, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoca, Vacuna vacuna) {
+    public Cita(int codCita, Ciudadano ciudadano, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoca, Vacuna vacuna) {
         this.codCita = codCita;
         this.ciudadano = ciudadano;
         this.codRefuerzo = codRefuerzo;
