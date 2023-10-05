@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2023 a las 02:12:06
+-- Tiempo de generación: 05-10-2023 a las 02:10:48
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -32,9 +32,10 @@ CREATE TABLE `cita` (
   `codRefuerzo` int(11) NOT NULL,
   `fechaHoraCita` varchar(60) NOT NULL,
   `centroVacunacion` varchar(60) NOT NULL,
-  `fechaHoraColoca` date NOT NULL,
+  `fechaHoraColoca` datetime DEFAULT NULL,
   `dni` int(11) NOT NULL,
-  `nroSerie` int(11) NOT NULL
+  `nroSerie` int(11) NOT NULL,
+  `cancelada` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -60,7 +61,7 @@ CREATE TABLE `ciudadano` (
 --
 
 CREATE TABLE `laboratorio` (
-  `cuit` int(11) NOT NULL,
+  `cuit` bigint(11) NOT NULL,
   `nombre` varchar(60) NOT NULL,
   `pais` varchar(60) NOT NULL,
   `domicilio` varchar(60) NOT NULL
@@ -78,7 +79,7 @@ CREATE TABLE `vacuna` (
   `medida` double NOT NULL,
   `fechaCad` date NOT NULL,
   `estado` tinyint(1) NOT NULL,
-  `cuit` int(11) NOT NULL
+  `cuit` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -131,6 +132,12 @@ ALTER TABLE `cita`
 --
 ALTER TABLE `ciudadano`
   MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `laboratorio`
+--
+ALTER TABLE `laboratorio`
+  MODIFY `cuit` bigint(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `vacuna`
