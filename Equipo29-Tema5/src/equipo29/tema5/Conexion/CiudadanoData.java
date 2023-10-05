@@ -70,13 +70,69 @@ public class CiudadanoData {
 
     }
     
-    public Ciudadano buscarCiudadano(int dni) throws NullPointerException {
+    public Ciudadano buscarCiudadanoDni(int dni) throws NullPointerException {
 
         String sql = "SELECT idCiudadano, dni, nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE dni=?";
         Ciudadano ciudadano = null;
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ciudadano = new Ciudadano();
+                ciudadano.setId(rs.getInt("idCiudadano"));
+                ciudadano.setDni(rs.getInt("dni"));
+                ciudadano.setNombreCompleto(rs.getString("nombreCompleto"));
+                ciudadano.setEmail(rs.getString("email"));
+                ciudadano.setCelular(rs.getString("celular"));
+                ciudadano.setPatologia(rs.getString("patologia"));
+                ciudadano.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Este Ciudadano no existe en la base de datos ");
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+        return ciudadano;
+    }
+    
+    public Ciudadano buscarCiudadanoEmail(String email) throws NullPointerException {
+
+        String sql = "SELECT idCiudadano, dni, nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE email=?";
+        Ciudadano ciudadano = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ciudadano = new Ciudadano();
+                ciudadano.setId(rs.getInt("idCiudadano"));
+                ciudadano.setDni(rs.getInt("dni"));
+                ciudadano.setNombreCompleto(rs.getString("nombreCompleto"));
+                ciudadano.setEmail(rs.getString("email"));
+                ciudadano.setCelular(rs.getString("celular"));
+                ciudadano.setPatologia(rs.getString("patologia"));
+                ciudadano.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Este Ciudadano no existe en la base de datos ");
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+        return ciudadano;
+    }
+    
+    public Ciudadano buscarCiudadanoCelular(String celular) throws NullPointerException {
+
+        String sql = "SELECT idCiudadano, dni, nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE celular=?";
+        Ciudadano ciudadano = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, celular);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 ciudadano = new Ciudadano();

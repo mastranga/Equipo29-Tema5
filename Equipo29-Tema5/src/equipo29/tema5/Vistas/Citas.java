@@ -75,13 +75,13 @@ public class Citas extends javax.swing.JInternalFrame {
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         jScrollPane1.setViewportView(tabla);
@@ -192,6 +192,7 @@ public class Citas extends javax.swing.JInternalFrame {
         if (tabla.getSelectedRow() != -1) {
             int codCita = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 0).toString());
             citad.cancelarCita(codCita);
+            citad.reprogramarCita(codCita);
         }else {
             JOptionPane.showMessageDialog(null, "Seleccione una cita");
         }
@@ -211,9 +212,17 @@ public class Citas extends javax.swing.JInternalFrame {
 
     private void armarCabecera() {
         modelo.addColumn("Codigo Cita");
+        modelo.addColumn("Codigo Refuerzo");
         modelo.addColumn("Fecha Cita");
         modelo.addColumn("Centro Vacunatorio");
+        modelo.addColumn("Fecha Colocada");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Nro de serie");
+        modelo.addColumn("Cancelada");
         tabla.setModel(modelo);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(0);
+        tabla.getColumnModel().getColumn(1).setResizable(false);
+        
     }
     
     private void borrarFilas() {

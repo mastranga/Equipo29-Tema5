@@ -49,9 +49,9 @@ public class Registro extends javax.swing.JInternalFrame {
         registrar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
         salir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         dnilabel.setText("dni");
 
@@ -116,14 +116,20 @@ public class Registro extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("id");
-
         id.setEditable(false);
+        id.setVisible(false);
 
         salir.setText("SALIR");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -147,26 +153,29 @@ public class Registro extends javax.swing.JInternalFrame {
                             .addComponent(email)
                             .addComponent(celular, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(registrar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(registrar))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(patologia)
                             .addComponent(ambitolaboral)
                             .addComponent(id)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
                                 .addComponent(modificar)
-                                .addGap(49, 49, 49)
-                                .addComponent(salir)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18)
-                .addComponent(buscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(36, 36, 36)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(buscar)
+                        .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salir)
+                        .addGap(28, 28, 28))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,14 +210,13 @@ public class Registro extends javax.swing.JInternalFrame {
                         .addGap(22, 22, 22)
                         .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrar)
                     .addComponent(modificar)
-                    .addComponent(salir))
+                    .addComponent(salir)
+                    .addComponent(jButton1))
                 .addGap(65, 65, 65))
         );
 
@@ -262,15 +270,34 @@ public class Registro extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         if(!dni.getText().isEmpty()){
-            Ciudadano ciudadano = cd.buscarCiudadano(Integer.parseInt(dni.getText()));
+            Ciudadano ciudadano = cd.buscarCiudadanoDni(Integer.parseInt(dni.getText()));
         nombreyapellido.setText(ciudadano.getNombreCompleto());
         email.setText(ciudadano.getEmail());
         celular.setText(ciudadano.getCelular());
         patologia.setText(ciudadano.getPatologia());
         ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
         id.setText(ciudadano.getId()+"");
-        } else{
-             JOptionPane.showMessageDialog(null, "Ingrese Documento valido del ciudadano para realizar una busqueda");   
+        } else if (!email.getText().isEmpty()){
+            Ciudadano ciudadano = cd.buscarCiudadanoEmail(email.getText());
+        dni.setText(ciudadano.getDni()+"");
+            nombreyapellido.setText(ciudadano.getNombreCompleto());
+        email.setText(ciudadano.getEmail());
+        celular.setText(ciudadano.getCelular());
+        patologia.setText(ciudadano.getPatologia());
+        ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
+        id.setText(ciudadano.getId()+"");
+        }else if(!celular.getText().isEmpty()){
+            Ciudadano ciudadano = cd.buscarCiudadanoCelular(celular.getText());
+            dni.setText(ciudadano.getDni()+"");
+        nombreyapellido.setText(ciudadano.getNombreCompleto());
+        email.setText(ciudadano.getEmail());
+        celular.setText(ciudadano.getCelular());
+        patologia.setText(ciudadano.getPatologia());
+        ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
+        id.setText(ciudadano.getId()+"");
+        }
+        else{
+             JOptionPane.showMessageDialog(null, "Ingrese Documento, email o celular valido del ciudadano para realizar una busqueda");   
         }
         
         
@@ -317,6 +344,17 @@ public class Registro extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dni.setText("");
+        nombreyapellido.setText("");
+        email.setText("");
+        celular.setText("");
+        patologia.setText("");
+        ambitolaboral.setText("");
+        id.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Celularlabel;
@@ -328,9 +366,9 @@ public class Registro extends javax.swing.JInternalFrame {
     private javax.swing.JTextField email;
     private javax.swing.JLabel emaillabel;
     private javax.swing.JTextField id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton modificar;
     private javax.swing.JTextField nombreyapellido;
     private javax.swing.JLabel nombreyapellidolabel;
