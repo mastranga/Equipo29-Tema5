@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2023 a las 02:10:48
+-- Tiempo de generación: 06-10-2023 a las 23:35:46
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `vacunar23`
 --
+CREATE DATABASE IF NOT EXISTS `vacunar23` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `vacunar23`;
 
 -- --------------------------------------------------------
 
@@ -38,6 +40,13 @@ CREATE TABLE `cita` (
   `cancelada` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`codCita`, `codRefuerzo`, `fechaHoraCita`, `centroVacunacion`, `fechaHoraColoca`, `dni`, `nroSerie`, `cancelada`) VALUES
+(3, 1, '2023-10-04-15:00', 'Hospital Italiano', '2023-10-04 00:00:00', 35255569, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +63,15 @@ CREATE TABLE `ciudadano` (
   `idCiudadano` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `ciudadano`
+--
+
+INSERT INTO `ciudadano` (`dni`, `nombreCompleto`, `email`, `celular`, `patologia`, `ambitoTrabajo`, `idCiudadano`) VALUES
+(35255569, 'Bruno Mastrangelo', 'mail@mail.com', '1125556669', 'diabetes', 'desempleado', 1),
+(32555666, 'Raul Lopez', 'rlopez@gmail.oom', '1152356699', '', 'administrativo', 2),
+(11222333, 'Laura Fernander', 'mail2@mail.com', '1123335469', '', 'Empleado', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +84,13 @@ CREATE TABLE `laboratorio` (
   `pais` varchar(60) NOT NULL,
   `domicilio` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `laboratorio`
+--
+
+INSERT INTO `laboratorio` (`cuit`, `nombre`, `pais`, `domicilio`) VALUES
+(30503518518, 'Pfizer', 'USA', 'Calle Falsa');
 
 -- --------------------------------------------------------
 
@@ -81,6 +106,13 @@ CREATE TABLE `vacuna` (
   `estado` tinyint(1) NOT NULL,
   `cuit` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `vacuna`
+--
+
+INSERT INTO `vacuna` (`nroSerie`, `marca`, `medida`, `fechaCad`, `estado`, `cuit`) VALUES
+(1, 'Moderna', 0.3, '2023-10-04', 1, 30503518518);
 
 --
 -- Índices para tablas volcadas
@@ -125,25 +157,25 @@ ALTER TABLE `vacuna`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `laboratorio`
 --
 ALTER TABLE `laboratorio`
-  MODIFY `cuit` bigint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cuit` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30503518519;
 
 --
 -- AUTO_INCREMENT de la tabla `vacuna`
 --
 ALTER TABLE `vacuna`
-  MODIFY `nroSerie` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `nroSerie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
