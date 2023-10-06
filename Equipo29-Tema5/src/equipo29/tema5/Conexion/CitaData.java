@@ -64,7 +64,7 @@ public class CitaData {
     
     public String sumar2Semanas(String fechaHoraCita){
         //creamos formateador
-        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
         //lo convertimos a objeto
         LocalDateTime fhc = LocalDateTime.parse(fechaHoraCita, formateador);
         //sumamos 2 semanas
