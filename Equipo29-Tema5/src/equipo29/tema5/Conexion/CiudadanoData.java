@@ -89,7 +89,7 @@ public class CiudadanoData {
                 ciudadano.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
 
             } else {
-                JOptionPane.showMessageDialog(null, "Este Ciudadano no existe en la base de datos ");
+                JOptionPane.showMessageDialog(null, "Este Ciudadano no existe en la base de datos");
 
             }
         } catch (SQLException ex) {

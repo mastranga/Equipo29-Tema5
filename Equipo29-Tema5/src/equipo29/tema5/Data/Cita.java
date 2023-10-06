@@ -12,6 +12,7 @@ public class Cita {
     private String centroVacunacion;
     private LocalDate fechaHoraColoca;
     private Vacuna vacuna;
+    private boolean cancelada;
 
     public Cita() {
         this.codCita = -1;
@@ -37,8 +38,6 @@ public class Cita {
         this.vacuna = vacuna;
     }
     
-    
-
     public int getCodCita() {
         return codCita;
     }
@@ -95,6 +94,16 @@ public class Cita {
         this.vacuna = vacuna;
     }
 
+    public boolean isCancelada() {
+        return cancelada;
+    }
+
+    public void setCancelada(boolean cancelada) {
+        this.cancelada = cancelada;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "cita{" + "codCita=" + codCita + ", ciudadano=" + ciudadano + ", codRefuerzo=" + codRefuerzo + ", fechaHoraCita=" + fechaHoraCita + ", centroVacunacion=" + centroVacunacion + ", fechaHoraColoca=" + fechaHoraColoca + ", vacuna=" + vacuna + '}';
