@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -90,37 +92,67 @@ public class CitaData {
 //        }
 //    }
     
-    public void reprogramarCita(int codCita){
-        String sql = "SELECT codRefuerzo, fechaHoraCita, centroVacunacion, dni, nroSerie FROM cita WHERE codCita = ?";
-        Cita cita = null;
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, codCita);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                cita = new Cita();
-                cita.setCodRefuerzo(rs.getInt("codRefuerzo"));
-                cita.setFechaHoraCita(rs.getString("fechaHoraCita"));
-                cita.setCentroVacunacion(rs.getString("centroVacunacion"));
-                cita.setCiudadano(ciudata.buscarCiudadanoDni(rs.getInt("dni")));
-                //cita.setVacuna(vacudata.buscarVacuna(rs.getInt("nroSerie")));
-            } 
-            
-        String insert = "INSERT INTO cita(codRefuerzo, fechaHoraCita, centroVacunacion, dni, nroSerie, cancelada) VALUES (?,?,?,?,?,1)";
-        PreparedStatement ps2 = con.prepareStatement(insert);
-        ps2.setInt(1, cita.getCodRefuerzo());
-        ps2.setString(2, cita.getFechaHoraCita()); // aca hay que ver como calcular la nueva fecha
-        ps2.setString(3, cita.getCentroVacunacion());
-        ps2.setInt(4, cita.getCiudadano().getDni());
-        ps2.setInt(5, cita.getVacuna().getNroSerie());
-        int affectedRows = ps2.executeUpdate();
-        if (affectedRows == 0) {
-                    JOptionPane.showMessageDialog(null, "No se pudo agendar una nueva cita");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Nueva cita agendada");
-                }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
-        }
+    public String sumar2Semanas(String fechaHoraCita){
+
+        //creamos formateador
+
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+
+        //lo convertimos a objeto
+
+        LocalDateTime fhc = LocalDateTime.parse(fechaHoraCita, formateador);
+
+        //sumamos 2 semanas
+
+        fhc = fhc.plusWeeks(2);
+
+        //formateamos nuevamente y retornamos como cadena
+
+        return fhc.format(formateador).toString();
+
     }
+
+    
+
+    public void reprogramarCita(int codRefuerzo, String fechaHoraCita, String centroVacunacion, int dni, int nroSerie){
+
+        String insert = "INSERT INTO cita(codRefuerzo, fechaHoraCita, centroVacunacion, fechaHoraColoca, dni, nroSerie, cancelada) VALUES (?,?,?,?,?,?,1)";
+
+      
+
+        try(PreparedStatement ps = con.prepareStatement(insert)){
+
+        ps.setInt(1, codRefuerzo);
+
+        ps.setString(2, sumar2Semanas(fechaHoraCita)); // aca hay que ver como calcular la nueva fecha
+
+        ps.setString(3, centroVacunacion);
+
+        ps.setDate(4, null);
+
+        ps.setInt(5, dni);
+
+        ps.setInt(6, nroSerie);
+
+        int affectedRows = ps.executeUpdate();
+
+        if (affectedRows == 0) {
+
+                    JOptionPane.showMessageDialog(null, "No se pudo agendar una nueva cita");
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Nueva cita agendada");
+
+                }
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos - SALIO DE ACA?"+ex.getMessage());
+
+        }
+
+    }
+
     
 }

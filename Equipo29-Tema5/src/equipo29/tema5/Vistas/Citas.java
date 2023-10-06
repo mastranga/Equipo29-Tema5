@@ -192,7 +192,13 @@ public class Citas extends javax.swing.JInternalFrame {
         if (tabla.getSelectedRow() != -1) {
             int codCita = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 0).toString());
             citad.cancelarCita(codCita);
-            citad.reprogramarCita(codCita);
+            int codRefuerzo = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 1).toString());
+            String fechaHoraCita = modelo.getValueAt(tabla.getSelectedRow(), 2).toString();
+            //LocalDateTime fechaHoraCita = (LocalDateTime) modelo.getValueAt(tabla.getSelectedRow(), 2);
+            String centroVacunacion = modelo.getValueAt(tabla.getSelectedRow(), 3).toString();
+            int dni = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 5).toString());
+            int nroSerie = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 6).toString());
+            citad.reprogramarCita(codRefuerzo, fechaHoraCita, centroVacunacion, dni, nroSerie);
         }else {
             JOptionPane.showMessageDialog(null, "Seleccione una cita");
         }
