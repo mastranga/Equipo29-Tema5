@@ -49,6 +49,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         BotonAdmin.setText("ADMIN");
+        BotonAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAdminActionPerformed(evt);
+            }
+        });
 
         salir.setText("SALIR");
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +78,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(205, 205, 205)
                         .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(salir)
@@ -86,7 +91,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96)
                 .addComponent(BotonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addComponent(salir)
                 .addGap(31, 31, 31))
         );
@@ -119,6 +124,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
+
+    private void BotonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAdminActionPerformed
+        // TODO add your handling code here:
+        escritorio.repaint();
+        PortalAdministracion pa = new PortalAdministracion();
+        pa.setVisible(true);
+        escritorio.add(pa);
+        escritorio.moveToFront(pa);
+    }//GEN-LAST:event_BotonAdminActionPerformed
 
     /**
      * @param args the command line arguments
