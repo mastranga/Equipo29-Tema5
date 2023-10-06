@@ -216,7 +216,7 @@ public class Citas extends javax.swing.JInternalFrame {
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 
-    private void armarCabecera() {
+   private void armarCabecera() {
         modelo.addColumn("Codigo Cita");
         modelo.addColumn("Codigo Refuerzo");
         modelo.addColumn("Fecha Cita");
@@ -226,9 +226,41 @@ public class Citas extends javax.swing.JInternalFrame {
         modelo.addColumn("Nro de serie");
         modelo.addColumn("Cancelada");
         tabla.setModel(modelo);
+        tabla.getColumnModel().getColumn(1).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(1).setMinWidth(0);
         tabla.getColumnModel().getColumn(1).setPreferredWidth(0);
         tabla.getColumnModel().getColumn(1).setResizable(false);
-        
+        tabla.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(1).setResizable(false);
+        tabla.getColumnModel().getColumn(4).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(4).setMinWidth(0);
+        tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
+        tabla.getColumnModel().getColumn(4).setResizable(false);
+        tabla.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(4).setResizable(false);
+        tabla.getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(5).setMinWidth(0);
+        tabla.getColumnModel().getColumn(5).setPreferredWidth(0);
+        tabla.getColumnModel().getColumn(5).setResizable(false);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setResizable(false);
+        tabla.getColumnModel().getColumn(6).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(6).setMinWidth(0);
+        tabla.getColumnModel().getColumn(6).setPreferredWidth(0);
+        tabla.getColumnModel().getColumn(6).setResizable(false);
+        tabla.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(6).setResizable(false);
+        tabla.getColumnModel().getColumn(7).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(7).setMinWidth(0);
+        tabla.getColumnModel().getColumn(7).setPreferredWidth(0);
+        tabla.getColumnModel().getColumn(7).setResizable(false);
+        tabla.getTableHeader().getColumnModel().getColumn(7).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(7).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(7).setResizable(false);
     }
     
     private void borrarFilas() {
