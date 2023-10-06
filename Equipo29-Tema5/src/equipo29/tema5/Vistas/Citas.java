@@ -272,7 +272,7 @@ public class Citas extends javax.swing.JInternalFrame {
     
     private void cargarDatos(List<Cita> citas) { //Esta lista de alumnos puede provenir de la BD o cargada por parámetros
         for (Cita cita : citas) {
-            modelo.addRow(new Object[]{cita.getCodCita(), cita.getFechaHoraCita(), cita.getCentroVacunacion()});
+            modelo.addRow(new Object[]{cita.getCodCita(),cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getCentroVacunacion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni(), cita.getVacuna().getNroSerie()});
         }
     }
 
