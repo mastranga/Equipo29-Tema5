@@ -199,6 +199,18 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
+        if(cuit.getText().isEmpty() || nombre.getText().isEmpty()|| pais.getText().isEmpty() || domicilio.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor complete los campos requeridos");
+        }else if (cuit.getText().length()<11){
+                JOptionPane.showMessageDialog(null, "El CUIT debe ser de 11 digitos");
+            } else{
+            Laboratorio laboratorio = new Laboratorio();
+            laboratorio.setCuit(cuit.getText());
+            laboratorio.setNombre(nombre.getText());
+            laboratorio.setPais(pais.getText());
+            laboratorio.setDomicilio(domicilio.getText());
+            
+        }
         
     }//GEN-LAST:event_modificarActionPerformed
 

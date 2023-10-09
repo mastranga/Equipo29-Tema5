@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.swing.JOptionPane;
 
 
@@ -65,4 +66,31 @@ public class LaboratorioData {
         return laboratorio;
     }
     
+    public void modificarLaboratorio(Laboratorio laboratorio) throws SQLIntegrityConstraintViolationException, SQLException {
+
+        String sql = "UPDATE laboratorio SET cuit=?,nombre=?,pais=?,domicilio=? WHERE 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, laboratorio.getDni());
+            ps.setString(2, ciudadano.getNombreCompleto());
+            ps.setString(3, ciudadano.getEmail());
+            ps.setString(4, ciudadano.getCelular());
+            ps.setString(5, ciudadano.getPatologia());
+            ps.setString(6, ciudadano.getAmbitoTrabajo());
+            ps.setInt(7, ciudadano.getId());
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 1) {
+
+                JOptionPane.showMessageDialog(null, "Ciudadano modificado");
+            }
+
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            JOptionPane.showMessageDialog(null, "El email o el celular indicado ya se encuentra registrado");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+
+    }
 }
