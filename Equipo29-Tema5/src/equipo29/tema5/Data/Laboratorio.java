@@ -3,7 +3,7 @@ package equipo29.tema5.Data;
 
 
 public class Laboratorio {
-    private int cuit;
+    private String cuit;
     private String nombre;
     private String pais;
     private String Domicilio;
@@ -11,18 +11,18 @@ public class Laboratorio {
     public Laboratorio() {
     }
 
-    public Laboratorio(int cuit, String nombre, String pais, String Domicilio) {
+    public Laboratorio(String cuit, String nombre, String pais, String Domicilio) {
         this.cuit = cuit;
         this.nombre = nombre;
         this.pais = pais;
         this.Domicilio = Domicilio;
     }
 
-    public int getCuit() {
+    public String getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(String cuit) {
         this.cuit = cuit;
     }
 
