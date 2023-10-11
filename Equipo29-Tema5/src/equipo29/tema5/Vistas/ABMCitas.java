@@ -6,6 +6,8 @@
 package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.CitaData;
+import equipo29.tema5.Conexion.CiudadanoData;
+import equipo29.tema5.Data.Ciudadano;
 
 /**
  *
@@ -19,6 +21,7 @@ private CitaData citad;
     public ABMCitas(CitaData citad) {
         initComponents();
         this.citad=citad;
+        cargarComboCiudadano();
     }
 
     /**
@@ -41,13 +44,16 @@ private CitaData citad;
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        comboCiudadano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         patologia.setText("Patologias");
 
         escenciales.setText("Escenciales");
 
         jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Limpiar");
 
@@ -114,6 +120,11 @@ private CitaData citad;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboCiudadano;
@@ -127,4 +138,14 @@ private CitaData citad;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox patologia;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarComboCiudadano(){
+        CiudadanoData cd = new CiudadanoData();
+        comboCiudadano.addItem("");
+        for (Ciudadano ciu : cd.listarCiudadanos()) {
+            comboCiudadano.addItem(""+ciu.getDni()+" - "+ciu.getNombreCompleto());
+        }
+    }
+    
+
 }

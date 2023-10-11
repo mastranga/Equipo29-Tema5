@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -152,6 +154,31 @@ public class CiudadanoData {
             JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
         }
         return ciudadano;
+    }
+    
+     public List<Ciudadano> listarCiudadanos() {
+
+        String sql = "SELECT idCiudadano,dni ,nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE estado=1";
+        ArrayList<Ciudadano> ciudadanos = new ArrayList<>();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Ciudadano ciudadano = new Ciudadano();
+                ciudadano.setId(rs.getInt("idCiudadano"));
+                ciudadano.setDni(rs.getInt("dni"));
+                ciudadano.setNombreCompleto(rs.getString("nombreCompleto"));
+                ciudadano.setEmail(rs.getString("email"));
+                ciudadano.setCelular(rs.getString("celular"));
+                ciudadano.setPatologia(rs.getString("patologia"));
+                ciudadano.setPatologia(rs.getString("patologia"));
+                ciudadanos.add(ciudadano);
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+        return ciudadanos;
     }
     
 }
