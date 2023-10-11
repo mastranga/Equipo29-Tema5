@@ -123,7 +123,7 @@ public class LaboratorioData {
     }
     
     public void guardarLaboratorio (Laboratorio laboratorio) throws SQLIntegrityConstraintViolationException, SQLException{
-        String sql = "INSERT INTO laboratorio(cuit,nombre,pais,domicilio) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO laboratorio(cuit,nombre,pais,domicilio,estado) VALUES (?,?,?,?,1)";
         
         try (PreparedStatement ps = con.prepareStatement(sql)){;
             ps.setString(1, laboratorio.getCuit());
