@@ -19,6 +19,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private CitaData citad;
     private LaboratorioData ld;
     private VacunaData vd;
+    
 
     /**
      * Creates new form PantallaPrincipal
@@ -134,7 +135,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void BotonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAdminActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        PortalAdministracion pa = new PortalAdministracion(ld, vd);
+        PortalAdministracion pa = new PortalAdministracion(ld, vd, citad);
         pa.setVisible(true);
         escritorio.add(pa);
         escritorio.moveToFront(pa);
