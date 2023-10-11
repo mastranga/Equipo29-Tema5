@@ -18,7 +18,7 @@ public class CiudadanoData {
     }
     
     public void guardarCiudadano (Ciudadano ciudadano) throws SQLIntegrityConstraintViolationException, SQLException{
-        String sql = "INSERT INTO ciudadano(dni, nombreCompleto, email, celular, patologia, ambitoTrabajo) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO ciudadano(dni, nombreCompleto, email, celular, patologia, ambitoTrabajo, estado) VALUES (?,?,?,?,?,?,1)";
         
         try (PreparedStatement ps = con.prepareStatement(sql)){;
             ps.setInt(1, ciudadano.getDni());
