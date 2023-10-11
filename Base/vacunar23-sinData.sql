@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 23:35:46
+-- Tiempo de generación: 11-10-2023 a las 18:59:21
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,13 +40,6 @@ CREATE TABLE `cita` (
   `cancelada` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `cita`
---
-
-INSERT INTO `cita` (`codCita`, `codRefuerzo`, `fechaHoraCita`, `centroVacunacion`, `fechaHoraColoca`, `dni`, `nroSerie`, `cancelada`) VALUES
-(3, 1, '2023-10-04-15:00', 'Hospital Italiano', '2023-10-04 00:00:00', 35255569, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -54,23 +47,15 @@ INSERT INTO `cita` (`codCita`, `codRefuerzo`, `fechaHoraCita`, `centroVacunacion
 --
 
 CREATE TABLE `ciudadano` (
+  `idCiudadano` int(11) NOT NULL,
   `dni` int(11) NOT NULL,
   `nombreCompleto` varchar(60) NOT NULL,
   `email` varchar(60) NOT NULL,
   `celular` varchar(60) NOT NULL,
   `patologia` varchar(60) DEFAULT NULL,
   `ambitoTrabajo` varchar(60) NOT NULL,
-  `idCiudadano` int(11) NOT NULL
+  `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `ciudadano`
---
-
-INSERT INTO `ciudadano` (`dni`, `nombreCompleto`, `email`, `celular`, `patologia`, `ambitoTrabajo`, `idCiudadano`) VALUES
-(35255569, 'Bruno Mastrangelo', 'mail@mail.com', '1125556669', 'diabetes', 'desempleado', 1),
-(32555666, 'Raul Lopez', 'rlopez@gmail.oom', '1152356699', '', 'administrativo', 2),
-(11222333, 'Laura Fernander', 'mail2@mail.com', '1123335469', '', 'Empleado', 3);
 
 -- --------------------------------------------------------
 
@@ -79,18 +64,13 @@ INSERT INTO `ciudadano` (`dni`, `nombreCompleto`, `email`, `celular`, `patologia
 --
 
 CREATE TABLE `laboratorio` (
-  `cuit` bigint(11) NOT NULL,
+  `idLaboratorio` int(11) NOT NULL,
+  `cuit` varchar(60) NOT NULL,
   `nombre` varchar(60) NOT NULL,
   `pais` varchar(60) NOT NULL,
-  `domicilio` varchar(60) NOT NULL
+  `domicilio` varchar(60) NOT NULL,
+  `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `laboratorio`
---
-
-INSERT INTO `laboratorio` (`cuit`, `nombre`, `pais`, `domicilio`) VALUES
-(30503518518, 'Pfizer', 'USA', 'Calle Falsa');
 
 -- --------------------------------------------------------
 
@@ -104,15 +84,8 @@ CREATE TABLE `vacuna` (
   `medida` double NOT NULL,
   `fechaCad` date NOT NULL,
   `estado` tinyint(1) NOT NULL,
-  `cuit` bigint(11) NOT NULL
+  `idLaboratorio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `vacuna`
---
-
-INSERT INTO `vacuna` (`nroSerie`, `marca`, `medida`, `fechaCad`, `estado`, `cuit`) VALUES
-(1, 'Moderna', 0.3, '2023-10-04', 1, 30503518518);
 
 --
 -- Índices para tablas volcadas
@@ -138,7 +111,7 @@ ALTER TABLE `ciudadano`
 -- Indices de la tabla `laboratorio`
 --
 ALTER TABLE `laboratorio`
-  ADD PRIMARY KEY (`cuit`),
+  ADD PRIMARY KEY (`idLaboratorio`),
   ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
@@ -146,8 +119,7 @@ ALTER TABLE `laboratorio`
 --
 ALTER TABLE `vacuna`
   ADD PRIMARY KEY (`nroSerie`),
-  ADD UNIQUE KEY `marca` (`marca`),
-  ADD KEY `cuit` (`cuit`);
+  ADD KEY `idLaboratorio` (`idLaboratorio`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -157,25 +129,25 @@ ALTER TABLE `vacuna`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `laboratorio`
 --
 ALTER TABLE `laboratorio`
-  MODIFY `cuit` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30503518519;
+  MODIFY `idLaboratorio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `vacuna`
 --
 ALTER TABLE `vacuna`
-  MODIFY `nroSerie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `nroSerie` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -192,7 +164,7 @@ ALTER TABLE `cita`
 -- Filtros para la tabla `vacuna`
 --
 ALTER TABLE `vacuna`
-  ADD CONSTRAINT `vacuna_ibfk_1` FOREIGN KEY (`cuit`) REFERENCES `laboratorio` (`cuit`);
+  ADD CONSTRAINT `vacuna_ibfk_1` FOREIGN KEY (`idLaboratorio`) REFERENCES `laboratorio` (`idLaboratorio`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
