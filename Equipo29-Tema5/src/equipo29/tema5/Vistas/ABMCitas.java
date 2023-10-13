@@ -22,7 +22,6 @@ private CitaData citad;
     public ABMCitas(CitaData citad) {
         initComponents();
         this.citad=citad;
-        cargarComboCiudadano();
     }
 
     /**
@@ -149,7 +148,9 @@ private CitaData citad;
         if (!patologia.isSelected() && !esenciales.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
-            cargarComboCiudadano();
+            for (Ciudadano ciu : cd.listarCiudadanos()) {
+            comboCiudadano.addItem(""+ciu.getDni()+" - "+ciu.getNombreCompleto());
+        }
         } else if (!patologia.isSelected() && esenciales.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
@@ -198,12 +199,5 @@ private CitaData citad;
     private javax.swing.JCheckBox patologia;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarComboCiudadano(){
-        CiudadanoData cd = new CiudadanoData();
-        for (Ciudadano ciu : cd.listarCiudadanos()) {
-            comboCiudadano.addItem(""+ciu.getDni()+" - "+ciu.getNombreCompleto());
-        }
-    }
-    
 
 }
