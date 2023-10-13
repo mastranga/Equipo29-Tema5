@@ -34,7 +34,7 @@
                   <Group type="102" attributes="0">
                       <Component id="patologia" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="escenciales" min="-2" max="-2" attributes="0"/>
+                      <Component id="esenciales" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="comboCiudadano" min="-2" pref="379" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
@@ -60,7 +60,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="patologia" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="escenciales" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="esenciales" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -88,6 +88,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboCiudadanoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -96,11 +99,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Patologias"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patologiaActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="escenciales">
+    <Component class="javax.swing.JCheckBox" name="esenciales">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Escenciales"/>
+        <Property name="text" type="java.lang.String" value="Esenciales"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="esencialesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="fecha">
     </Component>

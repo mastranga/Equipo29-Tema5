@@ -234,11 +234,16 @@ public class Registro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Verificar numero de celular ingresado");
         }else {
             try {
-                cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), patologia.getText(), ambitolaboral.getText()));
+                if(!patologia.getText().isEmpty()){
+                    cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), patologia.getText(), ambitolaboral.getText()));
+                }else {
+                    cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), ambitolaboral.getText()));
+                }
             } catch (SQLException ex) {
 
             }
         }
+        jButton1ActionPerformed(evt);
     }//GEN-LAST:event_registrarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
@@ -251,16 +256,27 @@ public class Registro extends javax.swing.JInternalFrame {
         }else if(celular.getText().length() != 10) {
             JOptionPane.showMessageDialog(null, "Verificar numero de celular ingresado");
         }else {
-            Ciudadano ciudadano = new Ciudadano();
-            ciudadano.setId(Integer.parseInt(id.getText()));
-            ciudadano.setDni(Integer.parseInt(dni.getText()));
-            ciudadano.setNombreCompleto(nombreyapellido.getText());
-            ciudadano.setEmail(email.getText());
-            ciudadano.setCelular(celular.getText());
-            ciudadano.setPatologia(patologia.getText());
-            ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
             try {
+            if(!patologia.getText().isEmpty()){
+                Ciudadano ciudadano = new Ciudadano();
+                ciudadano.setId(Integer.parseInt(id.getText()));
+                ciudadano.setDni(Integer.parseInt(dni.getText()));
+                ciudadano.setNombreCompleto(nombreyapellido.getText());
+                ciudadano.setEmail(email.getText());
+                ciudadano.setCelular(celular.getText());
+                ciudadano.setPatologia(patologia.getText());
+                ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
                 cd.modificarCiudadano(ciudadano);
+            }else{
+                Ciudadano ciudadano = new Ciudadano();
+                ciudadano.setId(Integer.parseInt(id.getText()));
+                ciudadano.setDni(Integer.parseInt(dni.getText()));
+                ciudadano.setNombreCompleto(nombreyapellido.getText());
+                ciudadano.setEmail(email.getText());
+                ciudadano.setCelular(celular.getText());
+                ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
+                cd.modificarCiudadano(ciudadano);
+            }
             } catch (SQLException ex) {
 
             }

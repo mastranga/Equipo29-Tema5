@@ -94,6 +94,23 @@ public class CitaData {
         }
     }
     
+    public String buscarFechaCita(int dni){
+        String sql = "SELECT fechaHoraCita FROM cita WHERE dni=? AND cancelada = 1";
+        String cita = "";
+        try(PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                cita = rs.getString("fechaHoraCita");
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "El ciudadano seleccionado no cuenta con Cita");
+            }
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos"+ex.getMessage());
+        }
+        return cita;
+    }
     
     
 }

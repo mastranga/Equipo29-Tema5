@@ -171,7 +171,7 @@ public class CiudadanoData {
                 ciudadano.setEmail(rs.getString("email"));
                 ciudadano.setCelular(rs.getString("celular"));
                 ciudadano.setPatologia(rs.getString("patologia"));
-                ciudadano.setPatologia(rs.getString("patologia"));
+                ciudadano.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
                 ciudadanos.add(ciudadano);
                 
             }
@@ -181,4 +181,79 @@ public class CiudadanoData {
         return ciudadanos;
     }
     
+    public List<Ciudadano> listarCiudadanosPatologia() {
+
+        String sql = "SELECT idCiudadano,dni ,nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE estado=1 AND patologia is not null";
+        ArrayList<Ciudadano> ciudadanos = new ArrayList<>();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Ciudadano ciudadano = new Ciudadano();
+                ciudadano.setId(rs.getInt("idCiudadano"));
+                ciudadano.setDni(rs.getInt("dni"));
+                ciudadano.setNombreCompleto(rs.getString("nombreCompleto"));
+                ciudadano.setEmail(rs.getString("email"));
+                ciudadano.setCelular(rs.getString("celular"));
+                ciudadano.setPatologia(rs.getString("patologia"));
+                ciudadano.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
+                ciudadanos.add(ciudadano);
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+        return ciudadanos;
+    } 
+    
+     public List<Ciudadano> listarCiudadanosEsenciales() {
+
+        String sql = "SELECT idCiudadano,dni ,nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE estado=1 AND ambitoTrabajo LIKE 'salud' OR ambitoTrabajo LIKE 'educacion'";
+        ArrayList<Ciudadano> ciudadanos = new ArrayList<>();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Ciudadano ciudadano = new Ciudadano();
+                ciudadano.setId(rs.getInt("idCiudadano"));
+                ciudadano.setDni(rs.getInt("dni"));
+                ciudadano.setNombreCompleto(rs.getString("nombreCompleto"));
+                ciudadano.setEmail(rs.getString("email"));
+                ciudadano.setCelular(rs.getString("celular"));
+                ciudadano.setPatologia(rs.getString("patologia"));
+                ciudadano.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
+                ciudadanos.add(ciudadano);
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+        return ciudadanos;
+    } 
+     
+    public List<Ciudadano> listarCiudadanosPatologiaEsenciales() {
+
+        String sql = "SELECT * FROM ciudadano WHERE estado=1 AND patologia is not null AND ambitoTrabajo LIKE 'salud' OR ambitoTrabajo LIKE 'educacion'";
+        ArrayList<Ciudadano> ciudadanos = new ArrayList<>();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Ciudadano ciudadano = new Ciudadano();
+                ciudadano.setId(rs.getInt("idCiudadano"));
+                ciudadano.setDni(rs.getInt("dni"));
+                ciudadano.setNombreCompleto(rs.getString("nombreCompleto"));
+                ciudadano.setEmail(rs.getString("email"));
+                ciudadano.setCelular(rs.getString("celular"));
+                ciudadano.setPatologia(rs.getString("patologia"));
+                ciudadano.setAmbitoTrabajo(rs.getString("ambitoTrabajo"));
+                ciudadanos.add(ciudadano);
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+        return ciudadanos;
+    } 
+     
 }

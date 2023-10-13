@@ -8,6 +8,7 @@ package equipo29.tema5.Vistas;
 import equipo29.tema5.Conexion.CitaData;
 import equipo29.tema5.Conexion.CiudadanoData;
 import equipo29.tema5.Data.Ciudadano;
+import java.sql.Date;
 
 /**
  *
@@ -35,7 +36,7 @@ private CitaData citad;
 
         comboCiudadano = new javax.swing.JComboBox<>();
         patologia = new javax.swing.JCheckBox();
-        escenciales = new javax.swing.JCheckBox();
+        esenciales = new javax.swing.JCheckBox();
         fecha = new com.toedter.calendar.JDateChooser();
         hora = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
@@ -44,9 +45,25 @@ private CitaData citad;
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        patologia.setText("Patologias");
+        comboCiudadano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCiudadanoActionPerformed(evt);
+            }
+        });
 
-        escenciales.setText("Escenciales");
+        patologia.setText("Patologias");
+        patologia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patologiaActionPerformed(evt);
+            }
+        });
+
+        esenciales.setText("Esenciales");
+        esenciales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esencialesActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +98,7 @@ private CitaData citad;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(patologia)
                         .addGap(18, 18, 18)
-                        .addComponent(escenciales))
+                        .addComponent(esenciales))
                     .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,7 +118,7 @@ private CitaData citad;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(patologia)
-                    .addComponent(escenciales))
+                    .addComponent(esenciales))
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,10 +142,52 @@ private CitaData citad;
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void patologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patologiaActionPerformed
+        // TODO add your handling code here:
+        CiudadanoData cd = new CiudadanoData();
+        comboCiudadano.removeAllItems();
+        if (!patologia.isSelected() && !esenciales.isSelected()) {
+            comboCiudadano.removeAllItems();
+            comboCiudadano.addItem("");
+            cargarComboCiudadano();
+        } else if (!patologia.isSelected() && esenciales.isSelected()) {
+            comboCiudadano.removeAllItems();
+            comboCiudadano.addItem("");
+            for (Ciudadano ciu : cd.listarCiudadanosEsenciales()) {
+                comboCiudadano.addItem("" + ciu.getDni() + " - " + ciu.getNombreCompleto() + " - " + ciu.getAmbitoTrabajo());
+            }
+        } else if (patologia.isSelected() && esenciales.isSelected()) {
+            comboCiudadano.removeAllItems();
+            comboCiudadano.addItem("");
+            for (Ciudadano ciu : cd.listarCiudadanosPatologiaEsenciales()) {
+                comboCiudadano.addItem("" + ciu.getDni() + " - " + ciu.getNombreCompleto() + " - " + ciu.getPatologia() + " - " + ciu.getAmbitoTrabajo());
+            }
+        } else if(patologia.isSelected() && !esenciales.isSelected()){
+            comboCiudadano.removeAllItems();
+            comboCiudadano.addItem("");
+            for (Ciudadano ciu : cd.listarCiudadanosPatologia()) {
+            comboCiudadano.addItem("" + ciu.getDni() + " - " + ciu.getNombreCompleto() + " - " + ciu.getPatologia());
+        }
+        }
+    }//GEN-LAST:event_patologiaActionPerformed
+
+    private void esencialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esencialesActionPerformed
+        // TODO add your handling code here:
+        patologiaActionPerformed(evt);
+    }//GEN-LAST:event_esencialesActionPerformed
+
+    private void comboCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCiudadanoActionPerformed
+        // TODO add your handling code here:
+        Ciudadano ciu = (Ciudadano) comboCiudadano.getSelectedItem();
+        String ci = citad.buscarFechaCita(ciu.getDni());
+        fecha.setDate(Date.valueOf(ci.substring(0, 9)));
+        hora.setValue(ci.substring(9));
+    }//GEN-LAST:event_comboCiudadanoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboCiudadano;
-    private javax.swing.JCheckBox escenciales;
+    private javax.swing.JCheckBox esenciales;
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JSpinner hora;
     private javax.swing.JButton jButton1;
@@ -141,7 +200,6 @@ private CitaData citad;
 
     private void cargarComboCiudadano(){
         CiudadanoData cd = new CiudadanoData();
-        comboCiudadano.addItem("");
         for (Ciudadano ciu : cd.listarCiudadanos()) {
             comboCiudadano.addItem(""+ciu.getDni()+" - "+ciu.getNombreCompleto());
         }
