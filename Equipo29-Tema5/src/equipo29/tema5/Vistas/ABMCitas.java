@@ -22,6 +22,7 @@ private CitaData citad;
     public ABMCitas(CitaData citad) {
         initComponents();
         this.citad=citad;
+        armarCombo();
     }
 
     /**
@@ -143,6 +144,39 @@ private CitaData citad;
 
     private void patologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patologiaActionPerformed
         // TODO add your handling code here:
+        armarCombo();
+    }//GEN-LAST:event_patologiaActionPerformed
+
+    private void esencialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esencialesActionPerformed
+        // TODO add your handling code here:
+        armarCombo();
+    }//GEN-LAST:event_esencialesActionPerformed
+
+    private void comboCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCiudadanoActionPerformed
+        // TODO add your handling code here:
+        if(!comboCiudadano.getSelectedObjects().toString().isEmpty()){
+//          Ciudadano ciu = (Ciudadano) comboCiudadano.getSelectedItem();
+//        String ci = citad.buscarFechaCita(ciu.getDni());
+//        fecha.setDate(Date.valueOf(ci.substring(0, 9)));
+//        hora.setValue(ci.substring(9));  
+        }
+    }//GEN-LAST:event_comboCiudadanoActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboCiudadano;
+    private javax.swing.JCheckBox esenciales;
+    private com.toedter.calendar.JDateChooser fecha;
+    private javax.swing.JSpinner hora;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JCheckBox patologia;
+    // End of variables declaration//GEN-END:variables
+
+    private void armarCombo() {
         CiudadanoData cd = new CiudadanoData();
         comboCiudadano.removeAllItems();
         if (!patologia.isSelected() && !esenciales.isSelected()) {
@@ -170,34 +204,5 @@ private CitaData citad;
             comboCiudadano.addItem("" + ciu.getDni() + " - " + ciu.getNombreCompleto() + " - " + ciu.getPatologia());
         }
         }
-    }//GEN-LAST:event_patologiaActionPerformed
-
-    private void esencialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esencialesActionPerformed
-        // TODO add your handling code here:
-        patologiaActionPerformed(evt);
-    }//GEN-LAST:event_esencialesActionPerformed
-
-    private void comboCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCiudadanoActionPerformed
-        // TODO add your handling code here:
-        Ciudadano ciu = (Ciudadano) comboCiudadano.getSelectedItem();
-        String ci = citad.buscarFechaCita(ciu.getDni());
-        fecha.setDate(Date.valueOf(ci.substring(0, 9)));
-        hora.setValue(ci.substring(9));
-    }//GEN-LAST:event_comboCiudadanoActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comboCiudadano;
-    private javax.swing.JCheckBox esenciales;
-    private com.toedter.calendar.JDateChooser fecha;
-    private javax.swing.JSpinner hora;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox patologia;
-    // End of variables declaration//GEN-END:variables
-
-
+    }
 }
