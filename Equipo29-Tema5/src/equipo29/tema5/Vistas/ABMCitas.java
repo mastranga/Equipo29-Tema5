@@ -186,34 +186,36 @@ private CitaData citad;
     private javax.swing.JCheckBox patologia;
     // End of variables declaration//GEN-END:variables
 
-    private void armarCombo() {
+ private void armarCombo() {
         CiudadanoData cd = new CiudadanoData();
         comboCiudadano.removeAllItems();
+        
         if (!patologia.isSelected() && !esenciales.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
             for (Ciudadano ciu : cd.listarCiudadanos()) {
-            comboCiudadano.addItem(""+ciu.getDni()+" - "+ciu.getNombreCompleto());
-        }
-        } else if (!patologia.isSelected() && esenciales.isSelected()) {
+                comboCiudadano.addItem(ciu);
+            }
+        } else if (patologia.isSelected() && !esenciales.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
-            for (Ciudadano ciu : cd.listarCiudadanosEsenciales()) {
-                comboCiudadano.addItem("" + ciu.getDni() + " - " + ciu.getNombreCompleto() + " - " + ciu.getAmbitoTrabajo());
+            for (Ciudadano ciu : cd.listarCiudadanosPatologia()) {
+                comboCiudadano.addItem(ciu);
             }
         } else if (patologia.isSelected() && esenciales.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
             for (Ciudadano ciu : cd.listarCiudadanosPatologiaEsenciales()) {
-                comboCiudadano.addItem("" + ciu.getDni() + " - " + ciu.getNombreCompleto() + " - " + ciu.getPatologia() + " - " + ciu.getAmbitoTrabajo());
+                comboCiudadano.addItem(ciu);
             }
-        } else if(patologia.isSelected() && !esenciales.isSelected()){
+        } else if (!patologia.isSelected() && esenciales.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
-            for (Ciudadano ciu : cd.listarCiudadanosPatologia()) {
-            comboCiudadano.addItem("" + ciu.getDni() + " - " + ciu.getNombreCompleto() + " - " + ciu.getPatologia());
+            for (Ciudadano ciu : cd.listarCiudadanosEsenciales()) {
+                comboCiudadano.addItem(ciu);
+            }
         }
-        }
+        
     }
     
     
