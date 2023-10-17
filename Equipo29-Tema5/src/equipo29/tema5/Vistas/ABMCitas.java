@@ -160,12 +160,42 @@ private CitaData citad;
 
     private void comboCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCiudadanoActionPerformed
         // TODO add your handling code here:
-        if(!comboCiudadano.getSelectedObjects().toString().isEmpty()){
-//          Ciudadano ciu = (Ciudadano) comboCiudadano.getSelectedItem();
-//        String ci = citad.buscarFechaCita(ciu.getDni());
-//        fecha.setDate(Date.valueOf(ci.substring(0, 9)));
-//        hora.setValue(ci.substring(9));  
+        try {
+
+            if (!comboCiudadano.getSelectedItem().toString().isEmpty()) {
+
+                CiudadanoData cd = new CiudadanoData();
+
+                Ciudadano ciu = (Ciudadano) comboCiudadano.getSelectedItem();
+
+                //String split[] = comboCiudadano.getSelectedItem().toString().split(" - ");
+                //int dni = Integer.parseInt(split[0]);
+                String cita = citad.buscarFechaCita(ciu.getDni());
+
+                try {
+
+                    fecha.setDate(Date.valueOf(cita.substring(0, 10)));
+
+                    String horario = cita.substring(11, 16);
+
+                    armarComboHorario(horario);
+
+                } catch (StringIndexOutOfBoundsException ex) {
+
+                }
+
+            } else {
+
+                String horario = null;
+
+                armarComboHorario(horario);
+
+            }
+
+        } catch (NullPointerException ex) {
+
         }
+
     }//GEN-LAST:event_comboCiudadanoActionPerformed
 
     private void horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaActionPerformed
