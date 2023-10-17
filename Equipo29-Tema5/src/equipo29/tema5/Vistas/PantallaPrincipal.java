@@ -135,7 +135,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void BotonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAdminActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        PortalAdministracion pa = new PortalAdministracion(ld, vd, citad);
+        PortalAdministracion pa = new PortalAdministracion(ld, vd, citad,cd);
         pa.setVisible(true);
         escritorio.add(pa);
         escritorio.moveToFront(pa);

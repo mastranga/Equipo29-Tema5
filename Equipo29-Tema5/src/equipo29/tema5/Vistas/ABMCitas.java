@@ -16,12 +16,14 @@ import java.sql.Date;
  */
 public class ABMCitas extends javax.swing.JInternalFrame {
 private CitaData citad;
+private CiudadanoData cd;
     /**
      * Creates new form ABMCitas
      */
-    public ABMCitas(CitaData citad) {
+    public ABMCitas(CitaData citad, CiudadanoData cd) {
         initComponents();
         this.citad=citad;
+        this.cd=cd;
         armarCombo();
     }
 
@@ -34,7 +36,7 @@ private CitaData citad;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        comboCiudadano = new javax.swing.JComboBox<>();
+        comboCiudadano = new javax.swing.JComboBox();
         patologia = new javax.swing.JCheckBox();
         esenciales = new javax.swing.JCheckBox();
         fecha = new com.toedter.calendar.JDateChooser();
@@ -204,7 +206,7 @@ private CitaData citad;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comboCiudadano;
+    private javax.swing.JComboBox comboCiudadano;
     private javax.swing.JCheckBox esenciales;
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JComboBox<String> hora;

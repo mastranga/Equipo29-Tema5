@@ -6,6 +6,7 @@
 package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.CitaData;
+import equipo29.tema5.Conexion.CiudadanoData;
 import equipo29.tema5.Conexion.LaboratorioData;
 import equipo29.tema5.Conexion.VacunaData;
 
@@ -17,14 +18,16 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private LaboratorioData ld;
     private VacunaData vd;
     private CitaData citad;
+    private CiudadanoData cd;
     /**
      * Creates new form PortalAdministracion
      */
-    public PortalAdministracion(LaboratorioData ld, VacunaData vd, CitaData citad) {
+    public PortalAdministracion(LaboratorioData ld, VacunaData vd, CitaData citad, CiudadanoData cd) {
         initComponents();
         this.ld=ld;
         this.vd=vd;
         this.citad=citad;
+        this.cd=cd;
     }
 
     /**
@@ -196,7 +199,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        ABMCitas cit = new ABMCitas(citad);
+        ABMCitas cit = new ABMCitas(citad,cd);
         cit.setVisible(true);
         escritorio.add(cit);
         escritorio.moveToFront(cit);
