@@ -9,6 +9,7 @@ import equipo29.tema5.Conexion.CitaData;
 import equipo29.tema5.Conexion.CiudadanoData;
 import equipo29.tema5.Conexion.LaboratorioData;
 import equipo29.tema5.Conexion.VacunaData;
+import equipo29.tema5.Conexion.VacunatorioData;
 
 /**
  *
@@ -19,15 +20,17 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private VacunaData vd;
     private CitaData citad;
     private CiudadanoData cd;
+    private VacunatorioData cvd;
     /**
      * Creates new form PortalAdministracion
      */
-    public PortalAdministracion(LaboratorioData ld, VacunaData vd, CitaData citad, CiudadanoData cd) {
+    public PortalAdministracion(LaboratorioData ld, VacunaData vd, CitaData citad, CiudadanoData cd, VacunatorioData cvd) {
         initComponents();
         this.ld=ld;
         this.vd=vd;
         this.citad=citad;
         this.cd=cd;
+        this.cvd=cvd;
     }
 
     /**
@@ -79,18 +82,12 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton4.setText("Listados");
+        jButton4.setText("Vacunatorios");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-
-        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(volver, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -104,10 +101,9 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
                 .addGap(149, 149, 149)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                    .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
@@ -125,6 +121,11 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
                 .addComponent(volver)
                 .addGap(27, 27, 27))
         );
+        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(volver, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu1.setText("Listados");
 
@@ -199,7 +200,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        ABMCitas cit = new ABMCitas(citad,cd);
+        ABMCitas cit = new ABMCitas(citad,cd, cvd, vd);
         cit.setVisible(true);
         escritorio.add(cit);
         escritorio.moveToFront(cit);
@@ -208,10 +209,10 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        Listados li = new Listados();
-        li.setVisible(true);
-        escritorio.add(li);
-        escritorio.moveToFront(li);
+        ABMVacunatorios abmcv = new ABMVacunatorios(cvd);
+        abmcv.setVisible(true);
+        escritorio.add(abmcv);
+        escritorio.moveToFront(abmcv);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

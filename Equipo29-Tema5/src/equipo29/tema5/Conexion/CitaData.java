@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,14 +17,15 @@ public class CitaData {
     private Connection con = null;
     private CiudadanoData ciudata = new CiudadanoData();
     private VacunaData vacudata = new VacunaData();
+    private VacunatorioData cvd = new VacunatorioData();
 
     public CitaData() {
         con = Conexion.buscarConexion();
     }
     
-    public List<Cita> buscarCita(int dni) throws NullPointerException {
+    public List<Cita> buscarCitas(int dni) throws NullPointerException {
         List<Cita> citas = new ArrayList<>();
-        String sql = "SELECT codCita, codRefuerzo, fechaHoraCita, centroVacunacion, fechaHoraColoca, dni, nroSerie FROM cita WHERE dni=? AND cancelada = 1";
+        String sql = "SELECT codCita, codRefuerzo, fechaHoraCita, idVacunatorio, fechaHoraColoca, dni, nroSerie FROM cita WHERE dni=? AND cancelada = 1";
         Cita cita = null;
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -34,7 +36,7 @@ public class CitaData {
                 cita.setCodCita(rs.getInt("codCita"));
                 cita.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 cita.setFechaHoraCita(rs.getString("fechaHoraCita"));
-                cita.setCentroVacunacion(rs.getString("centroVacunacion"));
+                cita.setVacunatorio(cvd.buscarVacunatorioId(rs.getInt("idVacunatorio ")));
 //                cita.setFechaHoraColoca(rs.getDate("fechaHoraColoca").toLocalDate());
                 cita.setCiudadano(ciudata.buscarCiudadanoDni(rs.getInt("dni")));
                 cita.setVacuna(vacudata.buscarVacuna(rs.getInt("nroSerie")));
@@ -73,13 +75,22 @@ public class CitaData {
         return fhc.format(formateador).toString();
     }
     
-    public void reprogramarCita(int codRefuerzo, String fechaHoraCita, String centroVacunacion, int dni, int nroSerie){
-        String insert = "INSERT INTO cita(codRefuerzo, fechaHoraCita, centroVacunacion, fechaHoraColoca, dni, nroSerie, cancelada) VALUES (?,?,?,?,?,?,1)";
+    public String formatoFecha(String fechaHoraCita){
+        //creamos formateador
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        //lo convertimos a objeto
+        LocalDateTime fhc = LocalDateTime.parse(fechaHoraCita, formateador);
+        //formateamos nuevamente y retornamos como cadena
+        return fhc.format(formateador).toString();
+    }
+    
+    public void reprogramarCita(int codRefuerzo, String fechaHoraCita, int idVacunatorio, int dni, int nroSerie){
+        String insert = "INSERT INTO cita(codRefuerzo, fechaHoraCita, idVacunatorio, fechaHoraColoca, dni, nroSerie, cancelada) VALUES (?,?,?,?,?,?,1)";
       
         try(PreparedStatement ps = con.prepareStatement(insert)){
         ps.setInt(1, codRefuerzo);
         ps.setString(2, sumar2Semanas(fechaHoraCita)); // aca hay que ver como calcular la nueva fecha
-        ps.setString(3, centroVacunacion);
+        ps.setInt(3, idVacunatorio);
         ps.setDate(4, null);
         ps.setInt(5, dni);
         ps.setInt(6, nroSerie);
@@ -112,5 +123,50 @@ public class CitaData {
         return cita;
     }
     
+    public void guardarCita (Cita cita) throws SQLIntegrityConstraintViolationException, SQLException{
+        String sql = "INSERT INTO cita(codRefuerzo, fechaHoraCita, idVacunatorio, fechaHoraColoca, dni, nroSerie, cancelada) VALUES (?,?,?,null,?,?,1)";
+        
+        try (PreparedStatement ps = con.prepareStatement(sql)){;
+            ps.setInt(1, cita.getCodRefuerzo());
+            ps.setString(2, cita.getFechaHoraCita());
+            ps.setInt(3, cita.getVacunatorio().getIdVacunatorio());
+            ps.setInt(4, cita.getCiudadano().getDni());
+            ps.setInt(5, cita.getVacuna().getNroSerie());
+            
+            
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                System.out.println("No se pudo insertar el registro.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cita registrada");
+            }
+            
+        } catch (SQLIntegrityConstraintViolationException ex) {
+//            JOptionPane.showMessageDialog(null, "El Nro de Serie indicado ya se encuentra registrado");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+    }
     
+    public Cita buscarCita(int dni){
+
+        String sql = "SELECT fechaHoraCita, idVacunatorio FROM cita WHERE dni=? AND cancelada=1";
+        Cita cita = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                cita = new Cita();
+                cita.setFechaHoraCita(rs.getString("fechaHoraCita"));
+                cita.setVacunatorio(cvd.buscarVacunatorioId(rs.getInt("idVacunatorio")));
+            } else {
+                JOptionPane.showMessageDialog(null, "El ciudadano seleccionado no cuenta con Cita");
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+        return cita;
+    }
 }

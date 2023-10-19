@@ -174,7 +174,7 @@ public class Citas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if(!dni.getText().isEmpty()){
             //Ciudadano ciudadano = cd.buscarCiudadano(Integer.parseInt(dni.getText()));
-            citas = citad.buscarCita(Integer.parseInt(dni.getText()));
+            citas = citad.buscarCitas(Integer.parseInt(dni.getText()));
             borrarFilas();
             cargarDatos(citas);
         }else{
@@ -195,10 +195,10 @@ public class Citas extends javax.swing.JInternalFrame {
             int codRefuerzo = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 1).toString());
             String fechaHoraCita = modelo.getValueAt(tabla.getSelectedRow(), 2).toString();
             //LocalDateTime fechaHoraCita = (LocalDateTime) modelo.getValueAt(tabla.getSelectedRow(), 2);
-            String centroVacunacion = modelo.getValueAt(tabla.getSelectedRow(), 3).toString();
+            int idVacunatorio = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 3).toString());
             int dni = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 5).toString());
             int nroSerie = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 6).toString());
-            citad.reprogramarCita(codRefuerzo, fechaHoraCita, centroVacunacion, dni, nroSerie);
+            citad.reprogramarCita(codRefuerzo, fechaHoraCita, idVacunatorio, dni, nroSerie);
         }else {
             JOptionPane.showMessageDialog(null, "Seleccione una cita");
         }
@@ -272,7 +272,7 @@ public class Citas extends javax.swing.JInternalFrame {
     
     private void cargarDatos(List<Cita> citas) { //Esta lista de alumnos puede provenir de la BD o cargada por parámetros
         for (Cita cita : citas) {
-            modelo.addRow(new Object[]{cita.getCodCita(),cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getCentroVacunacion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni(), cita.getVacuna().getNroSerie()});
+            modelo.addRow(new Object[]{cita.getCodCita(),cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getVacunatorio().getDescripcion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni(), cita.getVacuna().getNroSerie()});
         }
     }
 

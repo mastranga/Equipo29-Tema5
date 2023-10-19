@@ -8,8 +8,10 @@ package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.LaboratorioData;
 import equipo29.tema5.Conexion.VacunaData;
+import equipo29.tema5.Conexion.VacunatorioData;
 import equipo29.tema5.Data.Laboratorio;
 import equipo29.tema5.Data.Vacuna;
+import equipo29.tema5.Data.Vacunatorio;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.ZoneId;
@@ -35,7 +37,6 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
         this.ld=ld;
         cargarComboLaboratorio();
         cargarComboMedida();
-        
     }
 
     /**
@@ -141,7 +142,7 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
                             .addComponent(nroserie)
                             .addComponent(laboratorio, 0, 132, Short.MAX_VALUE)
                             .addComponent(marca)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addComponent(vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -194,7 +195,7 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(alta)
                     .addComponent(baja)
@@ -322,4 +323,5 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
             laboratorio.addItem(lab.getNombre());
         }
     }
+    
 }

@@ -1,0 +1,58 @@
+
+
+package equipo29.tema5.Data;
+
+/**
+ *
+ * @author 20352555674
+ */
+public class Vacunatorio {
+    private int idVacunatorio;
+    private String descripcion;
+    private boolean estado;
+
+    public Vacunatorio() {
+        this.idVacunatorio = -1;
+    }
+
+    public Vacunatorio(String descripcion, boolean estado) {
+        this.descripcion = descripcion;
+        this.estado = estado;
+    }
+
+    public Vacunatorio(int idVacunatorio, String descripcion, boolean estado) {
+        this.idVacunatorio = idVacunatorio;
+        this.descripcion = descripcion;
+        this.estado = estado;
+    }
+
+    public int getIdVacunatorio() {
+        return idVacunatorio;
+    }
+
+    public void setIdVacunatorio(int idVacunatorio) {
+        this.idVacunatorio = idVacunatorio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return idVacunatorio + " - " + descripcion;
+    }
+    
+}

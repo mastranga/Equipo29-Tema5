@@ -9,33 +9,33 @@ public class Cita {
     private Ciudadano ciudadano;
     private int codRefuerzo;
     private String fechaHoraCita;
-    private String centroVacunacion;
     private LocalDate fechaHoraColoca;
     private Vacuna vacuna;
     private boolean cancelada;
+    private Vacunatorio vacunatorio;
 
     public Cita() {
         this.codCita = -1;
     }
 
-    public Cita(Ciudadano ciudadano, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoca, Vacuna vacuna) {
+    public Cita(Ciudadano ciudadano, int codRefuerzo, String fechaHoraCita, Vacuna vacuna, Vacunatorio vacunatorio) {
         this.codCita = -1;
         this.ciudadano = ciudadano;
         this.codRefuerzo = codRefuerzo;
         this.fechaHoraCita = fechaHoraCita;
-        this.centroVacunacion = centroVacunacion;
-        this.fechaHoraColoca = fechaHoraColoca;
+        this.fechaHoraColoca = null;
         this.vacuna = vacuna;
+        this.vacunatorio = vacunatorio;
     }
 
-    public Cita(int codCita, Ciudadano ciudadano, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoca, Vacuna vacuna) {
+    public Cita(int codCita, Ciudadano ciudadano, int codRefuerzo, String fechaHoraCita, Vacuna vacuna, Vacunatorio vacunatorio) {
         this.codCita = codCita;
         this.ciudadano = ciudadano;
         this.codRefuerzo = codRefuerzo;
         this.fechaHoraCita = fechaHoraCita;
-        this.centroVacunacion = centroVacunacion;
-        this.fechaHoraColoca = fechaHoraColoca;
+        this.fechaHoraColoca =null;
         this.vacuna = vacuna;
+        this.vacunatorio = vacunatorio;
     }
     
     public int getCodCita() {
@@ -70,14 +70,6 @@ public class Cita {
         this.fechaHoraCita = fechaHoraCita;
     }
 
-    public String getCentroVacunacion() {
-        return centroVacunacion;
-    }
-
-    public void setCentroVacunacion(String centroVacunacion) {
-        this.centroVacunacion = centroVacunacion;
-    }
-
     public LocalDate getFechaHoraColoca() {
         return fechaHoraColoca;
     }
@@ -102,12 +94,21 @@ public class Cita {
         this.cancelada = cancelada;
     }
 
-    
-    
+    public Vacunatorio getVacunatorio() {
+        return vacunatorio;
+    }
+
+    public void setVacunatorio(Vacunatorio vacunatorio) {
+        this.vacunatorio = vacunatorio;
+    }
+
     @Override
     public String toString() {
-        return "cita{" + "codCita=" + codCita + ", ciudadano=" + ciudadano + ", codRefuerzo=" + codRefuerzo + ", fechaHoraCita=" + fechaHoraCita + ", centroVacunacion=" + centroVacunacion + ", fechaHoraColoca=" + fechaHoraColoca + ", vacuna=" + vacuna + '}';
+        return "Cita{" + "codCita=" + codCita + ", ciudadano=" + ciudadano + ", codRefuerzo=" + codRefuerzo + ", fechaHoraCita=" + fechaHoraCita + ", fechaHoraColoca=" + fechaHoraColoca + ", vacuna=" + vacuna + ", cancelada=" + cancelada + ", vacunatorio=" + vacunatorio + '}';
     }
+
+    
+    
     
     
 }

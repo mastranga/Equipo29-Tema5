@@ -34,8 +34,6 @@ public class Vacuna {
         this.laboratorio = laboratorio;
     }
     
-    
-
     public int getNroSerie() {
         return nroSerie;
     }
@@ -84,10 +82,13 @@ public class Vacuna {
         this.laboratorio = laboratorio;
     }
 
+
     @Override
     public String toString() {
         return "Vacuna{" + "nroSerie=" + nroSerie + ", marca=" + marca + ", medida=" + medida + ", fechaCad=" + fechaCad + ", estado=" + estado + ", laboratorio=" + laboratorio + '}';
     }
+
+    
    
    
 }

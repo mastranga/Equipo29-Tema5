@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class VacunaData {
     private Connection con = null;
     private LaboratorioData ld = new LaboratorioData();
+    private VacunatorioData cvd = new VacunatorioData();
 
     public VacunaData() {
         con = Conexion.buscarConexion();
@@ -115,6 +116,34 @@ public class VacunaData {
             JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
         }
 
+    }
+    
+    public Vacuna buscarVacunaDisponible() throws NullPointerException {
+
+        String sql = "SELECT MIN(nroSerie) as nroSerie, marca, medida, fechaCad, estado, idLaboratorio FROM vacuna WHERE estado=1";
+        Vacuna vacuna = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                vacuna = new Vacuna();
+                vacuna.setNroSerie(rs.getInt("nroSerie"));
+                vacuna.setMarca(rs.getString("marca"));
+                vacuna.setMedida(rs.getDouble("medida"));
+                vacuna.setFechaCad(rs.getDate("fechaCad").toLocalDate());
+                vacuna.setEstado(rs.getBoolean("estado"));
+                vacuna.setLaboratorio(ld.buscarLaboratorioId(rs.getInt("idLaboratorio")));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay Vacunas disponibles para asignar");
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos"+ex.getMessage());
+        } catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "No hay Vacunas disponibles para asignar");
+        }
+        return vacuna;
     }
     
 }

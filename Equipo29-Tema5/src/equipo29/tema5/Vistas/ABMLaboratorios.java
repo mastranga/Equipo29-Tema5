@@ -228,7 +228,7 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
             }catch (NullPointerException ex){  
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Indique el CUIT luego del 30 para realizar la busqueda");
+            JOptionPane.showMessageDialog(null, "Indique el CUIT o el nombre para realizar la busqueda");
         }
     }//GEN-LAST:event_BuscarActionPerformed
 
