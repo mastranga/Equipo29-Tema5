@@ -52,7 +52,8 @@ public class Vacunatorio {
 
     @Override
     public String toString() {
-        return idVacunatorio + " - " + descripcion;
+        //return idVacunatorio + " - " + descripcion;
+        return descripcion;
     }
     
 }

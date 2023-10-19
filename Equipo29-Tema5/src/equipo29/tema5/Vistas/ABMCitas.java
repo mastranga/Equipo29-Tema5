@@ -15,8 +15,6 @@ import equipo29.tema5.Data.Vacuna;
 import equipo29.tema5.Data.Vacunatorio;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,8 +49,6 @@ private VacunaData vd;
     private void initComponents() {
 
         comboCiudadano = new javax.swing.JComboBox();
-        patologia = new javax.swing.JCheckBox();
-        esenciales = new javax.swing.JCheckBox();
         fecha = new com.toedter.calendar.JDateChooser();
         volver = new javax.swing.JButton();
         limpiar = new javax.swing.JButton();
@@ -60,25 +56,13 @@ private VacunaData vd;
         guardar = new javax.swing.JButton();
         confirmar = new javax.swing.JButton();
         hora = new javax.swing.JComboBox<>();
-        vacunatorio = new javax.swing.JComboBox();
+        vacunatorio = new javax.swing.JComboBox<>();
+        patologia = new javax.swing.JCheckBox();
+        esencial = new javax.swing.JCheckBox();
 
         comboCiudadano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCiudadanoActionPerformed(evt);
-            }
-        });
-
-        patologia.setText("Patologias");
-        patologia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patologiaActionPerformed(evt);
-            }
-        });
-
-        esenciales.setText("Esenciales");
-        esenciales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                esencialesActionPerformed(evt);
             }
         });
 
@@ -107,9 +91,17 @@ private VacunaData vd;
 
         confirmar.setText("Confirmar Aplicacion");
 
-        hora.addActionListener(new java.awt.event.ActionListener() {
+        patologia.setText("Patologia");
+        patologia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                horaActionPerformed(evt);
+                patologiaActionPerformed(evt);
+            }
+        });
+
+        esencial.setText("Esencial");
+        esencial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esencialActionPerformed(evt);
             }
         });
 
@@ -117,43 +109,45 @@ private VacunaData vd;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(297, 343, Short.MAX_VALUE)
+                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(vacunatorio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
+                        .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(vacunatorio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(12, 12, 12)
-                                .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(8, 8, 8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(guardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(modificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(limpiar)
-                        .addGap(18, 18, 18)
-                        .addComponent(volver))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(patologia)
-                        .addGap(18, 18, 18)
-                        .addComponent(esenciales))
-                    .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
+                                .addComponent(guardar)
+                                .addGap(18, 18, 18)
+                                .addComponent(modificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(limpiar)
+                                .addGap(18, 18, 18)
+                                .addComponent(volver))
+                            .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(patologia, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(esencial, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patologia)
-                    .addComponent(esenciales))
-                .addGap(49, 49, 49)
+                    .addComponent(patologia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(esencial, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,13 +155,13 @@ private VacunaData vd;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmar)
                     .addComponent(vacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(volver)
                     .addComponent(limpiar)
                     .addComponent(modificar)
                     .addComponent(guardar))
-                .addGap(35, 35, 35))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -177,16 +171,6 @@ private VacunaData vd;
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_volverActionPerformed
-
-    private void patologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patologiaActionPerformed
-        // TODO add your handling code here:
-        armarComboCiudadano();
-    }//GEN-LAST:event_patologiaActionPerformed
-
-    private void esencialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esencialesActionPerformed
-        // TODO add your handling code here:
-        armarComboCiudadano();
-    }//GEN-LAST:event_esencialesActionPerformed
 
     private void comboCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCiudadanoActionPerformed
         // TODO add your handling code here:
@@ -198,10 +182,7 @@ private VacunaData vd;
 
                 Ciudadano ciu = (Ciudadano) comboCiudadano.getSelectedItem();
 
-                //String split[] = comboCiudadano.getSelectedItem().toString().split(" - ");
-                //int dni = Integer.parseInt(split[0]);
                 Cita cita = citad.buscarCita(ciu.getDni());
-                //String cita = citad.buscarFechaCita(ciu.getDni());
 
                 try {
 
@@ -211,11 +192,7 @@ private VacunaData vd;
 
                     armarComboHorario(horario);
                     
-                    //String vacun = String.valueOf(cita.getVacunatorio().getIdVacunatorio())+" - "+cita.getVacunatorio().getDescripcion();
-                    
-                    Vacunatorio vacu = (Vacunatorio) cita.getVacunatorio();
-                    
-                    cargarComboVacunatorio(vacu);
+                    cargarComboVacunatorio(cita.getVacunatorio().toString());
 
                 } catch (StringIndexOutOfBoundsException ex) {
 
@@ -227,21 +204,17 @@ private VacunaData vd;
 
                 armarComboHorario(horario);
                 
-//                String vacun = null;
-//                    
-//                cargarComboVacunatorio(vacun);
+                String vacun = null;
+                    
+                cargarComboVacunatorio(vacun);
 
             }
 
         } catch (NullPointerException ex) {
-
+            limpiar();
         }
 
     }//GEN-LAST:event_comboCiudadanoActionPerformed
-
-    private void horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_horaActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
@@ -253,7 +226,7 @@ private VacunaData vd;
                 String fech = fecha.getDate().toInstant().toString().substring(0, 10);
                 //String fech = fecha.getDate().
                 String hor = hora.getSelectedItem().toString();
-                Vacunatorio vacun = (Vacunatorio) vacunatorio.getSelectedItem();
+                Vacunatorio vacun = cvd.buscarVacunatorioDescipcion(vacunatorio.getSelectedItem().toString());
                 Vacuna vacuna = vd.buscarVacunaDisponible();
                 if(!vacuna.getMarca().isEmpty()){
                     citad.guardarCita(new Cita(ciudadano, cr, fech+" "+hor,vacuna,vacun));
@@ -274,8 +247,10 @@ private VacunaData vd;
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         // TODO add your handling code here:
-        patologia.setSelected(false);
-        esenciales.setSelected(false);
+        //this.patologias.setSelected(false);
+        //esencial.setSelected(false);
+        //patologia.setState(false);
+        //esencial.setState(false);
         comboCiudadano.removeAllItems();
         fecha.setDate(null);
         hora.removeAllItems();
@@ -284,18 +259,28 @@ private VacunaData vd;
         cargarComboVacunatorio(null);
     }//GEN-LAST:event_limpiarActionPerformed
 
+    private void patologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patologiaActionPerformed
+        // TODO add your handling code here:
+        armarComboCiudadano();
+    }//GEN-LAST:event_patologiaActionPerformed
+
+    private void esencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esencialActionPerformed
+        // TODO add your handling code here:
+        armarComboCiudadano();
+    }//GEN-LAST:event_esencialActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboCiudadano;
     private javax.swing.JButton confirmar;
-    private javax.swing.JCheckBox esenciales;
+    private javax.swing.JCheckBox esencial;
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton guardar;
     private javax.swing.JComboBox<String> hora;
     private javax.swing.JButton limpiar;
     private javax.swing.JButton modificar;
     private javax.swing.JCheckBox patologia;
-    private javax.swing.JComboBox vacunatorio;
+    private javax.swing.JComboBox<String> vacunatorio;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 
@@ -303,25 +288,25 @@ private VacunaData vd;
         CiudadanoData cd = new CiudadanoData();
         comboCiudadano.removeAllItems();
         
-        if (!patologia.isSelected() && !esenciales.isSelected()) {
+        if (!patologia.isSelected() && !esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
             for (Ciudadano ciu : cd.listarCiudadanos()) {
                 comboCiudadano.addItem(ciu);
             }
-        } else if (patologia.isSelected() && !esenciales.isSelected()) {
+        } else if (patologia.isSelected() && !esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
             for (Ciudadano ciu : cd.listarCiudadanosPatologia()) {
                 comboCiudadano.addItem(ciu);
             }
-        } else if (patologia.isSelected() && esenciales.isSelected()) {
+        } else if (patologia.isSelected() && esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
             for (Ciudadano ciu : cd.listarCiudadanosPatologiaEsenciales()) {
                 comboCiudadano.addItem(ciu);
             }
-        } else if (!patologia.isSelected() && esenciales.isSelected()) {
+        } else if (!patologia.isSelected() && esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
             for (Ciudadano ciu : cd.listarCiudadanosEsenciales()) {
@@ -352,19 +337,25 @@ private VacunaData vd;
             }
     }
     
-    private void cargarComboVacunatorio(Vacunatorio vacu) {
+    private void cargarComboVacunatorio(String vacu) {
         VacunatorioData cvd = new VacunatorioData();
         vacunatorio.removeAllItems();
         vacunatorio.addItem("");
         for (Vacunatorio cv : cvd.listarVacunatorios()) {
-            vacunatorio.addItem(cv);
+            vacunatorio.addItem(cv.toString());
         }
-        if (vacu != null) {
-            for (Vacunatorio cv : cvd.listarVacunatorios()) {
-                if (cv.equals(vacu)) {
-                    vacunatorio.setSelectedItem(vacu);
-                }
-            }
-        }
+        if (vacu!=null) {
+            vacunatorio.setSelectedItem(vacu);
+        }       
+    }
+    
+    private void limpiar (){
+        //this.patologia.setSelected(false);
+        //esencial.setSelected(false);
+        //patologia.setState(false);
+        //esencial.setState(false);
+        fecha.setDate(null);
+        armarComboHorario("");
+        cargarComboVacunatorio(null);
     }
 }
