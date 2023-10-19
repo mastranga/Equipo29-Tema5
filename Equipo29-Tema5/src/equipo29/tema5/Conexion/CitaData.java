@@ -2,10 +2,13 @@ package equipo29.tema5.Conexion;
 
 import equipo29.tema5.Data.Cita;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -75,11 +78,11 @@ public class CitaData {
         return fhc.format(formateador).toString();
     }
     
-    public String formatoFecha(String fechaHoraCita){
+    public String fechaHoraActual(String fha){
         //creamos formateador
-        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
         //lo convertimos a objeto
-        LocalDateTime fhc = LocalDateTime.parse(fechaHoraCita, formateador);
+        LocalDateTime fhc = LocalDateTime.parse(fha, formateador);
         //formateamos nuevamente y retornamos como cadena
         return fhc.format(formateador).toString();
     }
@@ -150,7 +153,7 @@ public class CitaData {
     
     public Cita buscarCita(int dni){
 
-        String sql = "SELECT fechaHoraCita, idVacunatorio FROM cita WHERE dni=? AND cancelada=1";
+        String sql = "SELECT codCita, fechaHoraCita, idVacunatorio FROM cita WHERE dni=? AND cancelada=1";
         Cita cita = null;
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -158,6 +161,7 @@ public class CitaData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 cita = new Cita();
+                cita.setCodCita(rs.getInt("codCita"));
                 cita.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 cita.setVacunatorio(cvd.buscarVacunatorioId(rs.getInt("idVacunatorio")));
             } else {
@@ -168,5 +172,31 @@ public class CitaData {
             JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
         }
         return cita;
+    }
+    
+    public void confirmarAplicacion(int codCita){
+        String upd = "UPDATE cita SET fechaHoraColoca = ? WHERE codCita = ?";
+//        String fha = LocalDateTime.now().toString().substring(0, 10)+" "+LocalDateTime.now().toString().substring(11, 16);
+//        LocalDateTime fechaHoraActual = LocalDateTime.now();
+//        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        String fechaFormateada = fechaHoraActual.format(formato);
+//        JOptionPane.showMessageDialog(null, fechaFormateada);
+            Date fechaHoraActual = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String fechaFormateada = sdf.format(fechaHoraActual);
+            
+        try {
+            PreparedStatement ps = con.prepareStatement(upd);
+            ps.setString(1, fechaFormateada);
+            //ps.setDate(1, Date.valueOf(fha.toString()));
+            ps.setInt(2, codCita);
+            int registro = ps.executeUpdate();
+            if (registro == 1) {
+                JOptionPane.showMessageDialog(null, "Aplicacion confirmada");
+            }
+//            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cancelar la cita " + ex.getMessage());
+        }
     }
 }
