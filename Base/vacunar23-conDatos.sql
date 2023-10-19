@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2023 a las 00:58:30
+-- Tiempo de generación: 19-10-2023 a las 06:48:16
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -33,7 +33,7 @@ CREATE TABLE `cita` (
   `codCita` int(11) NOT NULL,
   `codRefuerzo` int(11) NOT NULL,
   `fechaHoraCita` varchar(60) NOT NULL,
-  `centroVacunacion` varchar(60) NOT NULL,
+  `idVacunatorio` int(11) NOT NULL,
   `fechaHoraColoca` datetime DEFAULT NULL,
   `dni` int(11) NOT NULL,
   `nroSerie` int(11) NOT NULL,
@@ -44,10 +44,10 @@ CREATE TABLE `cita` (
 -- Volcado de datos para la tabla `cita`
 --
 
-INSERT INTO `cita` (`codCita`, `codRefuerzo`, `fechaHoraCita`, `centroVacunacion`, `fechaHoraColoca`, `dni`, `nroSerie`, `cancelada`) VALUES
-(3, 1, '2023-10-04 15:00', 'Hospital Italiano', '2023-10-04 00:00:00', 35255569, 1, 0),
-(4, 1, '2023-10-18 15:00', 'Hospital Italiano', NULL, 35255569, 1, 0),
-(5, 1, '2023-11-01 15:00', 'Hospital Italiano', NULL, 35255569, 1, 1);
+INSERT INTO `cita` (`codCita`, `codRefuerzo`, `fechaHoraCita`, `idVacunatorio`, `fechaHoraColoca`, `dni`, `nroSerie`, `cancelada`) VALUES
+(11, 1, '2023-10-19 10:00', 1, NULL, 35255569, 3, 1),
+(12, 1, '2023-10-20 12:15', 1, NULL, 32555666, 4, 1),
+(20, 1, '2023-10-26 16:00', 2, NULL, 11222333, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -71,14 +71,10 @@ CREATE TABLE `ciudadano` (
 --
 
 INSERT INTO `ciudadano` (`idCiudadano`, `dni`, `nombreCompleto`, `email`, `celular`, `patologia`, `ambitoTrabajo`, `estado`) VALUES
-(1, 11222333, 'Laura Fernander', 'mail2@mail.com', '1123335469', NULL, 'SalUD', 1),
+(1, 11222333, 'Laura Fernander', 'mail2@mail.com', '1123335469', NULL, 'salud', 1),
 (2, 35255555, 'Carlos Marx', 'mail3@mail.com', '1123558974', NULL, 'comercio', 1),
-(3, 35255569, 'Bruno Mastrangelo', 'mail@mail.com', '1125556661', 'diabetes', 'desempleado', 1),
-(4, 32555666, 'Raul Lopez', 'rlopez@gmail.oom', '1152356699', NULL, 'administrativo', 1),
-(5, 111222333, 'Mariana Salazar', 'mail5@mail.com', '112233556', NULL, 'comercio', 1),
-(6, 25698789, 'Juan Mario', 'mail6@mail.com', '1125569874', NULL, 'comercio', 1),
-(7, 32698774, 'Mariano Martinez', 'mail7@mail.com', '1125566987', 'asma', 'educacion', 1),
-(8, 36985441, 'Carlos Tevez', 'mail8@mail.com', '1125888974', 'asma', 'comercio', 1);
+(3, 35255569, 'Bruno Mastrangelo', 'mail@mail.com', '1125556661', 'diabetes', 'salud', 1),
+(4, 32555666, 'Raul Lopez', 'rlopez@gmail.oom', '1152356699', NULL, 'administrativo', 1);
 
 -- --------------------------------------------------------
 
@@ -123,8 +119,30 @@ CREATE TABLE `vacuna` (
 --
 
 INSERT INTO `vacuna` (`nroSerie`, `marca`, `medida`, `fechaCad`, `estado`, `idLaboratorio`) VALUES
-(1, 'Moderna', 0.3, '2023-10-04', 1, 1),
-(2, 'test2', 0.9, '2023-10-19', 1, 1);
+(1, 'Moderna', 0.3, '2023-10-31', 0, 1),
+(2, 'Moderna', 0.3, '2023-10-31', 0, 1),
+(3, 'Moderna', 0.3, '2023-10-31', 0, 1),
+(4, 'Moderna', 0.3, '2023-10-31', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vacunatorio`
+--
+
+CREATE TABLE `vacunatorio` (
+  `idVacunatorio` int(11) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `vacunatorio`
+--
+
+INSERT INTO `vacunatorio` (`idVacunatorio`, `descripcion`, `estado`) VALUES
+(1, 'Centro 1', 1),
+(2, 'Centro 2', 1);
 
 --
 -- Índices para tablas volcadas
@@ -136,7 +154,8 @@ INSERT INTO `vacuna` (`nroSerie`, `marca`, `medida`, `fechaCad`, `estado`, `idLa
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`codCita`),
   ADD KEY `dni` (`dni`),
-  ADD KEY `nroSerie` (`nroSerie`);
+  ADD KEY `nroSerie` (`nroSerie`),
+  ADD KEY `idVacunatorio` (`idVacunatorio`);
 
 --
 -- Indices de la tabla `ciudadano`
@@ -161,6 +180,13 @@ ALTER TABLE `vacuna`
   ADD KEY `idLaboratorio` (`idLaboratorio`);
 
 --
+-- Indices de la tabla `vacunatorio`
+--
+ALTER TABLE `vacunatorio`
+  ADD PRIMARY KEY (`idVacunatorio`),
+  ADD UNIQUE KEY `descipcion` (`descripcion`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -168,13 +194,13 @@ ALTER TABLE `vacuna`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `laboratorio`
@@ -186,7 +212,13 @@ ALTER TABLE `laboratorio`
 -- AUTO_INCREMENT de la tabla `vacuna`
 --
 ALTER TABLE `vacuna`
-  MODIFY `nroSerie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `nroSerie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `vacunatorio`
+--
+ALTER TABLE `vacunatorio`
+  MODIFY `idVacunatorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -197,7 +229,8 @@ ALTER TABLE `vacuna`
 --
 ALTER TABLE `cita`
   ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `ciudadano` (`dni`),
-  ADD CONSTRAINT `cita_ibfk_2` FOREIGN KEY (`nroSerie`) REFERENCES `vacuna` (`nroSerie`);
+  ADD CONSTRAINT `cita_ibfk_2` FOREIGN KEY (`nroSerie`) REFERENCES `vacuna` (`nroSerie`),
+  ADD CONSTRAINT `cita_ibfk_3` FOREIGN KEY (`idVacunatorio`) REFERENCES `vacunatorio` (`idVacunatorio`);
 
 --
 -- Filtros para la tabla `vacuna`
