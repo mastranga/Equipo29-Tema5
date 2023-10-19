@@ -10,6 +10,9 @@ import equipo29.tema5.Conexion.CiudadanoData;
 import equipo29.tema5.Conexion.LaboratorioData;
 import equipo29.tema5.Conexion.VacunaData;
 import equipo29.tema5.Conexion.VacunatorioData;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -45,7 +48,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/fondoApp.jpg"));
+        Image image = icon.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         BotonPC = new javax.swing.JButton();
         BotonAdmin = new javax.swing.JButton();
         salir = new javax.swing.JButton();
@@ -73,35 +83,36 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        escritorio.setLayer(BotonPC, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(BotonAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(salir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addGap(0, 541, Short.MAX_VALUE)
+                .addGap(0, 789, Short.MAX_VALUE)
                 .addComponent(salir)
                 .addGap(55, 55, 55))
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BotonAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(352, 352, 352)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addContainerGap(184, Short.MAX_VALUE)
                 .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(84, 84, 84)
                 .addComponent(BotonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(156, 156, 156)
                 .addComponent(salir)
                 .addGap(31, 31, 31))
         );
-        escritorio.setLayer(BotonPC, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(BotonAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(salir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
