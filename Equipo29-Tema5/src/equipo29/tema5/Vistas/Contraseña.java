@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.CitaData;
@@ -18,12 +17,13 @@ import javax.swing.JOptionPane;
  * @author 20352555674
  */
 public class Contraseña extends javax.swing.JInternalFrame {
+
     private CiudadanoData cd;
     private CitaData citad;
     private LaboratorioData ld;
     private VacunaData vd;
     private VacunatorioData cvd;
-    
+
     /**
      * Creates new form Contraseña
      */
@@ -97,14 +97,14 @@ public class Contraseña extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(clave.getText().equals("")){
+        if (clave.getText().equals("")) {
             PantallaPrincipal.escritorio.repaint();
-        PortalAdministracion pa = new PortalAdministracion(ld, vd, citad,cd,cvd);
-        pa.setVisible(true);
-        PantallaPrincipal.escritorio.add(pa);
-        PantallaPrincipal.escritorio.moveToFront(pa);
-        this.dispose();
-        }else{
+            PortalAdministracion pa = new PortalAdministracion(ld, vd, citad, cd, cvd);
+            pa.setVisible(true);
+            PantallaPrincipal.escritorio.add(pa);
+            PantallaPrincipal.escritorio.moveToFront(pa);
+            this.dispose();
+        } else {
             JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
         }
     }//GEN-LAST:event_jButton1ActionPerformed

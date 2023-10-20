@@ -1,6 +1,7 @@
 package equipo29.tema5.Conexion;
 
 import equipo29.tema5.Data.Cita;
+import equipo29.tema5.Data.Ciudadano;
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
@@ -28,7 +29,7 @@ public class CitaData {
     
     public List<Cita> buscarCitas(int dni) throws NullPointerException {
         List<Cita> citas = new ArrayList<>();
-        String sql = "SELECT codCita, codRefuerzo, fechaHoraCita, idVacunatorio, fechaHoraColoca, dni, nroSerie, cancelada FROM cita WHERE dni=? AND cancelada=1";
+        String sql = "SELECT codCita, codRefuerzo, fechaHoraCita, idVacunatorio, fechaHoraColoca, dni, nroSerie, cancelada FROM cita WHERE dni=? AND cancelada=1 AND fechaHoraColoca IS NULL";
         Cita cita = null;
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -78,11 +79,13 @@ public class CitaData {
         return fhc.format(formateador).toString();
     }
     
-    public String fechaHoraActual(String fha){
+    public String sumar4Semanas(String fechaHoraCita){
         //creamos formateador
         DateTimeFormatter formateador = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
         //lo convertimos a objeto
-        LocalDateTime fhc = LocalDateTime.parse(fha, formateador);
+        LocalDateTime fhc = LocalDateTime.parse(fechaHoraCita, formateador);
+        //sumamos 2 semanas
+        fhc = fhc.plusWeeks(4);
         //formateamos nuevamente y retornamos como cadena
         return fhc.format(formateador).toString();
     }
@@ -141,7 +144,7 @@ public class CitaData {
             if (affectedRows == 0) {
                 System.out.println("No se pudo insertar el registro.");
             } else {
-                JOptionPane.showMessageDialog(null, "Cita registrada");
+                JOptionPane.showMessageDialog(null, "Nueva cita registrada");
             }
             
         } catch (SQLIntegrityConstraintViolationException ex) {
@@ -153,7 +156,7 @@ public class CitaData {
     
     public Cita buscarCita(int dni){
 
-        String sql = "SELECT codCita, fechaHoraCita, idVacunatorio FROM cita WHERE dni=? AND cancelada=1";
+        String sql = "Select codCita, codRefuerzo, fechaHoraCita, idVacunatorio from cita where codCita = (SELECT MAX(codCita) FROM cita WHERE dni=? AND cancelada=1);";
         Cita cita = null;
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -162,6 +165,7 @@ public class CitaData {
             if (rs.next()) {
                 cita = new Cita();
                 cita.setCodCita(rs.getInt("codCita"));
+                cita.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 cita.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 cita.setVacunatorio(cvd.buscarVacunatorioId(rs.getInt("idVacunatorio")));
             } else {
@@ -176,11 +180,6 @@ public class CitaData {
     
     public void confirmarAplicacion(int codCita){
         String upd = "UPDATE cita SET fechaHoraColoca = ? WHERE codCita = ?";
-//        String fha = LocalDateTime.now().toString().substring(0, 10)+" "+LocalDateTime.now().toString().substring(11, 16);
-//        LocalDateTime fechaHoraActual = LocalDateTime.now();
-//        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//        String fechaFormateada = fechaHoraActual.format(formato);
-//        JOptionPane.showMessageDialog(null, fechaFormateada);
             Date fechaHoraActual = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fechaFormateada = sdf.format(fechaHoraActual);
@@ -188,7 +187,6 @@ public class CitaData {
         try {
             PreparedStatement ps = con.prepareStatement(upd);
             ps.setString(1, fechaFormateada);
-            //ps.setDate(1, Date.valueOf(fha.toString()));
             ps.setInt(2, codCita);
             int registro = ps.executeUpdate();
             if (registro == 1) {
@@ -198,5 +196,48 @@ public class CitaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cancelar la cita " + ex.getMessage());
         }
+    }
+    
+   public String fechaHoraActual(){
+       Date fechaHoraActual = new Date();
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+       String fechaFormateada = sdf.format(fechaHoraActual);
+       return fechaFormateada;
+   }
+    
+    public void modificarCita(Cita cita){
+        String upd = "UPDATE cita SET codRefuerzo=?, fechaHoraCita=?, idVacunatorio=? WHERE codCita = ?";
+            
+        try {
+            PreparedStatement ps = con.prepareStatement(upd);
+            ps.setInt(1, cita.getCodRefuerzo());
+            ps.setString(2, cita.getFechaHoraCita());
+            ps.setInt(3, cita.getVacunatorio().getIdVacunatorio());
+            ps.setInt(4, cita.getCodCita());
+            int registro = ps.executeUpdate();
+            if (registro == 1) {
+                JOptionPane.showMessageDialog(null, "Cita modificada");
+            }
+//            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modifcar la cita " + ex.getMessage());
+        }
+    }
+    
+    public boolean verificarRefuerzo(int dni){
+        String sql = "SELECT * FROM cita WHERE dni = ? AND codRefuerzo = 3 AND fechaHoraColoca IS NOT NULL";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+        return true;
     }
 }

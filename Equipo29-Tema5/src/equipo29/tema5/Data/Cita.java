@@ -37,6 +37,15 @@ public class Cita {
         this.vacuna = vacuna;
         this.vacunatorio = vacunatorio;
     }
+
+    public Cita(int codCita, int codRefuerzo, String fechaHoraCita, Vacunatorio vacunatorio) {
+        this.codCita = codCita;
+        this.codRefuerzo = codRefuerzo;
+        this.fechaHoraCita = fechaHoraCita;
+        this.vacunatorio = vacunatorio;
+    }
+    
+    
     
     public int getCodCita() {
         return codCita;

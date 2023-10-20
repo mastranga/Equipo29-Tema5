@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Bruce
  */
 public class Citas extends javax.swing.JInternalFrame {
+
     //private CiudadanoData cd;
     private List<Cita> citas = new ArrayList<>();
     private CitaData citad;
@@ -172,13 +173,13 @@ public class Citas extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-        if(!dni.getText().isEmpty()){
+        if (!dni.getText().isEmpty()) {
             //Ciudadano ciudadano = cd.buscarCiudadano(Integer.parseInt(dni.getText()));
             citas = citad.buscarCitas(Integer.parseInt(dni.getText()));
             borrarFilas();
             cargarDatos(citas);
-        }else{
-             JOptionPane.showMessageDialog(null, "Ingrese Documento valido del ciudadano para realizar una busqueda");   
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese Documento valido del ciudadano para realizar una busqueda");
         }
     }//GEN-LAST:event_buscarActionPerformed
 
@@ -199,7 +200,7 @@ public class Citas extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 5).toString());
             int nroSerie = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 6).toString());
             citad.reprogramarCita(codRefuerzo, fechaHoraCita, idVacunatorio, dni, nroSerie);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione una cita");
         }
     }//GEN-LAST:event_cancelarActionPerformed
@@ -216,7 +217,7 @@ public class Citas extends javax.swing.JInternalFrame {
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 
-   private void armarCabecera() {
+    private void armarCabecera() {
         modelo.addColumn("Codigo Cita");
         modelo.addColumn("Codigo Refuerzo");
         modelo.addColumn("Fecha Cita");
@@ -262,17 +263,17 @@ public class Citas extends javax.swing.JInternalFrame {
         tabla.getTableHeader().getColumnModel().getColumn(7).setMinWidth(0);
         tabla.getTableHeader().getColumnModel().getColumn(7).setResizable(false);
     }
-    
+
     private void borrarFilas() {
         int f = tabla.getRowCount() - 1;
         for (; f >= 0; f--) {
             modelo.removeRow(f);
         }
     }
-    
+
     private void cargarDatos(List<Cita> citas) { //Esta lista de alumnos puede provenir de la BD o cargada por parámetros
         for (Cita cita : citas) {
-            modelo.addRow(new Object[]{cita.getCodCita(),cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getVacunatorio().getDescripcion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni(), cita.getVacuna().getNroSerie()});
+            modelo.addRow(new Object[]{cita.getCodCita(), cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getVacunatorio().getDescripcion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni(), cita.getVacuna().getNroSerie()});
         }
     }
 

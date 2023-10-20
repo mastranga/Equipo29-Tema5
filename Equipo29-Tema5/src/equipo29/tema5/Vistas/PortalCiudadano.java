@@ -13,6 +13,7 @@ import equipo29.tema5.Conexion.CiudadanoData;
  * @author Bruce
  */
 public class PortalCiudadano extends javax.swing.JInternalFrame {
+
     private CiudadanoData cd;
     private CitaData citad;
 

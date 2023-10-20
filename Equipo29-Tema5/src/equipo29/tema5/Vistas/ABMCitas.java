@@ -15,6 +15,8 @@ import equipo29.tema5.Data.Vacuna;
 import equipo29.tema5.Data.Vacunatorio;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,19 +24,21 @@ import javax.swing.JOptionPane;
  * @author juanma
  */
 public class ABMCitas extends javax.swing.JInternalFrame {
-private CitaData citad;
-private CiudadanoData cd;
-private VacunatorioData cvd;
-private VacunaData vd;
+
+    private CitaData citad;
+    private CiudadanoData cd;
+    private VacunatorioData cvd;
+    private VacunaData vd;
+
     /**
      * Creates new form ABMCitas
      */
     public ABMCitas(CitaData citad, CiudadanoData cd, VacunatorioData cvd, VacunaData vd) {
         initComponents();
-        this.citad=citad;
-        this.cd=cd;
-        this.cvd=cvd;
-        this.vd=vd;
+        this.citad = citad;
+        this.cd = cd;
+        this.cvd = cvd;
+        this.vd = vd;
         armarComboCiudadano();
         //cargarComboVacunatorio(null);
     }
@@ -60,6 +64,7 @@ private VacunaData vd;
         patologia = new javax.swing.JCheckBox();
         esencial = new javax.swing.JCheckBox();
         idCita = new javax.swing.JTextField();
+        codigoRefuerzo = new javax.swing.JComboBox<>();
 
         comboCiudadano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +87,11 @@ private VacunaData vd;
         });
 
         modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,52 +131,57 @@ private VacunaData vd;
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(vacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(confirmar))
+                        .addComponent(codigoRefuerzo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(guardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(modificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(limpiar)
-                        .addGap(18, 18, 18)
-                        .addComponent(volver))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(patologia, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(vacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                .addComponent(confirmar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(guardar)
+                                .addGap(18, 18, 18)
+                                .addComponent(modificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(limpiar)
+                                .addGap(18, 18, 18)
+                                .addComponent(volver))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(patologia, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(esencial, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(esencial, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(hora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(idCita, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(17, 17, 17))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(idCita, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(hora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(17, 17, 17))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(idCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(patologia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(esencial, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(idCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(codigoRefuerzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -200,16 +215,18 @@ private VacunaData vd;
                 Cita cita = citad.buscarCita(ciu.getDni());
 
                 try {
-                    
-                    idCita.setText(cita.getCodCita()+"");
-                    
+
+                    idCita.setText(cita.getCodCita() + "");
+
                     fecha.setDate(Date.valueOf(cita.getFechaHoraCita().substring(0, 10)));
 
                     String horario = cita.getFechaHoraCita().substring(11, 16);
 
                     armarComboHorario(horario);
-                    
+
                     cargarComboVacunatorio(cita.getVacunatorio().toString());
+
+                    armarComboRefuerzo(String.valueOf(cita.getCodRefuerzo()));
 
                 } catch (StringIndexOutOfBoundsException ex) {
 
@@ -220,9 +237,9 @@ private VacunaData vd;
                 String horario = null;
 
                 armarComboHorario(horario);
-                
+
                 String vacun = null;
-                    
+
                 cargarComboVacunatorio(vacun);
 
             }
@@ -235,7 +252,7 @@ private VacunaData vd;
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        if(!comboCiudadano.getSelectedItem().toString().isEmpty() || !fecha.getDate().toString().isEmpty() || !hora.getSelectedItem().toString().isEmpty() || !vacunatorio.getSelectedItem().toString().isEmpty()){
+        if (!comboCiudadano.getSelectedItem().toString().isEmpty() || !fecha.getDate().toString().isEmpty() || !hora.getSelectedItem().toString().isEmpty() || !vacunatorio.getSelectedItem().toString().isEmpty()) {
             try {
                 Ciudadano ciudadano = (Ciudadano) comboCiudadano.getSelectedItem();
                 int cr = 1;
@@ -245,29 +262,25 @@ private VacunaData vd;
                 String hor = hora.getSelectedItem().toString();
                 Vacunatorio vacun = cvd.buscarVacunatorioDescipcion(vacunatorio.getSelectedItem().toString());
                 Vacuna vacuna = vd.buscarVacunaDisponible();
-                if(!vacuna.getMarca().isEmpty()){
-                    citad.guardarCita(new Cita(ciudadano, cr, fech+" "+hor,vacuna,vacun));
+                if (!vacuna.getMarca().isEmpty()) {
+                    citad.guardarCita(new Cita(ciudadano, cr, fech + " " + hor, vacuna, vacun));
                     vd.bajaVacuna(vacuna.getNroSerie());
-                }else{
+                } else {
                     //JOptionPane.showMessageDialog(null, "Verifique la disponibilidad de Vacunas ");
                 }
-            } catch (SQLException ex ) {
-                
-            } catch (NullPointerException ex){
-                
+            } catch (SQLException ex) {
+
+            } catch (NullPointerException ex) {
+
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
         }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         // TODO add your handling code here:
-        //this.patologias.setSelected(false);
-        //esencial.setSelected(false);
-        //patologia.setState(false);
-        //esencial.setState(false);
         comboCiudadano.removeAllItems();
         fecha.setDate(null);
         hora.removeAllItems();
@@ -288,11 +301,51 @@ private VacunaData vd;
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
         // TODO add your handling code here:
-        citad.confirmarAplicacion(Integer.parseInt(idCita.getText()));
+        try {
+            citad.confirmarAplicacion(Integer.parseInt(idCita.getText()));
+            Ciudadano ciudadano = (Ciudadano) comboCiudadano.getSelectedItem();
+            if (citad.verificarRefuerzo(ciudadano.getDni())) {
+                cd.bajaCiudadano(ciudadano.getDni());
+            } else {
+                int cr = Integer.parseInt(codigoRefuerzo.getSelectedItem().toString()) + 1;
+                String fechaHoraActual = citad.sumar4Semanas(citad.fechaHoraActual());
+                Vacunatorio vacun = cvd.buscarVacunatorioDescipcion(vacunatorio.getSelectedItem().toString());
+                Vacuna vacuna = vd.buscarVacunaDisponible();
+                if (!vacuna.getMarca().isEmpty()) {
+                    citad.guardarCita(new Cita(ciudadano, cr, fechaHoraActual, vacuna, vacun));
+                    vd.bajaVacuna(vacuna.getNroSerie());
+                }
+            }
+        } catch (SQLException ex) {
+
+        } catch (NullPointerException ex) {
+
+        }
     }//GEN-LAST:event_confirmarActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        // TODO add your handling code here:
+        if (!comboCiudadano.getSelectedItem().toString().isEmpty() || !fecha.getDate().toString().isEmpty() || !hora.getSelectedItem().toString().isEmpty() || !vacunatorio.getSelectedItem().toString().isEmpty()) {
+            try {
+                Ciudadano ciudadano = (Ciudadano) comboCiudadano.getSelectedItem();
+                int cc = Integer.parseInt(idCita.getText());
+                int cr = Integer.parseInt(codigoRefuerzo.getSelectedItem().toString());
+                String fech = fecha.getDate().toInstant().toString().substring(0, 10);
+                String hor = hora.getSelectedItem().toString();
+                Vacunatorio vacun = cvd.buscarVacunatorioDescipcion(vacunatorio.getSelectedItem().toString());
+                citad.modificarCita(new Cita(cc, cr, fech + " " + hor, vacun));
+            } catch (NullPointerException ex) {
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+        }
+    }//GEN-LAST:event_modificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> codigoRefuerzo;
     private javax.swing.JComboBox comboCiudadano;
     private javax.swing.JButton confirmar;
     private javax.swing.JCheckBox esencial;
@@ -307,10 +360,10 @@ private VacunaData vd;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 
- private void armarComboCiudadano() {
+    private void armarComboCiudadano() {
         CiudadanoData cd = new CiudadanoData();
         comboCiudadano.removeAllItems();
-        
+
         if (!patologia.isSelected() && !esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
@@ -336,30 +389,30 @@ private VacunaData vd;
                 comboCiudadano.addItem(ciu);
             }
         }
-        
+
     }
-    
-    
-    private void armarComboHorario(String horario){
-            hora.addItem("");
-            for(int i = 9 ;  i < 18 ; i++){
-            for(int j = 0 ; j < 46 ; j+=15){
-                if(i==9 && j==0){
-                    hora.addItem("0"+i+":"+j+"0");
-                }else if(i==9){
-                hora.addItem("0"+i+":"+j);
-                }else if (j==0){
-                    hora.addItem(i+":"+j+"0");
-                }else{
-                    hora.addItem(i+":"+j);
+
+    private void armarComboHorario(String horario) {
+        hora.removeAllItems();
+        hora.addItem("");
+        for (int i = 9; i < 18; i++) {
+            for (int j = 0; j < 46; j += 15) {
+                if (i == 9 && j == 0) {
+                    hora.addItem("0" + i + ":" + j + "0");
+                } else if (i == 9) {
+                    hora.addItem("0" + i + ":" + j);
+                } else if (j == 0) {
+                    hora.addItem(i + ":" + j + "0");
+                } else {
+                    hora.addItem(i + ":" + j);
                 }
             }
         }
-            if(horario!=null){
+        if (horario != null) {
             hora.setSelectedItem(horario);
-            }
+        }
     }
-    
+
     private void cargarComboVacunatorio(String vacu) {
         VacunatorioData cvd = new VacunatorioData();
         vacunatorio.removeAllItems();
@@ -367,12 +420,12 @@ private VacunaData vd;
         for (Vacunatorio cv : cvd.listarVacunatorios()) {
             vacunatorio.addItem(cv.toString());
         }
-        if (vacu!=null) {
+        if (vacu != null) {
             vacunatorio.setSelectedItem(vacu);
-        }       
+        }
     }
-    
-    private void limpiar (){
+
+    private void limpiar() {
         //this.patologia.setSelected(false);
         //esencial.setSelected(false);
         //patologia.setState(false);
@@ -380,5 +433,16 @@ private VacunaData vd;
         fecha.setDate(null);
         armarComboHorario("");
         cargarComboVacunatorio(null);
+    }
+
+    private void armarComboRefuerzo(String cr) {
+        codigoRefuerzo.removeAllItems();
+        codigoRefuerzo.addItem("");
+        codigoRefuerzo.addItem("1");
+        codigoRefuerzo.addItem("2");
+        codigoRefuerzo.addItem("3");
+        if (cr != null) {
+            codigoRefuerzo.setSelectedItem(cr);
+        }
     }
 }

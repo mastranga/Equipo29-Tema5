@@ -72,6 +72,26 @@ public class CiudadanoData {
 
     }
     
+    public void bajaCiudadano(int dni) throws SQLException {
+
+        String sql = "UPDATE ciudadano SET estado=0 WHERE dni=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, dni);
+            
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 1) {
+
+                JOptionPane.showMessageDialog(null, "Ciudadano dado de baja");
+            }
+
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos");
+        }
+
+    }
+    
     public Ciudadano buscarCiudadanoDni(int dni) throws NullPointerException {
 
         String sql = "SELECT idCiudadano, dni, nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE dni=?";

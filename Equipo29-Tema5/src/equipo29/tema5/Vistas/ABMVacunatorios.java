@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.VacunatorioData;
@@ -18,6 +17,7 @@ import javax.swing.JOptionPane;
  * @author 20352555674
  */
 public class ABMVacunatorios extends javax.swing.JInternalFrame {
+
     private VacunatorioData cvd;
 
     /**
@@ -25,7 +25,7 @@ public class ABMVacunatorios extends javax.swing.JInternalFrame {
      */
     public ABMVacunatorios(VacunatorioData cvd) {
         initComponents();
-        this.cvd=cvd;
+        this.cvd = cvd;
     }
 
     /**
@@ -166,64 +166,65 @@ public class ABMVacunatorios extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-        if(!id.getText().isEmpty()){
-            try{
+        if (!id.getText().isEmpty()) {
+            try {
                 Vacunatorio vacunatorio = cvd.buscarVacunatorioId(Integer.parseInt(id.getText()));
                 descripcion.setText(vacunatorio.getDescripcion());
                 id2.setText(id.getText());
-            }catch(NullPointerException ex){  
-            } 
-        }else if (!descripcion.getText().isEmpty()){
-            try{
-                Vacunatorio vacunatorio = cvd.buscarVacunatorioDescipcion(descripcion.getText());
-                id.setText(vacunatorio.getIdVacunatorio()+"");
-                id2.setText(id.getText());
-            }catch (NullPointerException ex){  
+            } catch (NullPointerException ex) {
             }
-        }else{
+        } else if (!descripcion.getText().isEmpty()) {
+            try {
+                Vacunatorio vacunatorio = cvd.buscarVacunatorioDescipcion(descripcion.getText());
+                id.setText(vacunatorio.getIdVacunatorio() + "");
+                id2.setText(id.getText());
+            } catch (NullPointerException ex) {
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Indique el ID o el nombre para realizar la busqueda");
         }
     }//GEN-LAST:event_buscarActionPerformed
 
     private void altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaActionPerformed
         // TODO add your handling code here:
-        if(id.getText().isEmpty()){
+        if (id.getText().isEmpty()) {
             try {
                 cvd.guardarVacunatorio(new Vacunatorio(descripcion.getText(), true));
             } catch (SQLException ex) {
-                
+
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Solo complete el campo Descripcion");
         }
-        
+
     }//GEN-LAST:event_altaActionPerformed
 
     private void bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaActionPerformed
         // TODO add your handling code here:
-        if(!id.getText().isEmpty()){
+        if (!id.getText().isEmpty()) {
             try {
                 cvd.bajaVacunatorio(Integer.parseInt(id.getText()));
             } catch (SQLException ex) {
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Realice la busqueda del Vacunatorio previemente a producir la baja");
         }
     }//GEN-LAST:event_bajaActionPerformed
 
     private void modificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificacionActionPerformed
         // TODO add your handling code here:
-        if(id.getText().isEmpty() || descripcion.getText().isEmpty()){
+        if (id.getText().isEmpty() || descripcion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Realice la busqueda del Vacunatorio previemente a modificarlo");
-        } else{
+        } else {
             Vacunatorio vacunatorio = new Vacunatorio();
             vacunatorio.setIdVacunatorio(Integer.parseInt(id.getText()));
             vacunatorio.setDescripcion(descripcion.getText());
             try {
-                cvd.modificarVacunatorio(vacunatorio, Integer.parseInt(id2.getText())); {
-     }
-     } catch (SQLException ex) {
-     }
+                cvd.modificarVacunatorio(vacunatorio, Integer.parseInt(id2.getText()));
+                {
+                }
+            } catch (SQLException ex) {
+            }
         }
     }//GEN-LAST:event_modificacionActionPerformed
 

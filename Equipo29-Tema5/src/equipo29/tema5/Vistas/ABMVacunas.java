@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.LaboratorioData;
@@ -24,6 +23,7 @@ import javax.swing.JOptionPane;
  * @author 20352555674
  */
 public class ABMVacunas extends javax.swing.JInternalFrame {
+
     private VacunaData vd;
     private LaboratorioData ld;
     private List<Laboratorio> laboratorios = new ArrayList<>();
@@ -33,8 +33,8 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
      */
     public ABMVacunas(VacunaData vd, LaboratorioData ld) {
         initComponents();
-        this.vd=vd;
-        this.ld=ld;
+        this.vd = vd;
+        this.ld = ld;
         cargarComboLaboratorio();
         cargarComboMedida();
     }
@@ -233,39 +233,39 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-        if(!nroserie.getText().isEmpty()){
+        if (!nroserie.getText().isEmpty()) {
             Vacuna vacuna = vd.buscarVacuna(Integer.parseInt(nroserie.getText()));
             laboratorio.setSelectedItem(vacuna.getLaboratorio().getNombre().toString());
             marca.setText(vacuna.getMarca());
             medida.setSelectedItem(String.valueOf(vacuna.getMedida()));
             vencimiento.setDate(Date.from(vacuna.getFechaCad().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese el Nro de Serie de la Vacuna");
         }
     }//GEN-LAST:event_buscarActionPerformed
 
     private void bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaActionPerformed
         // TODO add your handling code here:
-        if(!nroserie.getText().isEmpty()){
+        if (!nroserie.getText().isEmpty()) {
             try {
                 vd.bajaVacuna(Integer.parseInt(nroserie.getText()));
             } catch (SQLException ex) {
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese el numero de serie de la vacuna");
         }
     }//GEN-LAST:event_bajaActionPerformed
 
     private void altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaActionPerformed
         // TODO add your handling code here:
-        if(!nroserie.getText().isEmpty()){
+        if (!nroserie.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No ingrese datos en el campo Nro Serie");
-        }else if(laboratorio.getSelectedItem().toString().isEmpty() || marca.getText().isEmpty() || medida.getSelectedItem().toString().isEmpty() || vencimiento.getDate().toString().isEmpty()){
+        } else if (laboratorio.getSelectedItem().toString().isEmpty() || marca.getText().isEmpty() || medida.getSelectedItem().toString().isEmpty() || vencimiento.getDate().toString().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
-        }else{
+        } else {
             try {
-                vd.guardarVacuna(new Vacuna(marca.getText(), Double.parseDouble(medida.getSelectedItem().toString()), 
-                        vencimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 
+                vd.guardarVacuna(new Vacuna(marca.getText(), Double.parseDouble(medida.getSelectedItem().toString()),
+                        vencimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                         true, ld.buscarLaboratorioNombre(laboratorio.getSelectedItem().toString())));
             } catch (SQLException ex) {
 
@@ -275,12 +275,12 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
 
     private void modificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificacionActionPerformed
         // TODO add your handling code here:
-        if(laboratorio.getSelectedItem().toString().isEmpty() || marca.getText().isEmpty() || medida.getSelectedItem().toString().isEmpty() || vencimiento.getDate().toString().isEmpty()){
+        if (laboratorio.getSelectedItem().toString().isEmpty() || marca.getText().isEmpty() || medida.getSelectedItem().toString().isEmpty() || vencimiento.getDate().toString().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
-        }else{
+        } else {
             try {
-                vd.modificarVacuna(new Vacuna(Integer.parseInt(nroserie.getText()), marca.getText(), Double.parseDouble(medida.getSelectedItem().toString()), 
-                        vencimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 
+                vd.modificarVacuna(new Vacuna(Integer.parseInt(nroserie.getText()), marca.getText(), Double.parseDouble(medida.getSelectedItem().toString()),
+                        vencimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                         true, ld.buscarLaboratorioNombre(laboratorio.getSelectedItem().toString())));
             } catch (SQLException ex) {
 
@@ -308,20 +308,19 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser vencimiento;
     // End of variables declaration//GEN-END:variables
 
-
-    private void cargarComboMedida(){
+    private void cargarComboMedida() {
         medida.addItem("");
         medida.addItem("0.3");
         medida.addItem("0.5");
         medida.addItem("0.9");
     }
-    
-    private void cargarComboLaboratorio(){
+
+    private void cargarComboLaboratorio() {
         LaboratorioData ld = new LaboratorioData();
         laboratorio.addItem("");
         for (Laboratorio lab : ld.listarLaboratorios()) {
             laboratorio.addItem(lab.getNombre());
         }
     }
-    
+
 }

@@ -19,12 +19,12 @@ import javax.swing.ImageIcon;
  * @author Bruce
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
+
     private CiudadanoData cd;
     private CitaData citad;
     private LaboratorioData ld;
     private VacunaData vd;
     private VacunatorioData cvd;
-    
 
     /**
      * Creates new form PantallaPrincipal
@@ -197,13 +197,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 
-
-    public void cargaPantallaAdmin(){
+    public void cargaPantallaAdmin() {
         escritorio.repaint();
-        PortalAdministracion pa = new PortalAdministracion(ld, vd, citad,cd,cvd);
+        PortalAdministracion pa = new PortalAdministracion(ld, vd, citad, cd, cvd);
         pa.setVisible(true);
         escritorio.add(pa);
         escritorio.moveToFront(pa);
     }
-    
+
 }

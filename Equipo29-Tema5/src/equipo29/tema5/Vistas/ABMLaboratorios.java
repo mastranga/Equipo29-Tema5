@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
  * @author Bruce
  */
 public class ABMLaboratorios extends javax.swing.JInternalFrame {
+
     private LaboratorioData ld;
 
     /**
@@ -24,7 +25,7 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
      */
     public ABMLaboratorios(LaboratorioData ld) {
         initComponents();
-        this.ld=ld;
+        this.ld = ld;
     }
 
     /**
@@ -196,7 +197,7 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
         nombre.setText("");
         pais.setText("");
         domicilio.setText("");
-        
+
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void cuitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cuitKeyTyped
@@ -209,36 +210,36 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
-        if(!cuit.getText().isEmpty()){
-            try{
+        if (!cuit.getText().isEmpty()) {
+            try {
                 Laboratorio laboratorio = ld.buscarLaboratorioCuit(cuit.getText());
-                id.setText(laboratorio.getIdLaboratorio()+"");
+                id.setText(laboratorio.getIdLaboratorio() + "");
                 nombre.setText(laboratorio.getNombre());
                 pais.setText(laboratorio.getPais());
                 domicilio.setText(laboratorio.getDomicilio());
-            }catch(NullPointerException ex){  
-            } 
-        }else if (!nombre.getText().isEmpty()){
-            try{
+            } catch (NullPointerException ex) {
+            }
+        } else if (!nombre.getText().isEmpty()) {
+            try {
                 Laboratorio laboratorio = ld.buscarLaboratorioNombre(nombre.getText());
-                id.setText(laboratorio.getIdLaboratorio()+"");
+                id.setText(laboratorio.getIdLaboratorio() + "");
                 cuit.setText(laboratorio.getCuit());
                 pais.setText(laboratorio.getPais());
                 domicilio.setText(laboratorio.getDomicilio());
-            }catch (NullPointerException ex){  
+            } catch (NullPointerException ex) {
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Indique el CUIT o el nombre para realizar la busqueda");
         }
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
-        if(cuit.getText().isEmpty() || nombre.getText().isEmpty()|| pais.getText().isEmpty() || domicilio.getText().isEmpty()){
+        if (cuit.getText().isEmpty() || nombre.getText().isEmpty() || pais.getText().isEmpty() || domicilio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete los campos requeridos");
-        }else if (cuit.getText().length()!=11){
-                JOptionPane.showMessageDialog(null, "El CUIT debe ser de 11 digitos");
-            } else{
+        } else if (cuit.getText().length() != 11) {
+            JOptionPane.showMessageDialog(null, "El CUIT debe ser de 11 digitos");
+        } else {
             Laboratorio laboratorio = new Laboratorio();
             laboratorio.setIdLaboratorio(Integer.parseInt(id.getText()));
             laboratorio.setCuit(cuit.getText());
@@ -246,23 +247,24 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
             laboratorio.setPais(pais.getText());
             laboratorio.setDomicilio(domicilio.getText());
             try {
-                ld.modificarLaboratorio(laboratorio); {
-     }
-     } catch (SQLException ex) {
-     }
+                ld.modificarLaboratorio(laboratorio);
+                {
+                }
+            } catch (SQLException ex) {
+            }
         }
-        
-        
+
+
     }//GEN-LAST:event_modificarActionPerformed
 
     private void altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaActionPerformed
         // TODO add your handling code here:
-        if(cuit.getText().isEmpty() || nombre.getText().isEmpty() || pais.getText().isEmpty() || domicilio.getText().isEmpty()){
+        if (cuit.getText().isEmpty() || nombre.getText().isEmpty() || pais.getText().isEmpty() || domicilio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete los campos requeridos");
-        }else if (cuit.getText().length() != 11) {
+        } else if (cuit.getText().length() != 11) {
             JOptionPane.showMessageDialog(null, "El cuit debe tener 11 digitos de longitud");
-        
-        }else {
+
+        } else {
             try {
                 ld.guardarLaboratorio(new Laboratorio(cuit.getText(), nombre.getText(), pais.getText(), domicilio.getText()));
             } catch (SQLException ex) {
@@ -273,15 +275,15 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
 
     private void bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaActionPerformed
         // TODO add your handling code here:
-        if(!id.getText().isEmpty()){
+        if (!id.getText().isEmpty()) {
             try {
                 ld.bajaLaboratorio(Integer.parseInt(id.getText()));
             } catch (SQLException ex) {
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Realice la busqueda del laboratorio previemente a producir la baja");
         }
-        
+
     }//GEN-LAST:event_bajaActionPerformed
 
 

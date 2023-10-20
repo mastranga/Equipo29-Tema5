@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Bruce
  */
 public class Registro extends javax.swing.JInternalFrame {
+
     private CiudadanoData cd;
 
     /**
@@ -225,18 +226,18 @@ public class Registro extends javax.swing.JInternalFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
-        if(dni.getText().isEmpty() || nombreyapellido.getText().isEmpty() || email.getText().isEmpty() || celular.getText().isEmpty()
-                 || ambitolaboral.getText().isEmpty()){
+        if (dni.getText().isEmpty() || nombreyapellido.getText().isEmpty() || email.getText().isEmpty() || celular.getText().isEmpty()
+                || ambitolaboral.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete los campos requeridos");
-        }else if (dni.getText().length() < 7 || dni.getText().length() > 8) {
+        } else if (dni.getText().length() < 7 || dni.getText().length() > 8) {
             JOptionPane.showMessageDialog(null, "El documento debe tener entre 7 y 8 digitos de longitud");
-        }else if(celular.getText().length() != 10) {
+        } else if (celular.getText().length() != 10) {
             JOptionPane.showMessageDialog(null, "Verificar numero de celular ingresado");
-        }else {
+        } else {
             try {
-                if(!patologia.getText().isEmpty()){
+                if (!patologia.getText().isEmpty()) {
                     cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), patologia.getText(), ambitolaboral.getText()));
-                }else {
+                } else {
                     cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), ambitolaboral.getText()));
                 }
             } catch (SQLException ex) {
@@ -248,75 +249,74 @@ public class Registro extends javax.swing.JInternalFrame {
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
-        if(dni.getText().isEmpty() || nombreyapellido.getText().isEmpty() || email.getText().isEmpty() || celular.getText().isEmpty()
-                 || ambitolaboral.getText().isEmpty()){
+        if (dni.getText().isEmpty() || nombreyapellido.getText().isEmpty() || email.getText().isEmpty() || celular.getText().isEmpty()
+                || ambitolaboral.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete los campos requeridos");
-        }else if (dni.getText().length() < 7 || dni.getText().length() > 8) {
+        } else if (dni.getText().length() < 7 || dni.getText().length() > 8) {
             JOptionPane.showMessageDialog(null, "El documento debe tener entre 7 y 8 digitos de longitud");
-        }else if(celular.getText().length() != 10) {
+        } else if (celular.getText().length() != 10) {
             JOptionPane.showMessageDialog(null, "Verificar numero de celular ingresado");
-        }else {
+        } else {
             try {
-            if(!patologia.getText().isEmpty()){
-                Ciudadano ciudadano = new Ciudadano();
-                ciudadano.setId(Integer.parseInt(id.getText()));
-                ciudadano.setDni(Integer.parseInt(dni.getText()));
-                ciudadano.setNombreCompleto(nombreyapellido.getText());
-                ciudadano.setEmail(email.getText());
-                ciudadano.setCelular(celular.getText());
-                ciudadano.setPatologia(patologia.getText());
-                ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
-                cd.modificarCiudadano(ciudadano);
-            }else{
-                Ciudadano ciudadano = new Ciudadano();
-                ciudadano.setId(Integer.parseInt(id.getText()));
-                ciudadano.setDni(Integer.parseInt(dni.getText()));
-                ciudadano.setNombreCompleto(nombreyapellido.getText());
-                ciudadano.setEmail(email.getText());
-                ciudadano.setCelular(celular.getText());
-                ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
-                cd.modificarCiudadano(ciudadano);
-            }
+                if (!patologia.getText().isEmpty()) {
+                    Ciudadano ciudadano = new Ciudadano();
+                    ciudadano.setId(Integer.parseInt(id.getText()));
+                    ciudadano.setDni(Integer.parseInt(dni.getText()));
+                    ciudadano.setNombreCompleto(nombreyapellido.getText());
+                    ciudadano.setEmail(email.getText());
+                    ciudadano.setCelular(celular.getText());
+                    ciudadano.setPatologia(patologia.getText());
+                    ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
+                    cd.modificarCiudadano(ciudadano);
+                } else {
+                    Ciudadano ciudadano = new Ciudadano();
+                    ciudadano.setId(Integer.parseInt(id.getText()));
+                    ciudadano.setDni(Integer.parseInt(dni.getText()));
+                    ciudadano.setNombreCompleto(nombreyapellido.getText());
+                    ciudadano.setEmail(email.getText());
+                    ciudadano.setCelular(celular.getText());
+                    ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
+                    cd.modificarCiudadano(ciudadano);
+                }
             } catch (SQLException ex) {
 
             }
         }
-        
+
     }//GEN-LAST:event_modificarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        if(!dni.getText().isEmpty()){
+        if (!dni.getText().isEmpty()) {
             Ciudadano ciudadano = cd.buscarCiudadanoDni(Integer.parseInt(dni.getText()));
-        nombreyapellido.setText(ciudadano.getNombreCompleto());
-        email.setText(ciudadano.getEmail());
-        celular.setText(ciudadano.getCelular());
-        patologia.setText(ciudadano.getPatologia());
-        ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
-        id.setText(ciudadano.getId()+"");
-        } else if (!email.getText().isEmpty()){
-            Ciudadano ciudadano = cd.buscarCiudadanoEmail(email.getText());
-        dni.setText(ciudadano.getDni()+"");
             nombreyapellido.setText(ciudadano.getNombreCompleto());
-        email.setText(ciudadano.getEmail());
-        celular.setText(ciudadano.getCelular());
-        patologia.setText(ciudadano.getPatologia());
-        ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
-        id.setText(ciudadano.getId()+"");
-        }else if(!celular.getText().isEmpty()){
+            email.setText(ciudadano.getEmail());
+            celular.setText(ciudadano.getCelular());
+            patologia.setText(ciudadano.getPatologia());
+            ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
+            id.setText(ciudadano.getId() + "");
+        } else if (!email.getText().isEmpty()) {
+            Ciudadano ciudadano = cd.buscarCiudadanoEmail(email.getText());
+            dni.setText(ciudadano.getDni() + "");
+            nombreyapellido.setText(ciudadano.getNombreCompleto());
+            email.setText(ciudadano.getEmail());
+            celular.setText(ciudadano.getCelular());
+            patologia.setText(ciudadano.getPatologia());
+            ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
+            id.setText(ciudadano.getId() + "");
+        } else if (!celular.getText().isEmpty()) {
             Ciudadano ciudadano = cd.buscarCiudadanoCelular(celular.getText());
-            dni.setText(ciudadano.getDni()+"");
-        nombreyapellido.setText(ciudadano.getNombreCompleto());
-        email.setText(ciudadano.getEmail());
-        celular.setText(ciudadano.getCelular());
-        patologia.setText(ciudadano.getPatologia());
-        ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
-        id.setText(ciudadano.getId()+"");
+            dni.setText(ciudadano.getDni() + "");
+            nombreyapellido.setText(ciudadano.getNombreCompleto());
+            email.setText(ciudadano.getEmail());
+            celular.setText(ciudadano.getCelular());
+            patologia.setText(ciudadano.getPatologia());
+            ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
+            id.setText(ciudadano.getId() + "");
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese Documento, email o celular valido del ciudadano para realizar una busqueda");
         }
-        else{
-             JOptionPane.showMessageDialog(null, "Ingrese Documento, email o celular valido del ciudadano para realizar una busqueda");   
-        }
-        
-        
+
+
     }//GEN-LAST:event_buscarActionPerformed
 
     private void dniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dniKeyTyped

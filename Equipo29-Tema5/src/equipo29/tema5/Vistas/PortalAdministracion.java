@@ -16,21 +16,23 @@ import equipo29.tema5.Conexion.VacunatorioData;
  * @author juanma
  */
 public class PortalAdministracion extends javax.swing.JInternalFrame {
+
     private LaboratorioData ld;
     private VacunaData vd;
     private CitaData citad;
     private CiudadanoData cd;
     private VacunatorioData cvd;
+
     /**
      * Creates new form PortalAdministracion
      */
     public PortalAdministracion(LaboratorioData ld, VacunaData vd, CitaData citad, CiudadanoData cd, VacunatorioData cvd) {
         initComponents();
-        this.ld=ld;
-        this.vd=vd;
-        this.citad=citad;
-        this.cd=cd;
-        this.cvd=cvd;
+        this.ld = ld;
+        this.vd = vd;
+        this.citad = citad;
+        this.cd = cd;
+        this.cvd = cvd;
     }
 
     /**
@@ -194,13 +196,13 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         abmv.setVisible(true);
         escritorio.add(abmv);
         escritorio.moveToFront(abmv);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        ABMCitas cit = new ABMCitas(citad,cd, cvd, vd);
+        ABMCitas cit = new ABMCitas(citad, cd, cvd, vd);
         cit.setVisible(true);
         escritorio.add(cit);
         escritorio.moveToFront(cit);
