@@ -200,7 +200,7 @@ public class CitaData {
     
    public String fechaHoraActual(){
        Date fechaHoraActual = new Date();
-       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
        String fechaFormateada = sdf.format(fechaHoraActual);
        return fechaFormateada;
    }
