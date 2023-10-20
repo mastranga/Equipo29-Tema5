@@ -7,6 +7,9 @@ package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.CitaData;
 import equipo29.tema5.Conexion.CiudadanoData;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -35,7 +38,14 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/fondo.jpg"));
+        Image image = icon.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         registro = new javax.swing.JButton();
         citas = new javax.swing.JButton();
         volver = new javax.swing.JButton();
