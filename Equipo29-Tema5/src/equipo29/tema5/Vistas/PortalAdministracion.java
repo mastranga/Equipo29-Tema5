@@ -235,7 +235,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        ListarCitas listarCitas = new ListarCitas();
+        ListarCitas listarCitas = new ListarCitas(citad);
         listarCitas.setVisible(true);
         escritorio.add(listarCitas);
         escritorio.moveToFront(listarCitas);
