@@ -53,6 +53,12 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
         id = new javax.swing.JTextField();
         baja = new javax.swing.JButton();
 
+        pais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                paisKeyTyped(evt);
+            }
+        });
+
         jLabel1.setText("CUIT");
 
         jLabel2.setText("Nombre");
@@ -285,6 +291,14 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_bajaActionPerformed
+
+    private void paisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paisKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_paisKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
