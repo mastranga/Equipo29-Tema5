@@ -70,24 +70,24 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(454, Short.MAX_VALUE)
                 .addComponent(volver)
                 .addGap(56, 56, 56))
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(registro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(citas, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addGap(198, 198, 198)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(citas, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(registro, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(citas, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addComponent(registro, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(citas, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(volver)
                 .addGap(39, 39, 39))
         );
@@ -112,6 +112,7 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
         //escritorio.removeAll();
         escritorio.repaint();
         Registro r = new Registro(cd);
+        r.setLocation((escritorio.getWidth() - r.getWidth())/2, (escritorio.getHeight() - r.getHeight())/2);
         r.setVisible(true);
         escritorio.add(r);
         escritorio.moveToFront(r);
@@ -126,6 +127,7 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         Citas c = new Citas(citad);
+        c.setLocation((escritorio.getWidth() - c.getWidth())/2, (escritorio.getHeight() - c.getHeight())/2);
         c.setVisible(true);
         escritorio.add(c);
         escritorio.moveToFront(c);

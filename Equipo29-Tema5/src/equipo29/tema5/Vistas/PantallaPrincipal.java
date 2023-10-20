@@ -133,6 +133,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //escritorio.removeAll();
         escritorio.repaint();
         PortalCiudadano pc = new PortalCiudadano(cd, citad);
+        pc.setLocation((escritorio.getWidth() - pc.getWidth())/2, (escritorio.getHeight() - pc.getHeight())/2);
         pc.setVisible(true);
         escritorio.add(pc);
         escritorio.moveToFront(pc);
@@ -147,6 +148,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         Contraseña pass = new Contraseña();
+        pass.setLocation((escritorio.getWidth() - pass.getWidth())/2, (escritorio.getHeight() - pass.getHeight())/2);
         pass.setVisible(true);
         escritorio.add(pass);
         escritorio.moveToFront(pass);

@@ -185,6 +185,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         ABMLaboratorios abml = new ABMLaboratorios(ld);
+        abml.setLocation((escritorio.getWidth() - abml.getWidth())/2, (escritorio.getHeight() - abml.getHeight())/2);
         abml.setVisible(true);
         escritorio.add(abml);
         escritorio.moveToFront(abml);
@@ -194,6 +195,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         ABMVacunas abmv = new ABMVacunas(vd, ld);
+        abmv.setLocation((escritorio.getWidth() - abmv.getWidth())/2, (escritorio.getHeight() - abmv.getHeight())/2);
         abmv.setVisible(true);
         escritorio.add(abmv);
         escritorio.moveToFront(abmv);
@@ -204,6 +206,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         ABMCitas cit = new ABMCitas(citad, cd, cvd, vd);
+        cit.setLocation((escritorio.getWidth() - cit.getWidth())/2, (escritorio.getHeight() - cit.getHeight())/2);
         cit.setVisible(true);
         escritorio.add(cit);
         escritorio.moveToFront(cit);
@@ -213,6 +216,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         ABMVacunatorios abmcv = new ABMVacunatorios(cvd);
+        abmcv.setLocation((escritorio.getWidth() - abmcv.getWidth())/2, (escritorio.getHeight() - abmcv.getHeight())/2);
         abmcv.setVisible(true);
         escritorio.add(abmcv);
         escritorio.moveToFront(abmcv);

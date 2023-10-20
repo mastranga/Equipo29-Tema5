@@ -100,6 +100,7 @@ public class Contraseña extends javax.swing.JInternalFrame {
         if (clave.getText().equals("")) {
             PantallaPrincipal.escritorio.repaint();
             PortalAdministracion pa = new PortalAdministracion(ld, vd, citad, cd, cvd);
+            pa.setLocation((PantallaPrincipal.escritorio.getWidth() - pa.getWidth())/2, (PantallaPrincipal.escritorio.getHeight() - pa.getHeight())/2);
             pa.setVisible(true);
             PantallaPrincipal.escritorio.add(pa);
             PantallaPrincipal.escritorio.moveToFront(pa);
