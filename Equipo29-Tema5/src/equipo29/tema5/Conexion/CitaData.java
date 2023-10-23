@@ -265,4 +265,24 @@ public class CitaData {
         }
         return true;
     }
+    
+    public List<Cita> DosisAplicadasXCentroXDia(String fecha) throws NullPointerException {
+        List<Cita> citas = new ArrayList<>();
+        String sql = "Select idVacunatorio, COUNT(fechaHoraColoca) as cantidad from cita WHERE STR_TO_DATE(fechaHoraCita, '%Y-%m-%d') = ? GROUP by idVacunatorio";
+        Cita cita = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, fecha);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cita = new Cita();
+                cita.setVacunatorio(cvd.buscarVacunatorioId(rs.getInt("idVacunatorio")));
+                cita.setCantDosis(rs.getInt("cantidad"));
+                citas.add(cita);
+            } 
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos "+ex.getMessage());
+        }
+        return citas;
+    }
 }

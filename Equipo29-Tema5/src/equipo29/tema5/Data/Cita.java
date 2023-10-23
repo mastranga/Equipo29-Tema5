@@ -13,6 +13,7 @@ public class Cita {
     private Vacuna vacuna;
     private boolean cancelada;
     private Vacunatorio vacunatorio;
+    private int cantDosis;
 
     public Cita() {
         this.codCita = -1;
@@ -110,6 +111,16 @@ public class Cita {
     public void setVacunatorio(Vacunatorio vacunatorio) {
         this.vacunatorio = vacunatorio;
     }
+
+    public int getCantDosis() {
+        return cantDosis;
+    }
+
+    public void setCantDosis(int cantDosis) {
+        this.cantDosis = cantDosis;
+    }
+    
+    
 
     @Override
     public String toString() {

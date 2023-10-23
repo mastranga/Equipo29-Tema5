@@ -244,7 +244,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        ListarDiariamente listarDiariamente = new ListarDiariamente();
+        ListarDiariamente listarDiariamente = new ListarDiariamente(citad);
         listarDiariamente.setVisible(true);
         escritorio.add(listarDiariamente);
         escritorio.moveToFront(listarDiariamente);
