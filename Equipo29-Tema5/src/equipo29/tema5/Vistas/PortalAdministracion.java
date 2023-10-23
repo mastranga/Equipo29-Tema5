@@ -58,13 +58,15 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        volver = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         jButton1.setText("Laboratorio");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,10 +89,10 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
             }
         });
 
-        volver.setText("Volver");
-        volver.addActionListener(new java.awt.event.ActionListener() {
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverActionPerformed(evt);
+                salirActionPerformed(evt);
             }
         });
 
@@ -101,44 +103,45 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
             }
         });
 
-        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(volver, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(volver)
+                .addContainerGap(696, Short.MAX_VALUE)
+                .addComponent(salir)
                 .addGap(66, 66, 66))
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(191, 191, 191)
+                .addGap(112, 112, 112)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(199, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(volver)
+                .addGap(40, 40, 40)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
+                .addComponent(salir)
                 .addGap(27, 27, 27))
         );
+        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(salir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu1.setText("Listados");
 
@@ -168,6 +171,18 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Ciudadanos");
+
+        jMenuItem4.setText("Consulta Ciudadanos");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,10 +201,10 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_volverActionPerformed
+    }//GEN-LAST:event_salirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -236,6 +251,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         ListarCitas listarCitas = new ListarCitas(citad);
+        listarCitas.setLocation((escritorio.getWidth() - listarCitas.getWidth())/2, (escritorio.getHeight() - listarCitas.getHeight())/2);
         listarCitas.setVisible(true);
         escritorio.add(listarCitas);
         escritorio.moveToFront(listarCitas);
@@ -245,6 +261,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         ListarDiariamente listarDiariamente = new ListarDiariamente(citad);
+        listarDiariamente.setLocation((escritorio.getWidth() - listarDiariamente.getWidth())/2, (escritorio.getHeight() - listarDiariamente.getHeight())/2);
         listarDiariamente.setVisible(true);
         escritorio.add(listarDiariamente);
         escritorio.moveToFront(listarDiariamente);
@@ -254,10 +271,21 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         escritorio.repaint();
         ListarPorCentro listarPorCentro = new ListarPorCentro(citad, cvd);
+        listarPorCentro.setLocation((escritorio.getWidth() - listarPorCentro.getWidth())/2, (escritorio.getHeight() - listarPorCentro.getHeight())/2);
         listarPorCentro.setVisible(true);
         escritorio.add(listarPorCentro);
         escritorio.moveToFront(listarPorCentro);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        escritorio.repaint();
+        Registro r = new Registro(cd);
+        r.setLocation((escritorio.getWidth() - r.getWidth())/2, (escritorio.getHeight() - r.getHeight())/2);
+        r.setVisible(true);
+        escritorio.add(r);
+        escritorio.moveToFront(r);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -267,10 +295,13 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JButton volver;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
+        
 }
