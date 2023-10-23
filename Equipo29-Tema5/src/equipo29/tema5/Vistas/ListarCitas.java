@@ -54,15 +54,11 @@ public class ListarCitas extends javax.swing.JInternalFrame {
         tabla = new javax.swing.JTable();
         salir = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
+        limpiar = new javax.swing.JButton();
 
         jLabel1.setText("Mes");
 
         cumplidas.setText("Cumplidas");
-        cumplidas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cumplidasActionPerformed(evt);
-            }
-        });
 
         canceladas.setText("Canceladas");
 
@@ -95,66 +91,64 @@ public class ListarCitas extends javax.swing.JInternalFrame {
             }
         });
 
+        limpiar.setText("Limpiar ");
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buscar)
-                .addGap(28, 28, 28)
+                .addGap(38, 38, 38)
+                .addComponent(limpiar)
+                .addGap(51, 51, 51)
                 .addComponent(salir)
                 .addGap(41, 41, 41))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cumplidas)
-                        .addGap(27, 27, 27)
-                        .addComponent(canceladas)
-                        .addGap(18, 18, 18)
-                        .addComponent(vencidas)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103)
+                .addComponent(cumplidas)
+                .addGap(27, 27, 27)
+                .addComponent(canceladas)
+                .addGap(18, 18, 18)
+                .addComponent(vencidas)
+                .addContainerGap(242, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cumplidas)
                     .addComponent(canceladas)
                     .addComponent(vencidas)
                     .addComponent(jLabel1)
                     .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)
-                    .addComponent(buscar))
-                .addContainerGap(10, Short.MAX_VALUE))
+                    .addComponent(buscar)
+                    .addComponent(limpiar))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cumplidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cumplidasActionPerformed
-//        // TODO add your handling code here:
-        if (!mes.getSelectedItem().toString().isEmpty()) {
-            citas = citad.buscarCitasCumplidas(mes.getSelectedItem().toString());
-            borrarFilas();
-            cargarDatos(citas);
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un mes para realizar una busqueda");
-        }
-    }//GEN-LAST:event_cumplidasActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
@@ -163,14 +157,36 @@ public class ListarCitas extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-        if (!mes.getSelectedItem().toString().isEmpty()) {
-            citas = citad.buscarCitasCumplidas(mes.getSelectedItem().toString());
-            borrarFilas();
-            cargarDatos(citas);
+        if((cumplidas.isSelected() && canceladas.isSelected()) || (cumplidas.isSelected() && vencidas.isSelected()) || (canceladas.isSelected() && vencidas.isSelected())){
+               JOptionPane.showMessageDialog(null, "Seleccione 1 solo tipo de listado a consultar"); 
+            }else if (!mes.getSelectedItem().toString().isEmpty()) {
+            if(cumplidas.isSelected()){
+                citas = citad.buscarCitasCumplidas(mes.getSelectedItem().toString());
+                borrarFilas();
+                cargarDatos(citas);
+            }else if(canceladas.isSelected()){
+                citas = citad.buscarCitasCanceladas(mes.getSelectedItem().toString());
+                borrarFilas();
+                cargarDatos(citas);
+            }else{
+                citas = citad.buscarCitasVencidas(mes.getSelectedItem().toString());
+                borrarFilas();
+                cargarDatos(citas);
+            }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un mes para realizar una busqueda");
         }
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        // TODO add your handling code here:
+        armarComboMes();
+        borrarFilas();
+        cumplidas.setSelected(false);
+        canceladas.setSelected(false);
+        vencidas.setSelected(false);
+    }//GEN-LAST:event_limpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,6 +195,7 @@ public class ListarCitas extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox cumplidas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton limpiar;
     private javax.swing.JComboBox<String> mes;
     private javax.swing.JButton salir;
     private javax.swing.JTable tabla;
@@ -186,43 +203,43 @@ public class ListarCitas extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera() {
-        modelo.addColumn("Codigo Cita");
-        modelo.addColumn("Codigo Refuerzo");
-        modelo.addColumn("Fecha Cita");
-        modelo.addColumn("Centro Vacunatorio");
-        modelo.addColumn("Fecha Colocada");
-        modelo.addColumn("Dni");
-        modelo.addColumn("Nro de serie");
+        modelo.addColumn("C. Cita");
+        modelo.addColumn("C. Refuerzo");
+        modelo.addColumn("F. Cita");
+        modelo.addColumn("Vacunatorio");
+        modelo.addColumn("F. Colocada");
+        modelo.addColumn("Ciudadano");
+        modelo.addColumn("N. Serie");
         modelo.addColumn("Cancelada");
         tabla.setModel(modelo);
-        tabla.getColumnModel().getColumn(1).setMaxWidth(0);
-        tabla.getColumnModel().getColumn(1).setMinWidth(0);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(0);
-        tabla.getColumnModel().getColumn(1).setResizable(false);
-        tabla.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
-        tabla.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
-        tabla.getTableHeader().getColumnModel().getColumn(1).setResizable(false);
-        tabla.getColumnModel().getColumn(4).setMaxWidth(0);
-        tabla.getColumnModel().getColumn(4).setMinWidth(0);
-        tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
-        tabla.getColumnModel().getColumn(4).setResizable(false);
-        tabla.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
-        tabla.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
-        tabla.getTableHeader().getColumnModel().getColumn(4).setResizable(false);
-        tabla.getColumnModel().getColumn(5).setMaxWidth(0);
-        tabla.getColumnModel().getColumn(5).setMinWidth(0);
-        tabla.getColumnModel().getColumn(5).setPreferredWidth(0);
-        tabla.getColumnModel().getColumn(5).setResizable(false);
-        tabla.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(0);
-        tabla.getTableHeader().getColumnModel().getColumn(5).setMinWidth(0);
-        tabla.getTableHeader().getColumnModel().getColumn(5).setResizable(false);
-        tabla.getColumnModel().getColumn(6).setMaxWidth(0);
-        tabla.getColumnModel().getColumn(6).setMinWidth(0);
-        tabla.getColumnModel().getColumn(6).setPreferredWidth(0);
-        tabla.getColumnModel().getColumn(6).setResizable(false);
-        tabla.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
-        tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
-        tabla.getTableHeader().getColumnModel().getColumn(6).setResizable(false);
+//        tabla.getColumnModel().getColumn(1).setMaxWidth(0);
+//        tabla.getColumnModel().getColumn(1).setMinWidth(0);
+//        tabla.getColumnModel().getColumn(1).setPreferredWidth(0);
+//        tabla.getColumnModel().getColumn(1).setResizable(false);
+//        tabla.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+//        tabla.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+//        tabla.getTableHeader().getColumnModel().getColumn(1).setResizable(false);
+//        tabla.getColumnModel().getColumn(4).setMaxWidth(0);
+//        tabla.getColumnModel().getColumn(4).setMinWidth(0);
+//        tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
+//        tabla.getColumnModel().getColumn(4).setResizable(false);
+//        tabla.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+//        tabla.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+//        tabla.getTableHeader().getColumnModel().getColumn(4).setResizable(false);
+//        tabla.getColumnModel().getColumn(5).setMaxWidth(0);
+//        tabla.getColumnModel().getColumn(5).setMinWidth(0);
+//        tabla.getColumnModel().getColumn(5).setPreferredWidth(0);
+//        tabla.getColumnModel().getColumn(5).setResizable(false);
+//        tabla.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(0);
+//        tabla.getTableHeader().getColumnModel().getColumn(5).setMinWidth(0);
+//        tabla.getTableHeader().getColumnModel().getColumn(5).setResizable(false);
+//        tabla.getColumnModel().getColumn(6).setMaxWidth(0);
+//        tabla.getColumnModel().getColumn(6).setMinWidth(0);
+//        tabla.getColumnModel().getColumn(6).setPreferredWidth(0);
+//        tabla.getColumnModel().getColumn(6).setResizable(false);
+//        tabla.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
+//        tabla.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
+//        tabla.getTableHeader().getColumnModel().getColumn(6).setResizable(false);
         tabla.getColumnModel().getColumn(7).setMaxWidth(0);
         tabla.getColumnModel().getColumn(7).setMinWidth(0);
         tabla.getColumnModel().getColumn(7).setPreferredWidth(0);
@@ -241,7 +258,7 @@ public class ListarCitas extends javax.swing.JInternalFrame {
 
     private void cargarDatos(List<Cita> citas) { //Esta lista de alumnos puede provenir de la BD o cargada por parámetros
         for (Cita cita : citas) {
-            modelo.addRow(new Object[]{cita.getCodCita(), cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getVacunatorio().getDescripcion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni(), cita.getVacuna().getNroSerie()});
+            modelo.addRow(new Object[]{cita.getCodCita(), cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getVacunatorio().getDescripcion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni()+"-"+cita.getCiudadano().getNombreCompleto(), cita.getVacuna().getNroSerie()});
         }
     }
     
