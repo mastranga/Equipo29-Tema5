@@ -201,7 +201,7 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
         nombre.setText("");
         pais.setText("");
         domicilio.setText("");
-
+        id.setText("");
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void cuitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cuitKeyTyped
