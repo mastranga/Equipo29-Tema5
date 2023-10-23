@@ -8,8 +8,6 @@ package equipo29.tema5.Vistas;
 import equipo29.tema5.Conexion.VacunatorioData;
 import equipo29.tema5.Data.Vacunatorio;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -187,14 +185,14 @@ public class ABMVacunatorios extends javax.swing.JInternalFrame {
 
     private void altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaActionPerformed
         // TODO add your handling code here:
-        if (id.getText().isEmpty()) {
+        if (id.getText().isEmpty() && !descripcion.getText().isEmpty()) {
             try {
                 cvd.guardarVacunatorio(new Vacunatorio(descripcion.getText(), true));
             } catch (SQLException ex) {
 
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Solo complete el campo Descripcion");
+            JOptionPane.showMessageDialog(null, "Complete solo la Descripcion");
         }
 
     }//GEN-LAST:event_altaActionPerformed

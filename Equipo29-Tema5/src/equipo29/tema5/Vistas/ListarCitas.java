@@ -45,7 +45,7 @@ public class ListarCitas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mes = new javax.swing.JComboBox<>();
+        mes = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         cumplidas = new javax.swing.JCheckBox();
         canceladas = new javax.swing.JCheckBox();

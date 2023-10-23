@@ -35,7 +35,7 @@
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="cancelar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="volver" min="-2" max="-2" attributes="0"/>
+                      <Component id="salir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -57,7 +57,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="volver" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="salir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="44" max="32767" attributes="0"/>
           </Group>
@@ -145,12 +145,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="volver">
+    <Component class="javax.swing.JButton" name="salir">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Volver"/>
+        <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="volverActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

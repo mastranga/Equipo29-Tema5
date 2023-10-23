@@ -15,8 +15,6 @@ import equipo29.tema5.Data.Vacuna;
 import equipo29.tema5.Data.Vacunatorio;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,7 +38,9 @@ public class ABMCitas extends javax.swing.JInternalFrame {
         this.cvd = cvd;
         this.vd = vd;
         armarComboCiudadano();
-        //cargarComboVacunatorio(null);
+        armarComboRefuerzo(null);
+        armarComboHorario(null);
+        cargarComboVacunatorio(null);
     }
 
     /**
@@ -54,17 +54,17 @@ public class ABMCitas extends javax.swing.JInternalFrame {
 
         comboCiudadano = new javax.swing.JComboBox();
         fecha = new com.toedter.calendar.JDateChooser();
-        volver = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
         limpiar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         confirmar = new javax.swing.JButton();
-        hora = new javax.swing.JComboBox<>();
-        vacunatorio = new javax.swing.JComboBox<>();
+        hora = new javax.swing.JComboBox<String>();
+        vacunatorio = new javax.swing.JComboBox<String>();
         patologia = new javax.swing.JCheckBox();
         esencial = new javax.swing.JCheckBox();
         idCita = new javax.swing.JTextField();
-        codigoRefuerzo = new javax.swing.JComboBox<>();
+        codigoRefuerzo = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -77,10 +77,10 @@ public class ABMCitas extends javax.swing.JInternalFrame {
             }
         });
 
-        volver.setText("Volver");
-        volver.addActionListener(new java.awt.event.ActionListener() {
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverActionPerformed(evt);
+                salirActionPerformed(evt);
             }
         });
 
@@ -145,41 +145,40 @@ public class ABMCitas extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(patologia, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(esencial, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(idCita, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(vacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(patologia, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(esencial, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(36, 36, 36)
-                                    .addComponent(codigoRefuerzo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(idCita, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(vacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(codigoRefuerzo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(guardar)
                         .addGap(18, 18, 18)
@@ -187,7 +186,7 @@ public class ABMCitas extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(limpiar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(volver)))
+                        .addComponent(salir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,7 +220,7 @@ public class ABMCitas extends javax.swing.JInternalFrame {
                     .addComponent(confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(volver)
+                    .addComponent(salir)
                     .addComponent(limpiar)
                     .addComponent(modificar)
                     .addComponent(guardar))
@@ -231,10 +230,10 @@ public class ABMCitas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_volverActionPerformed
+    }//GEN-LAST:event_salirActionPerformed
 
     private void comboCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCiudadanoActionPerformed
         // TODO add your handling code here:
@@ -279,20 +278,19 @@ public class ABMCitas extends javax.swing.JInternalFrame {
             }
 
         } catch (NullPointerException ex) {
-            limpiar();
+            
         }
 
     }//GEN-LAST:event_comboCiudadanoActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        if (!comboCiudadano.getSelectedItem().toString().isEmpty() || !fecha.getDate().toString().isEmpty() || !hora.getSelectedItem().toString().isEmpty() || !vacunatorio.getSelectedItem().toString().isEmpty()) {
+        
+        if (!hora.getSelectedItem().toString().isEmpty() && fecha.getDate() != null && !comboCiudadano.getSelectedItem().toString().isEmpty() && !vacunatorio.getSelectedItem().toString().isEmpty() && codigoRefuerzo.getSelectedItem().toString().isEmpty()) {
             try {
                 Ciudadano ciudadano = (Ciudadano) comboCiudadano.getSelectedItem();
-                int cr = 1;
-                //String fech = citad.formatoFecha(fecha.getDate().toString());
+                int cr = Integer.parseInt(codigoRefuerzo.getSelectedItem().toString());
                 String fech = fecha.getDate().toInstant().toString().substring(0, 10);
-                //String fech = fecha.getDate().
                 String hor = hora.getSelectedItem().toString();
                 Vacunatorio vacun = cvd.buscarVacunatorioDescipcion(vacunatorio.getSelectedItem().toString());
                 Vacuna vacuna = vd.buscarVacunaDisponible();
@@ -305,20 +303,24 @@ public class ABMCitas extends javax.swing.JInternalFrame {
             } catch (SQLException ex) {
 
             } catch (NullPointerException ex) {
-
+                
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            JOptionPane.showMessageDialog(null, "Seleccione un Ciudadano y complete todos los campos");
         }
+        
     }//GEN-LAST:event_guardarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         // TODO add your handling code here:
         comboCiudadano.removeAllItems();
+        armarComboRefuerzo(null);
         fecha.setDate(null);
         hora.removeAllItems();
         vacunatorio.removeAllItems();
+        patologia.setSelected(false);
+        esencial.setSelected(false);
         armarComboCiudadano();
         cargarComboVacunatorio(null);
     }//GEN-LAST:event_limpiarActionPerformed
@@ -354,12 +356,14 @@ public class ABMCitas extends javax.swing.JInternalFrame {
 
         } catch (NullPointerException ex) {
 
+        } catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Seleccione un ciudadano con cita asignada antes de confirmar una aplicacion");
         }
     }//GEN-LAST:event_confirmarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
-        if (!comboCiudadano.getSelectedItem().toString().isEmpty() || !fecha.getDate().toString().isEmpty() || !hora.getSelectedItem().toString().isEmpty() || !vacunatorio.getSelectedItem().toString().isEmpty()) {
+        if (!comboCiudadano.getSelectedItem().toString().isEmpty() && !idCita.getText().isEmpty() && fecha.getDate() != null && !hora.getSelectedItem().toString().isEmpty() && !vacunatorio.getSelectedItem().toString().isEmpty() && !codigoRefuerzo.getSelectedItem().toString().isEmpty()) {
             try {
                 Ciudadano ciudadano = (Ciudadano) comboCiudadano.getSelectedItem();
                 int cc = Integer.parseInt(idCita.getText());
@@ -369,8 +373,8 @@ public class ABMCitas extends javax.swing.JInternalFrame {
                 Vacunatorio vacun = cvd.buscarVacunatorioDescipcion(vacunatorio.getSelectedItem().toString());
                 citad.modificarCita(new Cita(cc, cr, fech + " " + hor, vacun));
             } catch (NullPointerException ex) {
-
-            }
+                
+            } 
 
         } else {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
@@ -395,8 +399,8 @@ public class ABMCitas extends javax.swing.JInternalFrame {
     private javax.swing.JButton limpiar;
     private javax.swing.JButton modificar;
     private javax.swing.JCheckBox patologia;
+    private javax.swing.JButton salir;
     private javax.swing.JComboBox<String> vacunatorio;
-    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 
     private void armarComboCiudadano() {
@@ -462,16 +466,6 @@ public class ABMCitas extends javax.swing.JInternalFrame {
         if (vacu != null) {
             vacunatorio.setSelectedItem(vacu);
         }
-    }
-
-    private void limpiar() {
-        //this.patologia.setSelected(false);
-        //esencial.setSelected(false);
-        //patologia.setState(false);
-        //esencial.setState(false);
-        fecha.setDate(null);
-        armarComboHorario("");
-        cargarComboVacunatorio(null);
     }
 
     private void armarComboRefuerzo(String cr) {

@@ -6,9 +6,7 @@
 package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.CitaData;
-import equipo29.tema5.Conexion.CiudadanoData;
 import equipo29.tema5.Data.Cita;
-import equipo29.tema5.Data.Ciudadano;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -38,7 +36,6 @@ public class Citas extends javax.swing.JInternalFrame {
         armarCabecera();
         this.citad = citad;
         this.cita = cita;
-        //this.cd = cd;
     }
 
     /**
@@ -56,7 +53,7 @@ public class Citas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         cancelar = new javax.swing.JButton();
-        volver = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
 
         jLabel1.setText("Ingrese DNI");
 
@@ -93,10 +90,10 @@ public class Citas extends javax.swing.JInternalFrame {
             }
         });
 
-        volver.setText("Volver");
-        volver.addActionListener(new java.awt.event.ActionListener() {
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverActionPerformed(evt);
+                salirActionPerformed(evt);
             }
         });
 
@@ -119,7 +116,7 @@ public class Citas extends javax.swing.JInternalFrame {
                         .addGap(37, 37, 37)
                         .addComponent(cancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(volver)
+                        .addComponent(salir)
                         .addGap(106, 106, 106)))
                 .addGap(29, 29, 29))
         );
@@ -136,7 +133,7 @@ public class Citas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelar)
-                    .addComponent(volver))
+                    .addComponent(salir))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -154,7 +151,6 @@ public class Citas extends javax.swing.JInternalFrame {
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
         if (!dni.getText().isEmpty()) {
-            //Ciudadano ciudadano = cd.buscarCiudadano(Integer.parseInt(dni.getText()));
             citas = citad.buscarCitas(Integer.parseInt(dni.getText()));
             borrarFilas();
             cargarDatos(citas);
@@ -163,10 +159,10 @@ public class Citas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buscarActionPerformed
 
-    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_volverActionPerformed
+    }//GEN-LAST:event_salirActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
@@ -175,7 +171,6 @@ public class Citas extends javax.swing.JInternalFrame {
             citad.cancelarCita(codCita);
             int codRefuerzo = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 1).toString());
             String fechaHoraCita = modelo.getValueAt(tabla.getSelectedRow(), 2).toString();
-            //LocalDateTime fechaHoraCita = (LocalDateTime) modelo.getValueAt(tabla.getSelectedRow(), 2);
             int idVacunatorio = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 3).toString());
             int dni = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 5).toString());
             int nroSerie = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 6).toString());
@@ -192,8 +187,8 @@ public class Citas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField dni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton salir;
     private javax.swing.JTable tabla;
-    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera() {

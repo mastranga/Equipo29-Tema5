@@ -7,10 +7,8 @@ package equipo29.tema5.Vistas;
 
 import equipo29.tema5.Conexion.LaboratorioData;
 import equipo29.tema5.Conexion.VacunaData;
-import equipo29.tema5.Conexion.VacunatorioData;
 import equipo29.tema5.Data.Laboratorio;
 import equipo29.tema5.Data.Vacuna;
-import equipo29.tema5.Data.Vacunatorio;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.ZoneId;

@@ -83,36 +83,35 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        escritorio.setLayer(BotonPC, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(BotonAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(salir, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addGap(0, 789, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(salir)
                 .addGap(55, 55, 55))
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(352, 352, 352)
+                .addGap(281, 281, 281)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BotonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap(184, Short.MAX_VALUE)
-                .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
-                .addComponent(BotonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156)
+                .addContainerGap(111, Short.MAX_VALUE)
+                .addComponent(BotonPC, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(BotonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
                 .addComponent(salir)
                 .addGap(31, 31, 31))
         );
+        escritorio.setLayer(BotonPC, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(BotonAdmin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(salir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,5 +205,5 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         escritorio.add(pa);
         escritorio.moveToFront(pa);
     }
-
+    
 }

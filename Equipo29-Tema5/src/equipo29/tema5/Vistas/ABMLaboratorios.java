@@ -8,8 +8,6 @@ package equipo29.tema5.Vistas;
 import equipo29.tema5.Conexion.LaboratorioData;
 import equipo29.tema5.Data.Laboratorio;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

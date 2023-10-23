@@ -48,7 +48,7 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
         };
         registro = new javax.swing.JButton();
         citas = new javax.swing.JButton();
-        volver = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
 
         registro.setText("Registro");
         registro.addActionListener(new java.awt.event.ActionListener() {
@@ -64,24 +64,20 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
             }
         });
 
-        volver.setText("Volver");
-        volver.addActionListener(new java.awt.event.ActionListener() {
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverActionPerformed(evt);
+                salirActionPerformed(evt);
             }
         });
-
-        escritorio.setLayer(registro, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(citas, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(volver, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(454, Short.MAX_VALUE)
-                .addComponent(volver)
+                .addContainerGap(464, Short.MAX_VALUE)
+                .addComponent(salir)
                 .addGap(56, 56, 56))
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(198, 198, 198)
@@ -98,9 +94,12 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addComponent(citas, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(volver)
+                .addComponent(salir)
                 .addGap(39, 39, 39))
         );
+        escritorio.setLayer(registro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(citas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(salir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,10 +127,10 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
         escritorio.moveToFront(r);
     }//GEN-LAST:event_registroActionPerformed
 
-    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_volverActionPerformed
+    }//GEN-LAST:event_salirActionPerformed
 
     private void citasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_citasActionPerformed
         // TODO add your handling code here:
@@ -148,6 +147,6 @@ public class PortalCiudadano extends javax.swing.JInternalFrame {
     private javax.swing.JButton citas;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JButton registro;
-    private javax.swing.JButton volver;
+    private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 }
