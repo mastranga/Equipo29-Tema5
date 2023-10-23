@@ -286,7 +286,7 @@ public class ABMCitas extends javax.swing.JInternalFrame {
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
         
-        if (!hora.getSelectedItem().toString().isEmpty() && fecha.getDate() != null && !comboCiudadano.getSelectedItem().toString().isEmpty() && !vacunatorio.getSelectedItem().toString().isEmpty() && codigoRefuerzo.getSelectedItem().toString().isEmpty()) {
+        if (!hora.getSelectedItem().toString().isEmpty() && fecha.getDate() != null && !comboCiudadano.getSelectedItem().toString().isEmpty() && !vacunatorio.getSelectedItem().toString().isEmpty() && !codigoRefuerzo.getSelectedItem().toString().isEmpty()) {
             try {
                 Ciudadano ciudadano = (Ciudadano) comboCiudadano.getSelectedItem();
                 int cr = Integer.parseInt(codigoRefuerzo.getSelectedItem().toString());
