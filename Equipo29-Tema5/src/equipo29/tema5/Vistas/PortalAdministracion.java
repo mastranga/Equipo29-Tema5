@@ -253,7 +253,7 @@ public class PortalAdministracion extends javax.swing.JInternalFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         escritorio.repaint();
-        ListarPorCentro listarPorCentro = new ListarPorCentro();
+        ListarPorCentro listarPorCentro = new ListarPorCentro(citad, cvd);
         listarPorCentro.setVisible(true);
         escritorio.add(listarPorCentro);
         escritorio.moveToFront(listarPorCentro);

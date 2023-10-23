@@ -77,6 +77,65 @@ public class CitaData {
         return citas;
     }
     
+    
+    public List<Cita> buscarCitasCanceladas(String mes) throws NullPointerException {
+        List<Cita> citas = new ArrayList<>();
+        String sql = "SELECT codCita, codRefuerzo, fechaHoraCita, idVacunatorio, fechaHoraColoca, dni, nroSerie, cancelada FROM cita WHERE MONTH(STR_TO_DATE(fechaHoraCita, '%Y-%m-%d %H:%i')) = ? AND cancelada=0";
+        Cita cita = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, mes);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cita = new Cita();
+                cita.setCodCita(rs.getInt("codCita"));
+                cita.setCodRefuerzo(rs.getInt("codRefuerzo"));
+                cita.setFechaHoraCita(rs.getString("fechaHoraCita"));
+                cita.setVacunatorio(cvd.buscarVacunatorioId(rs.getInt("idVacunatorio")));
+                cita.setFechaHoraColoca(null);
+                cita.setCiudadano(ciudata.buscarCiudadanoDni(rs.getInt("dni")));
+                cita.setVacuna(vacudata.buscarVacuna(rs.getInt("nroSerie")));
+                citas.add(cita);
+            } 
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos "+ex.getMessage());
+        }
+        return citas;
+    }
+    
+    public List<Cita> buscarCitasVencidas(String mes) throws NullPointerException {
+        List<Cita> citas = new ArrayList<>();
+        String sql = "SELECT codCita, codRefuerzo, fechaHoraCita, idVacunatorio, fechaHoraColoca, dni, nroSerie, cancelada FROM cita "
+                + "WHERE MONTH(STR_TO_DATE(fechaHoraCita, '%Y-%m-%d %H:%i')) = ? AND STR_TO_DATE(fechaHoraCita, '%Y-%m-%d %H:%i') <= ? "
+                + "AND cancelada=1 AND fechaHoraColoca IS NULL";
+        Cita cita = null;
+        
+        Date fechaHoraActual = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            String fechaHoraActualFormateada = sdf.format(fechaHoraActual);
+        
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, mes);
+            ps.setString(2, fechaHoraActualFormateada);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cita = new Cita();
+                cita.setCodCita(rs.getInt("codCita"));
+                cita.setCodRefuerzo(rs.getInt("codRefuerzo"));
+                cita.setFechaHoraCita(rs.getString("fechaHoraCita"));
+                cita.setVacunatorio(cvd.buscarVacunatorioId(rs.getInt("idVacunatorio")));
+                cita.setFechaHoraColoca(null);
+                cita.setCiudadano(ciudata.buscarCiudadanoDni(rs.getInt("dni")));
+                cita.setVacuna(vacudata.buscarVacuna(rs.getInt("nroSerie")));
+                citas.add(cita);
+            } 
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos "+ex.getMessage());
+        }
+        return citas;
+    }
+    
+    
     public void cancelarCita(int codCita){
         String upd = "UPDATE cita SET cancelada = 0 WHERE codCita = ?";
          
@@ -278,6 +337,27 @@ public class CitaData {
                 cita = new Cita();
                 cita.setVacunatorio(cvd.buscarVacunatorioId(rs.getInt("idVacunatorio")));
                 cita.setCantDosis(rs.getInt("cantidad"));
+                citas.add(cita);
+            } 
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectase a la base de datos "+ex.getMessage());
+        }
+        return citas;
+    }
+    
+    public List<Cita> consultaXCentroX(int IdVacunatorio) throws NullPointerException {
+        List<Cita> citas = new ArrayList<>();
+        String sql = "SELECT codCita, nroSerie, dni FROM cita WHERE idVacunatorio=? AND fechaHoraColoca IS NOT NULL";
+        Cita cita = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, IdVacunatorio);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cita = new Cita();
+                cita.setCodCita(rs.getInt("codCita"));
+                cita.setVacuna(vacudata.buscarVacuna(rs.getInt("nroSerie")));
+                cita.setCiudadano(ciudata.buscarCiudadanoDni(rs.getInt("dni")));
                 citas.add(cita);
             } 
         } catch (SQLException ex) {
