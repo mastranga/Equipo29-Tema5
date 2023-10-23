@@ -1,18 +1,16 @@
 package equipo29.tema5.Conexion;
 
 import equipo29.tema5.Data.Cita;
-import equipo29.tema5.Data.Ciudadano;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -77,7 +75,6 @@ public class CitaData {
         return citas;
     }
     
-    
     public List<Cita> buscarCitasCanceladas(String mes) throws NullPointerException {
         List<Cita> citas = new ArrayList<>();
         String sql = "SELECT codCita, codRefuerzo, fechaHoraCita, idVacunatorio, fechaHoraColoca, dni, nroSerie, cancelada FROM cita WHERE MONTH(STR_TO_DATE(fechaHoraCita, '%Y-%m-%d %H:%i')) = ? AND cancelada=0";
@@ -134,7 +131,6 @@ public class CitaData {
         }
         return citas;
     }
-    
     
     public void cancelarCita(int codCita){
         String upd = "UPDATE cita SET cancelada = 0 WHERE codCita = ?";
@@ -266,11 +262,11 @@ public class CitaData {
         String upd = "UPDATE cita SET fechaHoraColoca = ? WHERE codCita = ?";
             Date fechaHoraActual = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String fechaFormateada = sdf.format(fechaHoraActual);
+            String fechaHoraActualFormateada = sdf.format(fechaHoraActual);
             
         try {
             PreparedStatement ps = con.prepareStatement(upd);
-            ps.setString(1, fechaFormateada);
+            ps.setString(1, fechaHoraActualFormateada);
             ps.setInt(2, codCita);
             int registro = ps.executeUpdate();
             if (registro == 1) {
