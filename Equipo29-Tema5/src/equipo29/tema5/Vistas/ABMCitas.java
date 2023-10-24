@@ -15,6 +15,9 @@ import equipo29.tema5.Data.Vacuna;
 import equipo29.tema5.Data.Vacunatorio;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +30,8 @@ public class ABMCitas extends javax.swing.JInternalFrame {
     private CiudadanoData cd;
     private VacunatorioData cvd;
     private VacunaData vd;
-
+    private List<Vacunatorio> listaVacu = new ArrayList<>();
+    private List<Ciudadano> listaCiu = new ArrayList<>();
     /**
      * Creates new form ABMCitas
      */
@@ -410,25 +414,33 @@ public class ABMCitas extends javax.swing.JInternalFrame {
         if (!patologia.isSelected() && !esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
-            for (Ciudadano ciu : cd.listarCiudadanos()) {
+            listaCiu = cd.listarCiudadanos();
+            Collections.sort(listaCiu);
+            for (Ciudadano ciu : listaCiu) {
                 comboCiudadano.addItem(ciu);
             }
         } else if (patologia.isSelected() && !esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
-            for (Ciudadano ciu : cd.listarCiudadanosPatologia()) {
+            listaCiu = cd.listarCiudadanosPatologia();
+            Collections.sort(listaCiu);
+            for (Ciudadano ciu : listaCiu) {
                 comboCiudadano.addItem(ciu);
             }
         } else if (patologia.isSelected() && esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
-            for (Ciudadano ciu : cd.listarCiudadanosPatologiaEsenciales()) {
+            listaCiu = cd.listarCiudadanosPatologiaEsenciales();
+            Collections.sort(listaCiu);
+            for (Ciudadano ciu : listaCiu) {
                 comboCiudadano.addItem(ciu);
             }
         } else if (!patologia.isSelected() && esencial.isSelected()) {
             comboCiudadano.removeAllItems();
             comboCiudadano.addItem("");
-            for (Ciudadano ciu : cd.listarCiudadanosEsenciales()) {
+            listaCiu = cd.listarCiudadanosEsenciales();
+            Collections.sort(listaCiu);
+            for (Ciudadano ciu : listaCiu) {
                 comboCiudadano.addItem(ciu);
             }
         }
@@ -460,7 +472,9 @@ public class ABMCitas extends javax.swing.JInternalFrame {
         VacunatorioData cvd = new VacunatorioData();
         vacunatorio.removeAllItems();
         vacunatorio.addItem("");
-        for (Vacunatorio cv : cvd.listarVacunatorios()) {
+        listaVacu = cvd.listarVacunatorios();
+        Collections.sort(listaVacu);
+        for (Vacunatorio cv : listaVacu) {
             vacunatorio.addItem(cv.toString());
         }
         if (vacu != null) {

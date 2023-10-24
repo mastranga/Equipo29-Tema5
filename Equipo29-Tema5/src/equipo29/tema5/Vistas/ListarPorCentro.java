@@ -10,6 +10,7 @@ import equipo29.tema5.Conexion.VacunatorioData;
 import equipo29.tema5.Data.Cita;
 import equipo29.tema5.Data.Vacunatorio;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -143,6 +144,7 @@ public class ListarPorCentro extends javax.swing.JInternalFrame {
 
                 citas = citad.consultaXCentroX(cvd.buscarVacunatorioDescipcion(vacunatorios.getSelectedItem().toString()).getIdVacunatorio());
                 borrarFilas();
+                Collections.sort(citas);
                 cargarDatos(citas);
             }
         } catch (NullPointerException ex) {

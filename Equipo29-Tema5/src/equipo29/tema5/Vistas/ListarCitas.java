@@ -8,6 +8,7 @@ package equipo29.tema5.Vistas;
 import equipo29.tema5.Conexion.CitaData;
 import equipo29.tema5.Data.Cita;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -163,14 +164,17 @@ public class ListarCitas extends javax.swing.JInternalFrame {
             if(cumplidas.isSelected()){
                 citas = citad.buscarCitasCumplidas(mes.getSelectedItem().toString());
                 borrarFilas();
+                Collections.sort(citas);
                 cargarDatos(citas);
             }else if(canceladas.isSelected()){
                 citas = citad.buscarCitasCanceladas(mes.getSelectedItem().toString());
                 borrarFilas();
+                Collections.sort(citas);
                 cargarDatos(citas);
             }else{
                 citas = citad.buscarCitasVencidas(mes.getSelectedItem().toString());
                 borrarFilas();
+                Collections.sort(citas);
                 cargarDatos(citas);
             }
             

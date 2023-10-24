@@ -2,7 +2,7 @@
 package equipo29.tema5.Data;
 
 
-public class Ciudadano {
+public class Ciudadano implements Comparable<Ciudadano>{
     private int id = -1;
     private int dni;
     private String nombreCompleto;
@@ -113,6 +113,17 @@ public class Ciudadano {
     @Override
     public String toString() {
          return dni + " - " + nombreCompleto;
+    }
+
+    @Override
+    public int compareTo(Ciudadano t) {
+        if (dni == t.dni){
+            return 0;
+        }else if(dni > t.dni){
+            return 1;
+        }else{
+            return -1;
+        }
     }
     
     

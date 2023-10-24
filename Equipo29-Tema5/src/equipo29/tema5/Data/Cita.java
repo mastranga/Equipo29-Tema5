@@ -4,7 +4,7 @@ package equipo29.tema5.Data;
 import java.time.LocalDate;
 
 
-public class Cita {
+public class Cita implements Comparable<Cita>{
     private int codCita;
     private Ciudadano ciudadano;
     private int codRefuerzo;
@@ -125,6 +125,17 @@ public class Cita {
     @Override
     public String toString() {
         return "Cita{" + "codCita=" + codCita + ", ciudadano=" + ciudadano + ", codRefuerzo=" + codRefuerzo + ", fechaHoraCita=" + fechaHoraCita + ", fechaHoraColoca=" + fechaHoraColoca + ", vacuna=" + vacuna + ", cancelada=" + cancelada + ", vacunatorio=" + vacunatorio + '}';
+    }
+
+    @Override
+    public int compareTo(Cita t) {
+         if (codCita == t.codCita){
+            return 0;
+        }else if(codCita > t.codCita){
+            return 1;
+        }else{
+            return -1;
+        }
     }
 
     

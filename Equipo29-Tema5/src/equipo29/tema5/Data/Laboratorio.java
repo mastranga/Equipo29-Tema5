@@ -2,7 +2,7 @@
 package equipo29.tema5.Data;
 
 
-public class Laboratorio {
+public class Laboratorio implements Comparable<Laboratorio>{
     private int idLaboratorio = -1;
     private String cuit;
     private String nombre;
@@ -75,7 +75,15 @@ public class Laboratorio {
         return "Laboratorio{" + "idLaboratorio=" + idLaboratorio + ", cuit=" + cuit + ", nombre=" + nombre + ", pais=" + pais + ", Domicilio=" + Domicilio + '}';
     }
 
-    
-    
+    @Override
+    public int compareTo(Laboratorio t) {
+        if (idLaboratorio == t.idLaboratorio){
+            return 0;
+        }else if(idLaboratorio > t.idLaboratorio){
+            return 1;
+        }else{
+            return -1;
+        }
+    }
     
 }

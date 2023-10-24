@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -316,7 +317,9 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
     private void cargarComboLaboratorio() {
         LaboratorioData ld = new LaboratorioData();
         laboratorio.addItem("");
-        for (Laboratorio lab : ld.listarLaboratorios()) {
+        laboratorios = ld.listarLaboratorios();
+        Collections.sort(laboratorios);
+        for (Laboratorio lab : laboratorios) {
             laboratorio.addItem(lab.getNombre());
         }
     }

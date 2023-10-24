@@ -6,7 +6,7 @@ package equipo29.tema5.Data;
  *
  * @author 20352555674
  */
-public class Vacunatorio {
+public class Vacunatorio implements Comparable<Vacunatorio>{
     private int idVacunatorio;
     private String descripcion;
     private boolean estado;
@@ -54,6 +54,17 @@ public class Vacunatorio {
     public String toString() {
         //return idVacunatorio + " - " + descripcion;
         return descripcion;
+    }
+
+    @Override
+    public int compareTo(Vacunatorio t) {
+        if (idVacunatorio == t.idVacunatorio){
+            return 0;
+        }else if(idVacunatorio > t.idVacunatorio){
+            return 1;
+        }else{
+            return -1;
+        }
     }
     
 }

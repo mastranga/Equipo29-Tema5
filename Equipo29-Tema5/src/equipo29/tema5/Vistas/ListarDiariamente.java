@@ -9,6 +9,7 @@ import equipo29.tema5.Conexion.CitaData;
 import equipo29.tema5.Data.Cita;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -144,6 +145,7 @@ public class ListarDiariamente extends javax.swing.JInternalFrame {
             String fech = fecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
             citas = citad.DosisAplicadasXCentroXDia(fech);
             borrarFilas();
+            Collections.sort(citas);
             cargarDatos(citas);
         }
     }//GEN-LAST:event_buscarActionPerformed
