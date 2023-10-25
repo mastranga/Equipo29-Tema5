@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2023 a las 06:48:16
+-- Tiempo de generación: 26-10-2023 a las 01:40:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -45,9 +45,12 @@ CREATE TABLE `cita` (
 --
 
 INSERT INTO `cita` (`codCita`, `codRefuerzo`, `fechaHoraCita`, `idVacunatorio`, `fechaHoraColoca`, `dni`, `nroSerie`, `cancelada`) VALUES
-(11, 1, '2023-10-19 10:00', 1, NULL, 35255569, 3, 1),
-(12, 1, '2023-10-20 12:15', 1, NULL, 32555666, 4, 1),
-(20, 1, '2023-10-26 16:00', 2, NULL, 11222333, 1, 1);
+(1, 1, '2023-10-17 09:15', 2, NULL, 47685888, 4273147, 0),
+(2, 2, '2023-10-21 10:00', 1, NULL, 1110430, 12534112, 1),
+(3, 2, '2023-10-26 10:00', 3, '2023-10-25 19:06:19', 1030215, 16813715, 1),
+(4, 3, '2023-11-22 10:00', 3, NULL, 1030215, 16841668, 1),
+(5, 2, '2023-10-04 09:45', 4, '2023-10-25 19:13:35', 9228498, 18345241, 1),
+(6, 3, '2023-11-22 09:45', 4, NULL, 9228498, 27070983, 0);
 
 -- --------------------------------------------------------
 
@@ -71,10 +74,106 @@ CREATE TABLE `ciudadano` (
 --
 
 INSERT INTO `ciudadano` (`idCiudadano`, `dni`, `nombreCompleto`, `email`, `celular`, `patologia`, `ambitoTrabajo`, `estado`) VALUES
-(1, 11222333, 'Laura Fernander', 'mail2@mail.com', '1123335469', NULL, 'salud', 1),
-(2, 35255555, 'Carlos Marx', 'mail3@mail.com', '1123558974', NULL, 'comercio', 1),
-(3, 35255569, 'Bruno Mastrangelo', 'mail@mail.com', '1125556661', 'diabetes', 'salud', 1),
-(4, 32555666, 'Raul Lopez', 'rlopez@gmail.oom', '1152356699', NULL, 'administrativo', 1);
+(1, 40921434, 'Paki Ferguson', 'sed.nunc.est@aol.net', '1177558727', 'asma', 'comercio', 1),
+(2, 41212787, 'Ray Buckner', 'nulla.cras@hotmail.com', '1112246379', 'cardiopatia', 'salud', 1),
+(3, 34482445, 'Nigel Wilder', 'ac.feugiat@yahoo.net', '1196884521', NULL, 'desempleado', 1),
+(4, 47685888, 'Isaac Holder', 'sed@hotmail.couk', '1176044285', 'diabetes', 'comercio', 1),
+(5, 20406245, 'Lee Leach', 'eu.ligula.aenean@aol.org', '1172223248', 'obesidad', 'desempleado', 1),
+(6, 33725815, 'Hamilton Mcbride', 'tincidunt.nunc@hotmail.edu', '1145848219', 'diabetes', 'educacion', 1),
+(7, 2967600, 'Colt Cantu', 'aliquet.metus.urna@yahoo.org', '1124812981', 'cardiopatia', 'desempleado', 1),
+(8, 23192554, 'Guy Holder', 'orci@aol.couk', '1162871178', NULL, 'salud', 1),
+(9, 2726376, 'Channing Guthrie', 'lorem.eu.metus@yahoo.edu', '1152884521', NULL, 'salud', 1),
+(10, 36563751, 'Salvador Cannon', 'a.dui@outlook.couk', '1156019578', 'diabetes', 'estudiante', 1),
+(11, 38743768, 'Fitzgerald Ross', 'duis.ac@hotmail.ca', '1134088803', 'diabetes', 'otro', 1),
+(12, 38160576, 'Harrison Sexton', 'suspendisse.tristique@icloud.org', '1151225662', 'oncologico', 'salud', 1),
+(13, 16801412, 'Owen Gay', 'tristique.senectus@yahoo.edu', '1114283887', 'cardiopatia', 'salud', 1),
+(14, 1335540, 'Peter Woods', 'nec@google.ca', '1153641234', 'diabetes', 'comercio', 1),
+(15, 24434532, 'Leonard Simpson', 'nec@aol.net', '1164713412', NULL, 'desempleado', 1),
+(16, 24484501, 'Hasad Kerr', 'nec.urna.et@hotmail.com', '1180878022', 'diabetes', 'desempleado', 1),
+(17, 31938357, 'Howard Valdez', 'id.risus.quis@aol.net', '1122422819', 'cardiopatia', 'comercio', 1),
+(18, 33313395, 'Dylan Holden', 'dapibus.quam@google.net', '1123842153', 'obesidad', 'desempleado', 1),
+(19, 37864494, 'Kennan Giles', 'tellus.eu@hotmail.com', '1182546872', 'diabetes', 'otro', 1),
+(20, 12541418, 'Ralph Hood', 'enim.gravida@outlook.couk', '1146835111', 'obesidad', 'desempleado', 1),
+(21, 42968907, 'Cadman Schroeder', 'tempor.diam.dictum@yahoo.edu', '1171732328', NULL, 'comercio', 1),
+(22, 3461986, 'Knox Chandler', 'lectus@icloud.edu', '1126457417', 'diabetes', 'desempleado', 1),
+(23, 4791341, 'Keefe Cameron', 'eu.augue.porttitor@outlook.com', '1124537715', NULL, 'otro', 1),
+(24, 28268799, 'Perry Lane', 'aliquam.arcu@icloud.couk', '1133137074', 'diabetes', 'educacion', 1),
+(25, 11582698, 'Ryan Owen', 'auctor.odio@icloud.couk', '1133316742', NULL, 'desempleado', 1),
+(26, 44620828, 'Lamar Mckay', 'et.ipsum@hotmail.edu', '1130642721', 'diabetes', 'estudiante', 1),
+(27, 18561572, 'Arden Page', 'ipsum@hotmail.edu', '1123997488', 'obesidad', 'desempleado', 1),
+(28, 43775896, 'Dylan Kline', 'penatibus@protonmail.net', '1111491150', 'diabetes', 'otro', 1),
+(29, 28203652, 'Isaiah Black', 'nec.tempus@icloud.net', '1191251155', 'obesidad', 'salud', 1),
+(30, 44273759, 'Steven Dawson', 'scelerisque.lorem@yahoo.couk', '1119877805', NULL, 'comercio', 1),
+(31, 34827638, 'Fulton Cote', 'mi.tempor@aol.edu', '1156848527', 'asma', 'salud', 1),
+(32, 38810858, 'Jonah Cervantes', 'in.tincidunt@protonmail.com', '1124543466', 'cardiopatia', 'salud', 1),
+(33, 3363906, 'Magee Mathews', 'sem.vitae.aliquam@hotmail.net', '1112071549', 'asma', 'desempleado', 1),
+(34, 6455590, 'Tyrone Gibson', 'ipsum.cursus@protonmail.org', '1113712376', 'cardiopatia', 'salud', 1),
+(35, 25369179, 'Samuel Butler', 'purus.nullam@google.org', '1161392278', NULL, 'salud', 1),
+(36, 29947569, 'Jasper Bailey', 'vulputate.velit@hotmail.edu', '1168828437', 'obesidad', 'salud', 1),
+(37, 9418248, 'Amos Trevino', 'scelerisque.neque.sed@aol.com', '1120425769', 'cardiopatia', 'comercio', 1),
+(38, 29799367, 'Reed Blair', 'dictum.cursus@outlook.edu', '1175420017', 'obesidad', 'comercio', 1),
+(39, 1637116, 'Adrian Caldwell', 'lacus.cras@icloud.couk', '1126796265', NULL, 'seguridad', 1),
+(40, 1030215, 'Melvin Bennett', 'et.malesuada@google.net', '1116314240', 'obesidad', 'salud', 1),
+(41, 5395154, 'Hu Ortega', 'quam.a@hotmail.net', '1137347442', 'diabetes', 'salud', 1),
+(42, 19855239, 'Merrill Rios', 'nunc.ac@yahoo.couk', '1158430124', NULL, 'otro', 1),
+(43, 9995393, 'Mufutau Battle', 'cum.sociis@icloud.ca', '1183772285', 'oncologico', 'comercio', 1),
+(44, 9304980, 'Baker Juarez', 'vulputate.posuere@outlook.net', '1102375087', 'obesidad', 'comercio', 1),
+(45, 34960797, 'Beck Castillo', 'enim.sed@hotmail.couk', '1181711182', 'obesidad', 'otro', 1),
+(46, 34665935, 'Raphael Aguirre', 'bibendum.donec@protonmail.org', '1195747748', NULL, 'comercio', 1),
+(47, 4681835, 'Jeremy Glenn', 'consectetuer@protonmail.edu', '1164303313', 'obesidad', 'educacion', 1),
+(48, 20709494, 'Lewis Booker', 'sem@icloud.ca', '1175835264', 'asma', 'educacion', 1),
+(49, 25764128, 'Murphy Nelson', 'vel@google.couk', '1133397545', 'cardiopatia', 'otro', 1),
+(50, 27257791, 'Omar Stout', 'velit.pellentesque@aol.net', '1189116213', 'cardiopatia', 'comercio', 1),
+(51, 12816602, 'Marshall Contreras', 'in@outlook.com', '1174184447', 'diabetes', 'comercio', 1),
+(52, 9228498, 'Knox Good', 'aenean.egestas@aol.edu', '1147323443', 'asma', 'salud', 1),
+(53, 26986852, 'Sawyer Caldwell', 'a.sollicitudin@aol.couk', '1157728383', 'cardiopatia', 'salud', 1),
+(54, 29723885, 'Wing Pate', 'aliquam@aol.ca', '1105586514', 'cardiopatia', 'salud', 1),
+(55, 8940330, 'Stone Moody', 'ipsum@google.net', '1187151573', 'cardiopatia', 'comercio', 1),
+(56, 28781199, 'Valentine French', 'libero@outlook.couk', '1166556677', 'diabetes', 'otro', 1),
+(57, 32861810, 'Harper Myers', 'ante.iaculis.nec@aol.couk', '1188643662', 'cardiopatia', 'desempleado', 1),
+(58, 47224790, 'Donovan Charles', 'turpis.non@google.com', '1154231718', 'oncologico', 'educacion', 1),
+(59, 37494586, 'Edward Dennis', 'fusce.fermentum@hotmail.org', '1151782783', NULL, 'salud', 1),
+(60, 7356900, 'Kermit Mcguire', 'velit.quisque@protonmail.net', '1141681672', 'obesidad', 'salud', 1),
+(61, 39771198, 'Perry Chavez', 'semper@aol.edu', '1194571226', 'diabetes', 'desempleado', 1),
+(62, 28305747, 'Ross Briggs', 'suspendisse@yahoo.ca', '1131521026', 'cardiopatia', 'seguridad', 1),
+(63, 40391237, 'Reed Soto', 'quisque@protonmail.couk', '1123354291', 'obesidad', 'comercio', 1),
+(64, 4324562, 'Carlos Norman', 'tristique.ac.eleifend@hotmail.com', '1131652845', NULL, 'salud', 1),
+(65, 2970593, 'Moses Cortez', 'egestas.aliquam@icloud.org', '1159375248', 'cardiopatia', 'desempleado', 1),
+(66, 1297558, 'Acton Mcclure', 'at.iaculis@aol.ca', '1164563419', 'cardiopatia', 'otro', 1),
+(67, 5441694, 'Armand Calderon', 'eget.volutpat@aol.couk', '1195533646', 'diabetes', 'comercio', 1),
+(68, 35865375, 'Declan Palmer', 'non.luctus@aol.ca', '1148614176', 'obesidad', 'desempleado', 1),
+(69, 9495717, 'Connor Estes', 'nulla.semper.tellus@aol.couk', '1152237734', 'asma', 'salud', 1),
+(70, 43463562, 'Garrison Pierce', 'etiam@google.couk', '1185181131', 'obesidad', 'comercio', 1),
+(71, 25208476, 'Zane Rogers', 'velit.aliquam.nisl@yahoo.net', '1183825618', 'obesidad', 'desempleado', 1),
+(72, 2790677, 'Richard Scott', 'non.bibendum.sed@icloud.couk', '1148760774', 'diabetes', 'educacion', 1),
+(73, 12178518, 'Armand Valencia', 'sociis.natoque@google.edu', '1193247167', 'obesidad', 'comercio', 1),
+(74, 22737238, 'Logan Berg', 'tortor.integer.aliquam@protonmail.org', '1113875351', 'asma', 'comercio', 1),
+(75, 31242377, 'Lamar Goodman', 'in.faucibus@google.edu', '1142473727', 'asma', 'comercio', 1),
+(76, 16196643, 'Igor Gross', 'et@hotmail.couk', '1192217595', 'diabetes', 'salud', 1),
+(77, 26836652, 'Austin Lyons', 'aliquam.adipiscing@hotmail.edu', '1161812462', 'obesidad', 'otro', 1),
+(78, 23674852, 'Fitzgerald Williams', 'libero.proin@hotmail.org', '1172349463', 'obesidad', 'salud', 1),
+(79, 28555681, 'Elvis Sanchez', 'pellentesque@icloud.org', '1125584012', 'diabetes', 'comercio', 1),
+(80, 42902816, 'Damon Holloway', 'aliquam.adipiscing@icloud.couk', '1148521417', 'asma', 'educacion', 1),
+(81, 16655835, 'Roth Zimmerman', 'dictum.magna.ut@yahoo.couk', '1177504108', 'diabetes', 'comercio', 1),
+(82, 1655925, 'Otto Bennett', 'aenean.gravida@outlook.edu', '1121574861', 'obesidad', 'desempleado', 1),
+(83, 46735153, 'Quinlan Parsons', 'dui@yahoo.couk', '1172756510', 'diabetes', 'seguridad', 1),
+(84, 8129550, 'Micah Stout', 'purus.gravida@yahoo.org', '1101822838', 'asma', 'otro', 1),
+(85, 24221584, 'Geoffrey Wooten', 'nullam.scelerisque.neque@hotmail.net', '1191873634', 'oncologico', 'otro', 1),
+(86, 1110430, 'Evan Mitchell', 'etiam.laoreet@google.com', '1181596417', NULL, 'otro', 1),
+(87, 23238845, 'Tyler Wade', 'dolor.tempus@hotmail.net', '1112484153', 'asma', 'salud', 1),
+(88, 15953996, 'Hedley Kirk', 'nunc.sit@yahoo.edu', '1166993674', 'cardiopatia', 'otro', 1),
+(89, 12498450, 'Philip Blackburn', 'ut.cursus@outlook.net', '1184399749', 'cardiopatia', 'salud', 1),
+(90, 40333415, 'Clark Salazar', 'integer.tincidunt@outlook.com', '1173227254', 'diabetes', 'desempleado', 1),
+(91, 9357961, 'Brian Chase', 'nullam.velit@icloud.org', '1114443232', 'obesidad', 'otro', 1),
+(92, 3438999, 'Conan Rodriquez', 'interdum.sed@protonmail.net', '1123580063', NULL, 'otro', 1),
+(93, 4338081, 'Tarik Gates', 'morbi.sit@yahoo.ca', '1157334145', 'cardiopatia', 'seguridad', 1),
+(94, 26269160, 'Marvin Holland', 'ligula.donec.luctus@protonmail.couk', '1173382245', 'obesidad', 'desempleado', 1),
+(95, 16932428, 'Brock Colon', 'orci@yahoo.net', '1185168164', 'cardiopatia', 'comercio', 1),
+(96, 42618985, 'Salvador Justice', 'vestibulum.mauris.magna@hotmail.edu', '1146692388', 'obesidad', 'estudiante', 1),
+(97, 29613149, 'Clinton Huff', 'quis.accumsan@google.couk', '1133222441', 'diabetes', 'desempleado', 1),
+(98, 19461537, 'Clark Sawyer', 'et@outlook.ca', '1144873132', 'obesidad', 'comercio', 1),
+(99, 12578353, 'Vernon Orr', 'sed@aol.org', '1147317076', 'diabetes', 'salud', 1),
+(100, 41171723, 'Drew Howard', 'non.enim@aol.org', '1159411127', 'asma', 'otro', 1);
 
 -- --------------------------------------------------------
 
@@ -96,8 +195,10 @@ CREATE TABLE `laboratorio` (
 --
 
 INSERT INTO `laboratorio` (`idLaboratorio`, `cuit`, `nombre`, `pais`, `domicilio`, `estado`) VALUES
-(1, '30503518518', 'Pfizer', 'USA', 'Wall Street ', 1),
-(2, '30503518512', 'Test', 'Argentina', 'Av de mayo', 1);
+(1, '30-50351851-8', 'Pfizer', 'USA', '235 East 42nd St.', 1),
+(2, '30-50115282-6', 'Moderna', 'USA', '150 East 25nd St.', 1),
+(3, '30-54167722-0', 'Centro Nacional Gamaleya', 'Rusia', '30-1 Berezhkovskaya nab. GSP-3', 1),
+(4, '30-50077232-4', 'AstraZeneca', 'Inlgaterra', 'Charter Way, Macclesfield SK10 2NA', 1);
 
 -- --------------------------------------------------------
 
@@ -119,10 +220,46 @@ CREATE TABLE `vacuna` (
 --
 
 INSERT INTO `vacuna` (`nroSerie`, `marca`, `medida`, `fechaCad`, `estado`, `idLaboratorio`) VALUES
-(1, 'Moderna', 0.3, '2023-10-31', 0, 1),
-(2, 'Moderna', 0.3, '2023-10-31', 0, 1),
-(3, 'Moderna', 0.3, '2023-10-31', 0, 1),
-(4, 'Moderna', 0.3, '2023-10-31', 0, 1);
+(4273147, 'SputnikV', 0.3, '2024-09-14', 1, 3),
+(12534112, 'Moderna', 0.5, '2024-02-03', 1, 2),
+(16813715, 'SputnikV', 0.5, '2024-08-05', 0, 3),
+(16841668, 'AstraZeneca', 0.9, '2024-10-09', 1, 4),
+(18345241, 'Moderna', 0.9, '2024-02-11', 0, 2),
+(27070983, 'Comirnaty', 0.9, '2024-02-21', 1, 1),
+(31177100, 'SputnikV', 0.5, '2024-12-11', 1, 3),
+(31657611, 'Moderna', 0.5, '2024-12-06', 1, 2),
+(33507529, 'Comirnaty', 0.5, '2024-09-02', 1, 1),
+(33891652, 'AstraZeneca', 0.3, '2024-06-24', 1, 4),
+(34128717, 'Moderna', 0.3, '2024-04-06', 1, 2),
+(34324556, 'Comirnaty', 0.3, '2024-05-24', 1, 1),
+(43847342, 'Comirnaty', 0.3, '2024-10-24', 1, 1),
+(46287194, 'SputnikV', 0.9, '2024-03-25', 1, 3),
+(46331274, 'SputnikV', 0.3, '2024-11-07', 1, 3),
+(48091466, 'AstraZeneca', 0.9, '2024-08-23', 1, 4),
+(51255210, 'Comirnaty', 0.5, '2024-02-16', 1, 1),
+(52039905, 'Moderna', 0.3, '2024-12-15', 1, 2),
+(53976823, 'AstraZeneca', 0.5, '2024-01-06', 1, 4),
+(58571626, 'Moderna', 0.9, '2024-01-29', 1, 2),
+(60551892, 'SputnikV', 0.9, '2024-11-08', 1, 3),
+(63062323, 'Moderna', 0.5, '2024-01-16', 1, 2),
+(63514785, 'AstraZeneca', 0.9, '2024-10-19', 1, 4),
+(63637978, 'Comirnaty', 0.3, '2024-06-02', 1, 1),
+(68481321, 'Comirnaty', 0.9, '2024-05-27', 1, 1),
+(70218484, 'Comirnaty', 0.9, '2024-11-19', 1, 1),
+(70259511, 'AstraZeneca', 0.5, '2024-10-25', 1, 4),
+(71378717, 'Comirnaty', 0.5, '2024-02-26', 1, 1),
+(73435863, 'SputnikV', 0.5, '2024-09-06', 1, 3),
+(75389153, 'Moderna', 0.3, '2024-12-19', 1, 2),
+(76832661, 'Comirnaty', 0.5, '2024-06-17', 1, 1),
+(79384164, 'AstraZeneca', 0.5, '2024-01-31', 1, 4),
+(81510751, 'AstraZeneca', 0.3, '2024-08-08', 1, 4),
+(82716881, 'AstraZeneca', 0.9, '2024-06-20', 1, 4),
+(87377285, 'SputnikV', 0.9, '2024-08-11', 1, 3),
+(87395165, 'SputnikV', 0.9, '2024-03-29', 1, 3),
+(87749289, 'Moderna', 0.3, '2024-12-19', 1, 2),
+(94656655, 'AstraZeneca', 0.9, '2024-07-14', 1, 4),
+(95963386, 'SputnikV', 0.3, '2024-07-24', 1, 3),
+(98195107, 'Moderna', 0.9, '2024-09-04', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -142,7 +279,10 @@ CREATE TABLE `vacunatorio` (
 
 INSERT INTO `vacunatorio` (`idVacunatorio`, `descripcion`, `estado`) VALUES
 (1, 'Centro 1', 1),
-(2, 'Centro 2', 1);
+(2, 'Centro 2', 1),
+(3, 'Centro 3\r\n', 1),
+(4, 'Centro 4', 1),
+(5, 'Centro 5', 1);
 
 --
 -- Índices para tablas volcadas
@@ -194,31 +334,31 @@ ALTER TABLE `vacunatorio`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idCiudadano` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT de la tabla `laboratorio`
 --
 ALTER TABLE `laboratorio`
-  MODIFY `idLaboratorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idLaboratorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `vacuna`
 --
 ALTER TABLE `vacuna`
-  MODIFY `nroSerie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `nroSerie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98195108;
 
 --
 -- AUTO_INCREMENT de la tabla `vacunatorio`
 --
 ALTER TABLE `vacunatorio`
-  MODIFY `idVacunatorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idVacunatorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
