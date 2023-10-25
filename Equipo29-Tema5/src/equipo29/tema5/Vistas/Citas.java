@@ -171,10 +171,10 @@ public class Citas extends javax.swing.JInternalFrame {
             citad.cancelarCita(codCita);
             int codRefuerzo = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 1).toString());
             String fechaHoraCita = modelo.getValueAt(tabla.getSelectedRow(), 2).toString();
-            int idVacunatorio = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 3).toString());
+            int Vacunatorio = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 7).toString());
             int dni = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 5).toString());
             int nroSerie = Integer.parseInt(modelo.getValueAt(tabla.getSelectedRow(), 6).toString());
-            citad.reprogramarCita(codRefuerzo, fechaHoraCita, idVacunatorio, dni, nroSerie);
+            citad.reprogramarCita(codRefuerzo, fechaHoraCita, Vacunatorio, dni, nroSerie);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una cita");
         }
@@ -199,7 +199,7 @@ public class Citas extends javax.swing.JInternalFrame {
         modelo.addColumn("Fecha Colocada");
         modelo.addColumn("Dni");
         modelo.addColumn("Nro de serie");
-        modelo.addColumn("Cancelada");
+        modelo.addColumn("id Vacunatorio");
         tabla.setModel(modelo);
         tabla.getColumnModel().getColumn(1).setMaxWidth(0);
         tabla.getColumnModel().getColumn(1).setMinWidth(0);
@@ -247,7 +247,7 @@ public class Citas extends javax.swing.JInternalFrame {
 
     private void cargarDatos(List<Cita> citas) { //Esta lista de alumnos puede provenir de la BD o cargada por parámetros
         for (Cita cita : citas) {
-            modelo.addRow(new Object[]{cita.getCodCita(), cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getVacunatorio().getDescripcion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni(), cita.getVacuna().getNroSerie()});
+            modelo.addRow(new Object[]{cita.getCodCita(), cita.getCodRefuerzo(), cita.getFechaHoraCita(), cita.getVacunatorio().getDescripcion(), cita.getFechaHoraColoca(), cita.getCiudadano().getDni(), cita.getVacuna().getNroSerie(), cita.getVacunatorio().getIdVacunatorio()});
         }
     }
 

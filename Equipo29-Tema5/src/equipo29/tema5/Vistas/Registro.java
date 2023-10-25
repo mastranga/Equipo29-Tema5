@@ -24,6 +24,8 @@ public class Registro extends javax.swing.JInternalFrame {
     public Registro(CiudadanoData cd) {
         initComponents();
         this.cd = cd;
+        cargarComboPatologias();
+        cargarComboAmbitoLaboral();
     }
 
     /**
@@ -45,14 +47,14 @@ public class Registro extends javax.swing.JInternalFrame {
         nombreyapellido = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         celular = new javax.swing.JTextField();
-        patologia = new javax.swing.JTextField();
-        ambitolaboral = new javax.swing.JTextField();
         registrar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         id = new javax.swing.JTextField();
         salir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        pato = new javax.swing.JComboBox<>();
+        al = new javax.swing.JComboBox<>();
 
         dnilabel.setText("dni");
 
@@ -81,18 +83,6 @@ public class Registro extends javax.swing.JInternalFrame {
         email.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 emailKeyTyped(evt);
-            }
-        });
-
-        patologia.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                patologiaKeyTyped(evt);
-            }
-        });
-
-        ambitolaboral.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ambitolaboralKeyTyped(evt);
             }
         });
 
@@ -140,7 +130,7 @@ public class Registro extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dnilabel)
@@ -156,34 +146,35 @@ public class Registro extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(registrar))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel2))
+                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(patologia)
-                            .addComponent(ambitolaboral)
-                            .addComponent(id)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(modificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addGap(36, 36, 36)))))
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(pato, 0, 186, Short.MAX_VALUE)
+                                .addComponent(al, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(registrar)
+                        .addGap(36, 36, 36)
+                        .addComponent(modificar)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton1)
+                        .addGap(26, 26, 26)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(buscar)
-                        .addContainerGap(13, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(salir)
-                        .addGap(28, 28, 28))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(buscar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dnilabel)
                             .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,23 +193,21 @@ public class Registro extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(patologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(pato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(ambitolaboral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                            .addComponent(al, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrar)
                     .addComponent(modificar)
-                    .addComponent(salir)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                    .addComponent(jButton1)
+                    .addComponent(salir))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -227,7 +216,7 @@ public class Registro extends javax.swing.JInternalFrame {
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
         // TODO add your handling code here:
         if (dni.getText().isEmpty() || nombreyapellido.getText().isEmpty() || email.getText().isEmpty() || celular.getText().isEmpty()
-                || ambitolaboral.getText().isEmpty()) {
+                || pato.getSelectedItem().toString().isEmpty() || al.getSelectedItem().toString().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete los campos requeridos");
         } else if (dni.getText().length() < 7 || dni.getText().length() > 8) {
             JOptionPane.showMessageDialog(null, "El documento debe tener entre 7 y 8 digitos de longitud");
@@ -235,22 +224,22 @@ public class Registro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Verificar numero de celular ingresado");
         } else {
             try {
-                if (!patologia.getText().isEmpty()) {
-                    cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), patologia.getText(), ambitolaboral.getText()));
+                if (pato.getSelectedItem().toString().equalsIgnoreCase("no aplica")) {
+                    cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), null, al.getSelectedItem().toString()));
                 } else {
-                    cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), ambitolaboral.getText()));
+                    cd.guardarCiudadano(new Ciudadano(Integer.parseInt(dni.getText()), nombreyapellido.getText(), email.getText(), celular.getText(), pato.getSelectedItem().toString(), al.getSelectedItem().toString()));
                 }
+                jButton1ActionPerformed(evt);
             } catch (SQLException ex) {
 
             }
         }
-        jButton1ActionPerformed(evt);
     }//GEN-LAST:event_registrarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
         if (dni.getText().isEmpty() || nombreyapellido.getText().isEmpty() || email.getText().isEmpty() || celular.getText().isEmpty()
-                || ambitolaboral.getText().isEmpty()) {
+                || pato.getSelectedItem().toString().isEmpty() || al.getSelectedItem().toString().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete los campos requeridos");
         } else if (dni.getText().length() < 7 || dni.getText().length() > 8) {
             JOptionPane.showMessageDialog(null, "El documento debe tener entre 7 y 8 digitos de longitud");
@@ -258,31 +247,24 @@ public class Registro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Verificar numero de celular ingresado");
         } else {
             try {
-                if (!patologia.getText().isEmpty()) {
-                    Ciudadano ciudadano = new Ciudadano();
-                    ciudadano.setId(Integer.parseInt(id.getText()));
-                    ciudadano.setDni(Integer.parseInt(dni.getText()));
-                    ciudadano.setNombreCompleto(nombreyapellido.getText());
-                    ciudadano.setEmail(email.getText());
-                    ciudadano.setCelular(celular.getText());
-                    ciudadano.setPatologia(patologia.getText());
-                    ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
-                    cd.modificarCiudadano(ciudadano);
-                } else {
-                    Ciudadano ciudadano = new Ciudadano();
-                    ciudadano.setId(Integer.parseInt(id.getText()));
-                    ciudadano.setDni(Integer.parseInt(dni.getText()));
-                    ciudadano.setNombreCompleto(nombreyapellido.getText());
-                    ciudadano.setEmail(email.getText());
-                    ciudadano.setCelular(celular.getText());
-                    ciudadano.setAmbitoTrabajo(ambitolaboral.getText());
-                    cd.modificarCiudadano(ciudadano);
-                }
-            } catch (SQLException ex) {
+                Ciudadano ciudadano = new Ciudadano();
+                ciudadano.setId(Integer.parseInt(id.getText()));
+                ciudadano.setDni(Integer.parseInt(dni.getText()));
+                ciudadano.setNombreCompleto(nombreyapellido.getText());
+                ciudadano.setEmail(email.getText());
+                ciudadano.setCelular(celular.getText());
 
+                ciudadano.setAmbitoTrabajo(al.getSelectedItem().toString());
+                if (pato.getSelectedItem().toString().equalsIgnoreCase("no aplica")) {
+                    ciudadano.setPatologia(null);
+                } else {
+                    ciudadano.setPatologia(pato.getSelectedItem().toString());
+                }
+                cd.modificarCiudadano(ciudadano);
+
+            } catch (SQLException ex) {
             }
         }
-
     }//GEN-LAST:event_modificarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
@@ -291,8 +273,8 @@ public class Registro extends javax.swing.JInternalFrame {
             nombreyapellido.setText(ciudadano.getNombreCompleto());
             email.setText(ciudadano.getEmail());
             celular.setText(ciudadano.getCelular());
-            patologia.setText(ciudadano.getPatologia());
-            ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
+            al.setSelectedItem(ciudadano.getAmbitoTrabajo());
+            pato.setSelectedItem(ciudadano.getPatologia());
             id.setText(ciudadano.getId() + "");
         } else if (!email.getText().isEmpty()) {
             Ciudadano ciudadano = cd.buscarCiudadanoEmail(email.getText());
@@ -300,8 +282,8 @@ public class Registro extends javax.swing.JInternalFrame {
             nombreyapellido.setText(ciudadano.getNombreCompleto());
             email.setText(ciudadano.getEmail());
             celular.setText(ciudadano.getCelular());
-            patologia.setText(ciudadano.getPatologia());
-            ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
+            pato.setSelectedItem(ciudadano.getPatologia());
+            al.setSelectedItem(ciudadano.getAmbitoTrabajo());
             id.setText(ciudadano.getId() + "");
         } else if (!celular.getText().isEmpty()) {
             Ciudadano ciudadano = cd.buscarCiudadanoCelular(celular.getText());
@@ -309,14 +291,12 @@ public class Registro extends javax.swing.JInternalFrame {
             nombreyapellido.setText(ciudadano.getNombreCompleto());
             email.setText(ciudadano.getEmail());
             celular.setText(ciudadano.getCelular());
-            patologia.setText(ciudadano.getPatologia());
-            ambitolaboral.setText(ciudadano.getAmbitoTrabajo());
+            pato.setSelectedItem(ciudadano.getPatologia());
+            al.setSelectedItem(ciudadano.getAmbitoTrabajo());
             id.setText(ciudadano.getId() + "");
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese Documento, email o celular valido del ciudadano para realizar una busqueda");
         }
-
-
     }//GEN-LAST:event_buscarActionPerformed
 
     private void dniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dniKeyTyped
@@ -339,22 +319,6 @@ public class Registro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailKeyTyped
 
-    private void patologiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patologiaKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_patologiaKeyTyped
-
-    private void ambitolaboralKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ambitolaboralKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_ambitolaboralKeyTyped
-
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -366,15 +330,15 @@ public class Registro extends javax.swing.JInternalFrame {
         nombreyapellido.setText("");
         email.setText("");
         celular.setText("");
-        patologia.setText("");
-        ambitolaboral.setText("");
         id.setText("");
+        pato.setSelectedItem("");
+        al.setSelectedItem("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Celularlabel;
-    private javax.swing.JTextField ambitolaboral;
+    private javax.swing.JComboBox<String> al;
     private javax.swing.JButton buscar;
     private javax.swing.JTextField celular;
     private javax.swing.JTextField dni;
@@ -388,8 +352,29 @@ public class Registro extends javax.swing.JInternalFrame {
     private javax.swing.JButton modificar;
     private javax.swing.JTextField nombreyapellido;
     private javax.swing.JLabel nombreyapellidolabel;
-    private javax.swing.JTextField patologia;
+    private javax.swing.JComboBox<String> pato;
     private javax.swing.JButton registrar;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarComboPatologias() {
+        pato.addItem("");
+        pato.addItem("no aplica");
+        pato.addItem("asma");
+        pato.addItem("diabetes");
+        pato.addItem("cardiopatia");
+        pato.addItem("obesidad");
+        pato.addItem("oncologico");
+    }
+
+    private void cargarComboAmbitoLaboral() {
+        al.addItem("");
+        al.addItem("desempleado");
+        al.addItem("estudiante");
+        al.addItem("salud");
+        al.addItem("educacion");
+        al.addItem("seguridad");
+        al.addItem("comercio");
+        al.addItem("otro");
+    }
 }

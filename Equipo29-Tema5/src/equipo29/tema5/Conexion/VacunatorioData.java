@@ -33,6 +33,7 @@ public class VacunatorioData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 vacunatorio = new Vacunatorio();
+                vacunatorio.setIdVacunatorio(id);
                 vacunatorio.setDescripcion(rs.getString("descripcion"));
                 vacunatorio.setEstado(true);
             } else {
@@ -56,6 +57,7 @@ public class VacunatorioData {
             if (rs.next()) {
                 vacunatorio = new Vacunatorio();
                 vacunatorio.setIdVacunatorio(rs.getInt("idVacunatorio"));
+                vacunatorio.setDescripcion(descripcion);
                 vacunatorio.setEstado(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Este Vacunatorio no existe en la base de datos ");

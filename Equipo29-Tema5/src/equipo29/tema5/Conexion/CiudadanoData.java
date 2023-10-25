@@ -228,7 +228,7 @@ public class CiudadanoData {
     
      public List<Ciudadano> listarCiudadanosEsenciales() {
 
-        String sql = "SELECT idCiudadano,dni ,nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE estado=1 AND ambitoTrabajo LIKE 'salud' OR ambitoTrabajo LIKE 'educacion'";
+        String sql = "SELECT idCiudadano,dni ,nombreCompleto, email, celular, patologia, ambitoTrabajo FROM ciudadano WHERE estado=1 AND ambitoTrabajo LIKE 'salud' OR ambitoTrabajo LIKE 'educacion' OR ambitoTrabajo LIKE 'seguridad'";
         ArrayList<Ciudadano> ciudadanos = new ArrayList<>();
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -253,7 +253,7 @@ public class CiudadanoData {
      
     public List<Ciudadano> listarCiudadanosPatologiaEsenciales() {
 
-        String sql = "SELECT * FROM ciudadano WHERE estado=1 AND patologia is not null AND ambitoTrabajo LIKE 'salud' OR ambitoTrabajo LIKE 'educacion'";
+        String sql = "SELECT * FROM ciudadano WHERE estado=1 AND patologia is not null AND ambitoTrabajo LIKE 'salud' OR ambitoTrabajo LIKE 'educacion' OR ambitoTrabajo LIKE 'seguridad'";
         ArrayList<Ciudadano> ciudadanos = new ArrayList<>();
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
