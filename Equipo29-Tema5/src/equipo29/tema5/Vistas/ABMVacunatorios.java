@@ -164,6 +164,7 @@ public class ABMVacunatorios extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
+        try{
         if (!id.getText().isEmpty()) {
             try {
                 Vacunatorio vacunatorio = cvd.buscarVacunatorioId(Integer.parseInt(id.getText()));
@@ -180,6 +181,9 @@ public class ABMVacunatorios extends javax.swing.JInternalFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Indique el ID o el nombre para realizar la busqueda");
+        }
+        }catch(NullPointerException ex){
+            
         }
     }//GEN-LAST:event_buscarActionPerformed
 

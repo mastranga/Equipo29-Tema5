@@ -232,6 +232,7 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
+        try{
         if (!nroserie.getText().isEmpty()) {
             Vacuna vacuna = vd.buscarVacuna(Integer.parseInt(nroserie.getText()));
             laboratorio.setSelectedItem(vacuna.getLaboratorio().getNombre().toString());
@@ -240,6 +241,9 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
             vencimiento.setDate(Date.from(vacuna.getFechaCad().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese el Nro de Serie de la Vacuna");
+        }
+        }catch(NullPointerException ex){
+            
         }
     }//GEN-LAST:event_buscarActionPerformed
 

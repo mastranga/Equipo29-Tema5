@@ -214,6 +214,7 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
+        try{
         if (!cuit.getText().isEmpty()) {
             try {
                 Laboratorio laboratorio = ld.buscarLaboratorioCuit(cuit.getText());
@@ -234,6 +235,9 @@ public class ABMLaboratorios extends javax.swing.JInternalFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Indique el CUIT o el nombre para realizar la busqueda");
+        }
+        }catch(NullPointerException ex){
+            
         }
     }//GEN-LAST:event_BuscarActionPerformed
 
