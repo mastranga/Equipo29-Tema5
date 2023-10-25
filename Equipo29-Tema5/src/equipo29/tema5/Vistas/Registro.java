@@ -268,6 +268,7 @@ public class Registro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_modificarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        try {
         if (!dni.getText().isEmpty()) {
             Ciudadano ciudadano = cd.buscarCiudadanoDni(Integer.parseInt(dni.getText()));
             nombreyapellido.setText(ciudadano.getNombreCompleto());
@@ -296,6 +297,9 @@ public class Registro extends javax.swing.JInternalFrame {
             id.setText(ciudadano.getId() + "");
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese Documento, email o celular valido del ciudadano para realizar una busqueda");
+        }
+        }catch (NullPointerException ex){
+            
         }
     }//GEN-LAST:event_buscarActionPerformed
 
