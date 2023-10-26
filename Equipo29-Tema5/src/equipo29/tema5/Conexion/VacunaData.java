@@ -96,7 +96,7 @@ public class VacunaData {
     
     public void modificarVacuna(Vacuna vacuna) throws  SQLException {
 
-        String sql = "UPDATE vacuna SET marca=?,medida=?,fechaCad=?,idLaboratorio=? WHERE nroSerie=?";
+        String sql = "UPDATE vacuna SET marca=?,medida=?,fechaCad=?, estado=?, idLaboratorio=? WHERE nroSerie=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
@@ -104,8 +104,9 @@ public class VacunaData {
             ps.setString(1, vacuna.getMarca());
             ps.setDouble(2, vacuna.getMedida());
             ps.setDate(3, Date.valueOf(vacuna.getFechaCad()));
-            ps.setInt(4, vacuna.getLaboratorio().getIdLaboratorio());
-            ps.setInt(5, vacuna.getNroSerie());
+            ps.setBoolean(4, vacuna.isEstado());
+            ps.setInt(5, vacuna.getLaboratorio().getIdLaboratorio());
+            ps.setInt(6, vacuna.getNroSerie());
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 1) {
 

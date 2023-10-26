@@ -63,6 +63,8 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         medida = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        disponible = new javax.swing.JCheckBox();
 
         jLabel1.setText("Nro. Serie");
 
@@ -122,50 +124,61 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel6.setText("Disponible");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(medida, 0, 132, Short.MAX_VALUE)
-                            .addComponent(nroserie)
-                            .addComponent(laboratorio, 0, 132, Short.MAX_VALUE)
-                            .addComponent(marca)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(buscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(alta)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(medida, 0, 132, Short.MAX_VALUE)
+                                    .addComponent(nroserie)
+                                    .addComponent(laboratorio, 0, 132, Short.MAX_VALUE)
+                                    .addComponent(marca)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
                         .addGap(18, 18, 18)
-                        .addComponent(baja)
-                        .addGap(18, 18, 18)
-                        .addComponent(modificacion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(buscar)
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(alta)
+                                .addGap(18, 18, 18)
+                                .addComponent(baja)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(disponible)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(modificacion)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton1)))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -190,11 +203,11 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(disponible))
+                        .addGap(13, 13, 13)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(alta)
                     .addComponent(baja)
@@ -220,6 +233,7 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
         marca.setText("");
         medida.setSelectedItem(null);
         vencimiento.setDate(null);
+        disponible.setSelected(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void nroserieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nroserieKeyTyped
@@ -239,6 +253,9 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
             marca.setText(vacuna.getMarca());
             medida.setSelectedItem(String.valueOf(vacuna.getMedida()));
             vencimiento.setDate(Date.from(vacuna.getFechaCad().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            if(vacuna.isEstado()){
+                disponible.setSelected(true);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese el Nro de Serie de la Vacuna");
         }
@@ -282,9 +299,9 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
         } else {
             try {
-                vd.modificarVacuna(new Vacuna(Integer.parseInt(nroserie.getText()), marca.getText(), Double.parseDouble(medida.getSelectedItem().toString()),
+                    vd.modificarVacuna(new Vacuna(Integer.parseInt(nroserie.getText()), marca.getText(), Double.parseDouble(medida.getSelectedItem().toString()),
                         vencimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                        true, ld.buscarLaboratorioNombre(laboratorio.getSelectedItem().toString())));
+                        disponible.isSelected(), ld.buscarLaboratorioNombre(laboratorio.getSelectedItem().toString())));
             } catch (SQLException ex) {
 
             }
@@ -296,12 +313,14 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
     private javax.swing.JButton alta;
     private javax.swing.JButton baja;
     private javax.swing.JButton buscar;
+    private javax.swing.JCheckBox disponible;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JComboBox laboratorio;
     private javax.swing.JTextField marca;
     private javax.swing.JComboBox medida;
