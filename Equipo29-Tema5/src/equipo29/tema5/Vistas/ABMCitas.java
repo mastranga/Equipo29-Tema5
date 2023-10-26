@@ -332,11 +332,17 @@ public class ABMCitas extends javax.swing.JInternalFrame {
     private void patologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patologiaActionPerformed
         // TODO add your handling code here:
         armarComboCiudadano();
+        if(!patologia.isSelected()){
+            limpiarActionPerformed(evt);
+        }
     }//GEN-LAST:event_patologiaActionPerformed
 
     private void esencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esencialActionPerformed
         // TODO add your handling code here:
         armarComboCiudadano();
+        if(!esencial.isSelected()){
+            limpiarActionPerformed(evt);
+        }
     }//GEN-LAST:event_esencialActionPerformed
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
