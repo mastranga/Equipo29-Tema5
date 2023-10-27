@@ -248,6 +248,7 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
         if (!nroserie.getText().isEmpty()) {
+           
             Vacuna vacuna = vd.buscarVacuna(Integer.parseInt(nroserie.getText()));
             laboratorio.setSelectedItem(vacuna.getLaboratorio().getNombre().toString());
             marca.setText(vacuna.getMarca());
@@ -259,8 +260,14 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese el Nro de Serie de la Vacuna");
         }
+         if(nroserie.getText().charAt(0)== ' '|| nroserie.getText().charAt(nroserie.getText().length()-1)==' '){
+                System.out.println("Hay espacios en blanco");
+        }
+         
         }catch(NullPointerException ex){
             
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Elimine los espacios en blanco");
         }
     }//GEN-LAST:event_buscarActionPerformed
 

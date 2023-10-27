@@ -172,7 +172,10 @@ public class ABMVacunatorios extends javax.swing.JInternalFrame {
                 id2.setText(id.getText());
             } catch (NullPointerException ex) {
             }
-        } else if (!descripcion.getText().isEmpty()) {
+        }
+           if(id.getText().charAt(0)== ' '|| id.getText().charAt(id.getText().length()-1)==' '){
+                System.out.println("Hay espacios en blanco");
+        }else if (!descripcion.getText().isEmpty()) {
             try {
                 Vacunatorio vacunatorio = cvd.buscarVacunatorioDescipcion(descripcion.getText());
                 id.setText(vacunatorio.getIdVacunatorio() + "");
@@ -184,7 +187,10 @@ public class ABMVacunatorios extends javax.swing.JInternalFrame {
         }
         }catch(NullPointerException ex){
             
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Elimine los espacios en blanco");
         }
+        
     }//GEN-LAST:event_buscarActionPerformed
 
     private void altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaActionPerformed
