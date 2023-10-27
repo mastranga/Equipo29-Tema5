@@ -277,6 +277,8 @@ public class Registro extends javax.swing.JInternalFrame {
             al.setSelectedItem(ciudadano.getAmbitoTrabajo());
             pato.setSelectedItem(ciudadano.getPatologia());
             id.setText(ciudadano.getId() + "");
+        } if(id.getText().charAt(0)== ' '|| id.getText().charAt(id.getText().length()-1)==' '){
+                System.out.println("Hay espacios en blanco");
         } else if (!email.getText().isEmpty()) {
             Ciudadano ciudadano = cd.buscarCiudadanoEmail(email.getText());
             dni.setText(ciudadano.getDni() + "");
@@ -300,6 +302,8 @@ public class Registro extends javax.swing.JInternalFrame {
         }
         }catch (NullPointerException ex){
             
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Elimine los espacios vacíos.");
         }
     }//GEN-LAST:event_buscarActionPerformed
 
