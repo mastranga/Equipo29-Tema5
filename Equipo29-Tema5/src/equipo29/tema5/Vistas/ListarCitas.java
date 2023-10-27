@@ -46,7 +46,7 @@ public class ListarCitas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mes = new javax.swing.JComboBox<String>();
+        mes = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         cumplidas = new javax.swing.JCheckBox();
         canceladas = new javax.swing.JCheckBox();
@@ -56,6 +56,8 @@ public class ListarCitas extends javax.swing.JInternalFrame {
         salir = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         limpiar = new javax.swing.JButton();
+
+        setTitle("Reporte de citas segun mes");
 
         jLabel1.setText("Mes");
 

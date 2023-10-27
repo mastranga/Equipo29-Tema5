@@ -57,6 +57,8 @@ public class ListarPorCentro extends javax.swing.JInternalFrame {
         limpiar = new javax.swing.JButton();
         salir = new javax.swing.JButton();
 
+        setTitle("Vacunas aplicadas por centro vacunatorio");
+
         vacunatorios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vacunatoriosActionPerformed(evt);

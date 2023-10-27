@@ -50,6 +50,7 @@ public class Contraseña extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("La contraseña esta en blanco");
 
         jLabel1.setText("Ingrese contraseña");
 

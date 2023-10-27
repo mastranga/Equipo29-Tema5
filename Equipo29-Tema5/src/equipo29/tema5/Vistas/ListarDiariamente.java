@@ -55,6 +55,8 @@ public class ListarDiariamente extends javax.swing.JInternalFrame {
         Limpiar = new javax.swing.JButton();
         salir = new javax.swing.JButton();
 
+        setTitle("Cantidad de aplicaciones por fecha");
+
         buscar.setText("Buscar");
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +143,6 @@ public class ListarDiariamente extends javax.swing.JInternalFrame {
         if(fecha.getDate() == null){
             JOptionPane.showMessageDialog(null, "Indique una fecha a consultar");
         }else{
-            
             String fech = fecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
             citas = citad.DosisAplicadasXCentroXDia(fech);
             borrarFilas();
