@@ -271,18 +271,26 @@ public class ABMCitas extends javax.swing.JInternalFrame {
 
             } else {
 
-                String horario = null;
+                armarComboHorario(null);
 
-                armarComboHorario(horario);
-
-                String vacun = null;
-
-                cargarComboVacunatorio(vacun);
+                cargarComboVacunatorio(null);
+                
+                armarComboRefuerzo(null);
+                
+                fecha.setDate(null);
 
             }
 
         } catch (NullPointerException ex) {
-            
+
+                armarComboHorario(null);
+
+                cargarComboVacunatorio(null);
+                
+                armarComboRefuerzo(null);
+                
+                fecha.setDate(null);
+                
         }
 
     }//GEN-LAST:event_comboCiudadanoActionPerformed
@@ -301,6 +309,7 @@ public class ABMCitas extends javax.swing.JInternalFrame {
                 if (!vacuna.getMarca().isEmpty()) {
                     citad.guardarCita(new Cita(ciudadano, cr, fech + " " + hor, vacuna, vacun));
                     vd.bajaVacuna(vacuna.getNroSerie());
+                    comboCiudadanoActionPerformed(evt);
                 } else {
                     //JOptionPane.showMessageDialog(null, "Verifique la disponibilidad de Vacunas ");
                 }
@@ -327,6 +336,7 @@ public class ABMCitas extends javax.swing.JInternalFrame {
         esencial.setSelected(false);
         armarComboCiudadano();
         cargarComboVacunatorio(null);
+        armarComboHorario(null);
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void patologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patologiaActionPerformed
@@ -360,6 +370,7 @@ public class ABMCitas extends javax.swing.JInternalFrame {
                 if (!vacuna.getMarca().isEmpty()) {
                     citad.guardarCita(new Cita(ciudadano, cr, fechaHoraActual, vacuna, vacun));
                     vd.bajaVacuna(vacuna.getNroSerie());
+                    comboCiudadanoActionPerformed(evt);
                 }
             }
         } catch (SQLException ex) {
