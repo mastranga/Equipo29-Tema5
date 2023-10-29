@@ -204,9 +204,9 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(disponible))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(disponible)
+                            .addComponent(jLabel6))
                         .addGap(13, 13, 13)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(alta)
@@ -268,6 +268,8 @@ public class ABMVacunas extends javax.swing.JInternalFrame {
             
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Elimine los espacios en blanco");
+        }catch(StringIndexOutOfBoundsException ex){
+            System.out.println("No se completó ningún campo");
         }
     }//GEN-LAST:event_buscarActionPerformed
 

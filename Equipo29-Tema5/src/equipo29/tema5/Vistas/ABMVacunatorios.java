@@ -164,33 +164,36 @@ public class ABMVacunatorios extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-        try{
-        if (!id.getText().isEmpty()) {
-            try {
-                Vacunatorio vacunatorio = cvd.buscarVacunatorioId(Integer.parseInt(id.getText()));
-                descripcion.setText(vacunatorio.getDescripcion());
-                id2.setText(id.getText());
-            } catch (NullPointerException ex) {
+        try {
+            if (!id.getText().isEmpty()) {
+                try {
+                    Vacunatorio vacunatorio = cvd.buscarVacunatorioId(Integer.parseInt(id.getText()));
+                    descripcion.setText(vacunatorio.getDescripcion());
+                    id2.setText(id.getText());
+                } catch (NullPointerException ex) {
+                } 
+            }else {
+                JOptionPane.showMessageDialog(null, "Indique el ID o el nombre para realizar la busqueda");
             }
-        }
-           if(id.getText().charAt(0)== ' '|| id.getText().charAt(id.getText().length()-1)==' '){
+            if (id.getText().charAt(0) == ' ' || id.getText().charAt(id.getText().length() - 1) == ' ') {
                 System.out.println("Hay espacios en blanco");
-        }else if (!descripcion.getText().isEmpty()) {
-            try {
-                Vacunatorio vacunatorio = cvd.buscarVacunatorioDescipcion(descripcion.getText());
-                id.setText(vacunatorio.getIdVacunatorio() + "");
-                id2.setText(id.getText());
-            } catch (NullPointerException ex) {
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Indique el ID o el nombre para realizar la busqueda");
-        }
-        }catch(NullPointerException ex){
-            
-        }catch(NumberFormatException ex){
+
+            } else if (!descripcion.getText().isEmpty()) {
+                try {
+                    Vacunatorio vacunatorio = cvd.buscarVacunatorioDescipcion(descripcion.getText());
+                    id.setText(vacunatorio.getIdVacunatorio() + "");
+                    id2.setText(id.getText());
+                } catch (NullPointerException ex) {
+                }
+            } 
+        } catch (NullPointerException ex) {
+
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Elimine los espacios en blanco");
-        }
-        
+        }catch (StringIndexOutOfBoundsException ex) {
+                    System.out.println("No se completó ningún campo");
+                }
+
     }//GEN-LAST:event_buscarActionPerformed
 
     private void altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaActionPerformed

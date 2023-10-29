@@ -277,9 +277,7 @@ public class Registro extends javax.swing.JInternalFrame {
             al.setSelectedItem(ciudadano.getAmbitoTrabajo());
             pato.setSelectedItem(ciudadano.getPatologia());
             id.setText(ciudadano.getId() + "");
-        } if(id.getText().charAt(0)== ' '|| id.getText().charAt(id.getText().length()-1)==' '){
-                System.out.println("Hay espacios en blanco");
-        } else if (!email.getText().isEmpty()) {
+        }  else if (!email.getText().isEmpty()) {
             Ciudadano ciudadano = cd.buscarCiudadanoEmail(email.getText());
             dni.setText(ciudadano.getDni() + "");
             nombreyapellido.setText(ciudadano.getNombreCompleto());
@@ -300,10 +298,17 @@ public class Registro extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese Documento, email o celular valido del ciudadano para realizar una busqueda");
         }
+        
+        if(dni.getText().charAt(0)== ' '|| dni.getText().charAt(dni.getText().length()-1)==' '||email.getText().charAt(0)== ' '|| email.getText().charAt(email.getText().length()-1)==' '||celular.getText().charAt(0)== ' '|| celular.getText().charAt(celular.getText().length()-1)==' '){
+                System.out.println("Hay espacios en blanco");
+        }
+        
         }catch (NullPointerException ex){
             
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Elimine los espacios vacíos.");
+        }catch (StringIndexOutOfBoundsException ex){
+            System.out.println("no se completó ningun campo");
         }
     }//GEN-LAST:event_buscarActionPerformed
 
